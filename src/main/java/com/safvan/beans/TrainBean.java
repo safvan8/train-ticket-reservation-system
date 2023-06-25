@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class TrainBean {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "tr_no")
 	private Long trainNo;
 

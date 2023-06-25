@@ -6,7 +6,10 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.safvan.beans.TrainBean;
 import com.safvan.service.ITrainService;
@@ -17,25 +20,79 @@ public class AdminController {
 
 	@Autowired
 	private ITrainService trainService;
-	
-	@GetMapping("/")
+
+	@GetMapping(value = { "/", "/home" })
 	public String showHomePage() {
-		return "admin/AdminHome";
+		return "admin/admin_home";
 	}
 
-	@GetMapping("/viewalltrains")
+	// to disply all available trains to admin
+	@GetMapping("/viewAllTrains")
 	public String viewAllTrainsForward(Map<String, Object> model) {
-		
+
 		System.out.println("AdminController.viewAllTrainsForward()");
-		
+
 		List<TrainBean> allTrains = trainService.getAllTrains();
-		
+
 		allTrains.forEach(System.out::println);
-		
+
 		model.put("allTrains", allTrains);
-		
+
 		allTrains.forEach(System.out::println);
-		
-		return "train/viewTrains";
+
+		return "train/view_trains";
+	}
+
+	// Admin seatch train page forwadring method
+	@GetMapping("/searchTrainByNumberFwd")
+	public String searchTrainByNumberForward() {
+		return "admin/admin_search_train_form";
+	}
+
+	// perfroming real sreach operaion for admin here
+	@PostMapping("/searchTrainByNumber")
+	public String searchTrainByNumber(@RequestParam Long trainNo, Map<String, Object> model) {
+		System.out.println("AdminController.searchTrainByNumber()");
+		TrainBean train = trainService.getTrainByNumber(trainNo);
+
+		model.put("train", train);
+
+		return "admin/admin_search_result";
+	}
+
+	// add new train forwarding method
+	@GetMapping("/addTrainFwd")
+	public String addTrainForward() {
+		return "admin/add_train_form";
+	}
+
+	// adding a new Train by perfroming insert
+	@PostMapping("/addTrain")
+	public String addTrain(@ModelAttribute TrainBean trainBean, Map<String, Object> model) {
+		System.out.println("AdminController.addTrain()");
+
+		String message = trainService.addTrain(trainBean);
+
+		model.put("message", message);
+
+		return "admin/admin_display_message";
+	}
+
+	// delete and existing train, forwarding methods
+	@GetMapping("/deleteTrainFwd")
+	public String deleteTrainForward() {
+		return "admin/admin_delete_train_form";
+	}
+
+	// delete an existing train using db
+	@PostMapping("/deleteTrainByNumber")
+	public String deleteTrain(@RequestParam Long trainNo, Map<String, Object> model) {
+
+		System.out.println("AdminController.deleteTrain()");
+		String message = trainService.deleteTrain(trainNo);
+
+		model.put("message", message);
+
+		return "admin/admin_display_message";
 	}
 }
