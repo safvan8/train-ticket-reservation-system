@@ -25,7 +25,7 @@
         <!-- View All trains Hyperink-->
         <div class="home">
             <p class="menu">
-                <a href="admintrainfwd">View All Trains</a>
+                <a href="${pageContext.request.contextPath}/admin/viewalltrains">View All Trains</a>
             </p>
         </div>
 
