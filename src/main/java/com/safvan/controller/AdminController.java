@@ -46,7 +46,7 @@ public class AdminController {
 	// Admin seatch train page forwadring method
 	@GetMapping("/searchTrainByNumberFwd")
 	public String searchTrainByNumberForward() {
-		return "admin/admin_search_train_form";
+		return "admin/search_train_form";
 	}
 
 	// perfroming real sreach operaion for admin here
@@ -57,7 +57,7 @@ public class AdminController {
 
 		model.put("train", train);
 
-		return "admin/admin_search_result";
+		return "admin/search_result";
 	}
 
 	// add new train forwarding method
@@ -75,13 +75,13 @@ public class AdminController {
 
 		model.put("message", message);
 
-		return "admin/admin_display_message";
+		return "admin/display_message";
 	}
 
 	// delete and existing train, forwarding methods
 	@GetMapping("/deleteTrainFwd")
 	public String deleteTrainForward() {
-		return "admin/admin_delete_train_form";
+		return "admin/delete_train_form";
 	}
 
 	// delete an existing train using db
@@ -93,6 +93,6 @@ public class AdminController {
 
 		model.put("message", message);
 
-		return "admin/admin_display_message";
+		return "admin/display_message";
 	}
 }
