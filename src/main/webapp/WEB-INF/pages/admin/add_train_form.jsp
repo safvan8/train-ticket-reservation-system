@@ -81,7 +81,7 @@
 
         <!-- Form to add new train-->
         <div>
-            <form action="${pageContext.request.contextPath}/admin/addTrain" method="post" class="tab">
+            <form action="${pageContext.request.contextPath}/admin/saveTrain" method="post" class="tab">
                 Train Name: <input type="text" name="trainName"> <br>
                 From Station: <input type="text" name="fromStation"> <br>
                 To Station: <input type="text" name="toStation"> <br>
@@ -90,7 +90,6 @@
                 <input  type="submit" value="ADD TRAIN">
             </form>
         </div>
-
     </body>
-
+    
     </html>

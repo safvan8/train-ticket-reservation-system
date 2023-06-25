@@ -57,7 +57,7 @@ public class AdminController {
 
 		model.put("train", train);
 
-		return "admin/search_result";
+		return "admin/search_train_result";
 	}
 
 	// add new train forwarding method
@@ -67,7 +67,8 @@ public class AdminController {
 	}
 
 	// adding a new Train by perfroming insert
-	@PostMapping("/addTrain")
+	// also can be used to edit existing train details based on Id
+	@PostMapping("/saveTrain")
 	public String addTrain(@ModelAttribute TrainBean trainBean, Map<String, Object> model) {
 		System.out.println("AdminController.addTrain()");
 
@@ -94,5 +95,22 @@ public class AdminController {
 		model.put("message", message);
 
 		return "admin/display_message";
+	}
+
+	// to update Train
+	// update train forward
+	@GetMapping("/updateTrainFwd")
+	public String updateTrainFwd() {
+		return "admin/update_train_page";
+	}
+
+	@PostMapping("/updateTrainByNumber")
+	public String showEditForm(@RequestParam Long trainNo, Map<String, Object> model) {
+
+		System.out.println("AdminController.showEditForm()");
+		TrainBean train = trainService.getTrainByNumber(trainNo);
+
+		model.put("train", train);	
+		return "admin/edit_train_details_form";
 	}
 }

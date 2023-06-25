@@ -42,7 +42,11 @@ public class TrainServiceImpl implements ITrainService {
 	public String addTrain(TrainBean trainBean) {
 		try {
 			TrainBean savedTrain = trainDAO.save(trainBean);
-			return "Train added Sucessfull with train Number :" + savedTrain.getTrainNo();
+			if (trainBean.getTrainNo() == null)
+			 return "Train added Sucessfull with train Number :" + savedTrain.getTrainNo();
+			else
+				return "Train details updated successfully for the train Number :"+trainBean.getTrainNo();
+				
 		} catch (Exception e) {
 			throw new TrainException("Error occured while adding a new Train :" + e.getMessage());
 		}
