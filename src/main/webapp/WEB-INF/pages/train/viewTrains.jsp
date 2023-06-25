@@ -38,35 +38,46 @@
     </header>
     
     <!-- To display all trains details received from DB -->
-    <div class="main">
-        <p class="menu">
-            All Available running Trains - displaying to Admin
-        </p>
-        <div class="tab">
-            <table border="1">
-                <tr>
-                    <th>Train Name</th>
-                    <th>Train No.</th>
-                    <th>From Station</th>
-                    <th>To Station</th>
-                    <th>Seats Available</th>
-                    <th>Fare (INR)</th>
-                    <th>Action</th>
-                </tr>
+	<div class="main">
+	    <p class="menu">
+	        All Available running Trains - displaying to Admin
+	    </p>
+	    <div class="tab">
+	        <table border="1">
+	            <tr>
+	                <th>Train Name</th>
+	                <th>Train No.</th>
+	                <th>From Station</th>
+	                <th>To Station</th>
+	                <th>Seats Available</th>
+	                <th>Fare (INR)</th>
+	                <th>Action</th>
+	            </tr>
+	
+				<!-- checking if allTrains List is null or not before displying it -->
+	            <c:choose>
+	                <c:when test="${empty allTrains}">
+	                    <tr>
+	                        <td colspan="7"> <h1>No Running trains available</h1> </td>
+	                    </tr>
+	                </c:when>
+	                <c:otherwise>
+	                    <c:forEach var="train" items="${allTrains}">
+	                        <tr>
+	                            <td>${train.trainName}</td>
+	                            <td>${train.trainNo}</td>
+	                            <td>${train.fromStation}</td>
+	                            <td>${train.toStation}</td>
+	                            <td>${train.seats}</td>
+	                            <td>${train.fare}</td>
+	                        </tr>
+	                    </c:forEach>
+	                </c:otherwise>
+	            </c:choose>
+	        </table>
+	    </div>
+	</div>
 
-                <c:forEach var="train" items="${allTrains}">
-                    <tr>
-	                    <td>${train.trainName}</td>
-	                    <td>${train.trainNo}</td>
-	                    <td>${train.fromStation}</td>
-	                    <td>${train.toStation}</td>
-	                    <td>${train.seats}</td>
-                        <td>${train.fare}</td>
-                    </tr>
-                </c:forEach>
-            </table>
-        </div>
-    </div>
 
 </body>
 </html>
