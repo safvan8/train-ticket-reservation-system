@@ -12,7 +12,6 @@
 
 <link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/UserHome_Css.css">
-
 </head>
 <body>
 	<header>
