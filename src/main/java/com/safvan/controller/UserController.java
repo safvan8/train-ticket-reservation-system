@@ -39,4 +39,10 @@ public class UserController {
 
 		return "user/view_trains";
 	}
+	
+	@GetMapping("/findTrainsbetweenStaionsFwd")
+	public String findTrainsbetweenStaionsForward()
+	{
+		return "user/trains_btwn_staions_form";
+	}
 }

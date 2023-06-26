@@ -36,7 +36,7 @@
 		<div class="home">
 			<p class="menu">
 				<a
-					href="${pageContext.request.contextPath}/user/trainsbetweenStaionsFwd">Trains
+					href="${pageContext.request.contextPath}/user/findTrainsbetweenStaionsFwd">Trains
 					between staions</a>
 			</p>
 		</div>
