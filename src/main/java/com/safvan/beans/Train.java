@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TrainBean {
+public class Train {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

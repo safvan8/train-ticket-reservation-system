@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.safvan.beans.TrainBean;
+import com.safvan.beans.Train;
 import com.safvan.service.ITrainService;
 
 @Controller
@@ -32,7 +32,7 @@ public class AdminController {
 
 		System.out.println("AdminController.viewAllTrainsForward()");
 
-		List<TrainBean> allTrains = trainService.getAllTrains();
+		List<Train> allTrains = trainService.getAllTrains();
 
 		allTrains.forEach(System.out::println);
 
@@ -53,7 +53,7 @@ public class AdminController {
 	@PostMapping("/searchTrainByNumber")
 	public String searchTrainByNumber(@RequestParam Long trainNo, Map<String, Object> model) {
 		System.out.println("AdminController.searchTrainByNumber()");
-		TrainBean train = trainService.getTrainByNumber(trainNo);
+		Train train = trainService.getTrainByNumber(trainNo);
 
 		model.put("train", train);
 
@@ -69,10 +69,10 @@ public class AdminController {
 	// adding a new Train by perfroming insert
 	// also can be used to edit existing train details based on Id
 	@PostMapping("/saveTrain")
-	public String addTrain(@ModelAttribute TrainBean trainBean, Map<String, Object> model) {
+	public String addTrain(@ModelAttribute Train train, Map<String, Object> model) {
 		System.out.println("AdminController.addTrain()");
 
-		String message = trainService.addTrain(trainBean);
+		String message = trainService.addTrain(train);
 
 		model.put("message", message);
 
@@ -108,7 +108,7 @@ public class AdminController {
 	public String showEditForm(@RequestParam Long trainNo, Map<String, Object> model) {
 
 		System.out.println("AdminController.showEditForm()");
-		TrainBean train = trainService.getTrainByNumber(trainNo);
+		Train train = trainService.getTrainByNumber(trainNo);
 
 		model.put("train", train);	
 		return "admin/edit_train_details_form";

@@ -20,7 +20,7 @@
             <!-- Home Hyperlik -->
             <div class="home">
                 <p class="menu">
-                    <a href="AdminHome.html">Home</a>
+                    <a href="#">Home</a>
                 </p>
             </div>
 

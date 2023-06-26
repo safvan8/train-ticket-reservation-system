@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.safvan.beans.TrainBean;
+import com.safvan.beans.Train;
 import com.safvan.dao.ITrainDAO;
 import com.safvan.execption.TrainException;
 import com.safvan.execption.TrainNotFoundException;
@@ -21,16 +21,16 @@ public class TrainServiceImpl implements ITrainService {
 
 	// to Display all trains
 	@Override
-	public List<TrainBean> getAllTrains() {
+	public List<Train> getAllTrains() {
 		System.out.println("TrainServiceImpl.getAllTrains()");
-		return (List<TrainBean>) trainDAO.findAll();
+		return (List<Train>) trainDAO.findAll();
 	}
 
 	// get a train using Id throw TNF Execption
 	@Override
-	public TrainBean getTrainByNumber(Long trainNo) {
+	public Train getTrainByNumber(Long trainNo) {
 
-		Optional<TrainBean> train = trainDAO.findById(trainNo);
+		Optional<Train> train = trainDAO.findById(trainNo);
 		System.out.println("TrainServiceImpl.getTrainByNumber()");
 		if (train.isPresent())
 			return train.get();
@@ -39,13 +39,13 @@ public class TrainServiceImpl implements ITrainService {
 
 	// to add a new Train
 	@Override
-	public String addTrain(TrainBean trainBean) {
+	public String addTrain(Train train) {
 		try {
-			TrainBean savedTrain = trainDAO.save(trainBean);
-			if (trainBean.getTrainNo() == null)
+			Train savedTrain = trainDAO.save(train);
+			if (train.getTrainNo() == null)
 			 return "Train added Sucessfull with train Number :" + savedTrain.getTrainNo();
 			else
-				return "Train details updated successfully for the train Number :"+trainBean.getTrainNo();
+				return "Train details updated successfully for the train Number :"+train.getTrainNo();
 				
 		} catch (Exception e) {
 			throw new TrainException("Error occured while adding a new Train :" + e.getMessage());
