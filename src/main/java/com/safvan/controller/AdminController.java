@@ -40,7 +40,7 @@ public class AdminController {
 
 		allTrains.forEach(System.out::println);
 
-		return "train/view_trains";
+		return "admin/view_trains";
 	}
 
 	// Admin seatch train page forwadring method
