@@ -12,6 +12,7 @@
 
 <link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/UserHome_Css.css">
+
 </head>
 <body>
 	<header>
@@ -94,9 +95,10 @@
 					<th>Train No.</th>
 					<th>From Station</th>
 					<th>To Station</th>
+					<th>Time</th>
 					<th>Seats Available</th>
 					<th>Fare (INR)</th>
-					<th>Action</th>
+					<th>Booking</th>
 				</tr>
 
 				<!-- checking if allTrains List is null or not before displying it -->
@@ -110,13 +112,35 @@
 					</c:when>
 					<c:otherwise>
 						<c:forEach var="train" items="${allTrains}">
+							<!-- Generating Random Train Time -->
+							<%
+							// Generate random hours and minutes
+							int hr = (int) (Math.random() * 24);
+							int min = (int) (Math.random() * 60);
+
+							// Construct the time string ,adding leading zero if hr or min < 10
+							String trainTime = (hr < 10 ? "0" + hr : String.valueOf(hr)) + ":" + (min < 10 ? "0" + min : String.valueOf(min));
+							%>
+
 							<tr>
 								<td>${train.trainName}</td>
 								<td>${train.trainNo}</td>
 								<td>${train.fromStation}</td>
 								<td>${train.toStation}</td>
+								<td><%=trainTime%></td>
 								<td>${train.seats}</td>
 								<td>${train.fare}</td>
+								<td>
+									<!-- Creating url for Booking trains-->
+									<c:url var="bookNowLink" value="/user/bookTrainByRef">
+										<!-- passing the trainNo in queryString -->
+										<c:param name="trainNo" value="${train.trainNo}"/>
+										<c:param name="fromStation" value="${train.fromStation}"/>
+										<c:param name="toStation" value="${train.toStation}"/>
+									</c:url>
+									<!-- Hyperlink for Booking train -->
+									<a href="${bookNowLink }" style="color: red;"> BookNow</a>
+								</td>
 							</tr>
 						</c:forEach>
 					</c:otherwise>
