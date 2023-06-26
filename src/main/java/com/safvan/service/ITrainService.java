@@ -3,8 +3,8 @@ package com.safvan.service;
 import java.util.List;
 
 import com.safvan.beans.Train;
-import com.safvan.execption.TrainException;
-import com.safvan.execption.TrainNotFoundException;
+import com.safvan.exception.TrainException;
+import com.safvan.exception.TrainNotFoundException;
 
 public interface ITrainService {
 	

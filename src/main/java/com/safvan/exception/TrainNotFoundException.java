@@ -1,4 +1,4 @@
-package com.safvan.execption;
+package com.safvan.exception;
 
 public class TrainNotFoundException extends TrainException{
 

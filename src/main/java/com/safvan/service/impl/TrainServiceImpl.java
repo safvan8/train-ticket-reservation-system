@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.safvan.beans.Train;
 import com.safvan.dao.ITrainDAO;
-import com.safvan.execption.TrainException;
-import com.safvan.execption.TrainNotFoundException;
+import com.safvan.exception.TrainException;
+import com.safvan.exception.TrainNotFoundException;
 import com.safvan.service.ITrainService;
 
 @Service
