@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.safvan.beans.Ticket;
 import com.safvan.beans.Train;
+import com.safvan.service.IBookingService;
 import com.safvan.service.ITrainService;
 
 @Controller
@@ -21,6 +22,9 @@ public class UserController {
 
 	@Autowired
 	private ITrainService trainService;
+
+	@Autowired
+	private IBookingService bookingService;
 
 	@GetMapping(value = { "/", "/home" })
 	public String showHomePage() {
@@ -95,6 +99,13 @@ public class UserController {
 		// setting train from and to with user preferences
 		train.setFromStation(fromStation);
 		train.setToStation(toStation);
+		ticket.setTrain(train);
+
+		Ticket processedTicket = bookingService.bookTicket(ticket);
+
+		System.out.println(processedTicket);
+
+		model.put("processedTicket", processedTicket);
 
 		return "user/payment_inputs_form";
 	}
