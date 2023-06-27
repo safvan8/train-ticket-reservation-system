@@ -110,16 +110,14 @@
 						<td>${preBookingDetails.toStation}</td>
 					</tr>
 
-
 					<!-- Journey Date and Number of Seats -->
-					<!-- Only trainNo needs to be passed as hidden input ,
-					By using trainNo, we can get All train details like , fromStation and toStation
-					 from Database table if needed-->
-					
 					<tr>
 						<td>Journey Date:</td>
 						<td>
-							<input type='hidden' name='trainNo' value='${preBookingDetails.trainNo}'> 
+							<!-- passing ,user request data as hidden form fields -->
+							<input type='hidden' name='trainNo' value='${preBookingDetails.trainNo}'>
+							<input type='hidden' name='fromStation' value='${preBookingDetails.fromStation}'> 
+							<input type='hidden' name='toStation' value='${preBookingDetails.toStation}'>  
 							<% 
       							String currentDate= java.time.LocalDate.now().toString();
       						%>						
