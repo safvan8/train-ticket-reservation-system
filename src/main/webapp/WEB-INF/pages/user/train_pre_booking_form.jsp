@@ -1,10 +1,5 @@
-<%@page import="java.time.LocalDate"%>
-<%@page import="org.apache.naming.java.javaURLContextFactory"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
-
-<!-- Importing data formattting classes -->
-<%@ page import="java.text.SimpleDateFormat, java.util.Date" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -126,19 +121,9 @@
 						<td>
 							<input type='hidden' name='trainNo' value='${preBookingDetails.trainNo}'> 
 							<% 
-							  // Import the required Java classes
-						
-							  // Create a SimpleDateFormat object with the desired format
-							  SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
-							  // Get the current date
-							  Date currentDate = new Date();
-
-							  // Format the current date using the SimpleDateFormat object
-							  String formattedDate = dateFormat.format(currentDate);
-							  System.out.print(LocalDate.now());
+      							String currentDate= java.time.LocalDate.now().toString();
       						%>						
-							<input type="date" name='journeyDate' value='<%= formattedDate %>'></td>
+							<input type='date' name='journeyDate' value='<%= currentDate %>'></td>
 						<td>No of Seats:</td>
 						<td>
 							<input type='number' name='seats' value='${seat}'>
