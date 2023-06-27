@@ -59,10 +59,29 @@ public class UserController {
 		trainsList.forEach(System.out::println);
 
 		// writing page heading and setting data to request scope
-		model.put("pageHeading", "Trains Between stations.." + fromStation + " & " + toStation);
+		model.put("pageHeading",
+				"Trains Between stations.." + fromStation.toUpperCase() + " & " + toStation.toUpperCase());
 		model.put("trainsList", trainsList);
 
 		return "user/view_trains";
+	}
+
+	// disply book trains page
+
+	@GetMapping("/showPreBookingFormForTrain")
+	public String showPreBookingFormForTrain(@RequestParam Long trainNo, @RequestParam String fromStation,
+			@RequestParam String toStation, Map<String, Object> model) {
+
+		// saving to train obj and forwarding
+		Train train = new Train();
+		train.setTrainNo(trainNo);
+		train.setFromStation(fromStation);
+		train.setToStation(toStation);
+
+		// saving object to request scope
+		model.put("preBookingDetails", train);
+
+		return "user/train_pre_booking_form";
 
 	}
 }

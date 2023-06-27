@@ -1,0 +1,177 @@
+<%@page import="java.time.LocalDate"%>
+<%@page import="org.apache.naming.java.javaURLContextFactory"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1" isELIgnored="false"%>
+
+<!-- Importing data formattting classes -->
+<%@ page import="java.text.SimpleDateFormat, java.util.Date" %>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+
+<link type="text/css" rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/UserHome_Css.css">
+
+</head>
+
+<body>
+
+	<header>
+		<h1 class="hd">National Ticket Booking Spot UH</h1>
+
+		<!-- Home Hyperlik -->
+		<div class="home">
+			<p class="menu">
+				<a href="#">Home</a>
+			</p>
+		</div>
+
+		<!-- View All trains Hyperink-->
+		<div class="home">
+			<p class="menu">
+				<a href="${pageContext.request.contextPath}/user/viewAllTrains">View
+					All Trains</a>
+			</p>
+		</div>
+
+		<!-- Find Trains between 2 staions Hyperlink -->
+		<div class="home">
+			<p class="menu">
+				<a
+					href="${pageContext.request.contextPath}/user/findTrainsbetweenStaionsFwd">Trains
+					between staions</a>
+			</p>
+		</div>
+
+		<!-- Diplay train booking History Hyperlink -->
+		<div class="home">
+			<p class="menu">
+				<a
+					href="${pageContext.request.contextPath}/user/showBookingHistoryFwd">Ticket
+					Booking History</a>
+			</p>
+		</div>
+
+		<!-- train fair Enquery Hyperlink -->
+		<div class="home">
+			<p class="menu">
+				<a
+					href="${pageContext.request.contextPath}/user/trainFairEnqueryFwd">Fair
+					Enquery</a>
+			</p>
+		</div>
+
+		<!-- Check Seats Availability Hyperlink -->
+		<div class="home">
+			<p class="menu">
+				<a
+					href="${pageContext.request.contextPath}/user/trainSeatsAvailablityCheckFwd">Check
+					Seats Availability</a>
+			</p>
+		</div>
+
+		<!-- display user profile Hyperlink -->
+		<div class="home">
+			<p class="menu">
+				<a href="${pageContext.request.contextPath}/user/userProfile">Profile</a>
+			</p>
+		</div>
+
+		<!-- user Logout Hyperlink -->
+		<div class="home">
+			<p class="menu">
+				<a href="${pageContext.request.contextPath}/user/userLogout">Logout</a>
+			</p>
+		</div>
+	</header>
+
+
+	<section>
+		<div class='tab'>
+			<form action='payment' method='post'>
+				<table border="2" style="border: thick;">
+
+				<% String userName="safvan";
+				request.setAttribute("userName", userName);
+				%>
+
+					<!-- User ID and Train Number -->
+					<tr>
+						<td>USER ID:</td>
+						<td>${userName}</td>
+						<td>Train NO:</td>
+						<td>${preBookingDetails.trainNo}</td>
+					</tr>
+					<!-- From Station and To Station -->
+					<tr>
+						<td>From Station:</td>
+						<td>${preBookingDetails.fromStation}</td>
+						<td>To Station:</td>
+						<td>${preBookingDetails.toStation}</td>
+					</tr>
+
+
+					<!-- Journey Date and Number of Seats -->
+					<!-- Only trainNo needs to be passed as hidden input ,
+					By using trainNo, we can get All train details like , fromStation and toStation
+					 from Database table if needed-->
+					
+					<tr>
+						<td>Journey Date:</td>
+						<td>
+							<input type='hidden' name='trainNo' value='${preBookingDetails.trainNo}'> 
+							<% 
+							  // Import the required Java classes
+						
+							  // Create a SimpleDateFormat object with the desired format
+							  SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+							  // Get the current date
+							  Date currentDate = new Date();
+
+							  // Format the current date using the SimpleDateFormat object
+							  String formattedDate = dateFormat.format(currentDate);
+							  System.out.print(LocalDate.now());
+      						%>						
+							<input type="date" name='journeyDate' value='<%= formattedDate %>'></td>
+						<td>No of Seats:</td>
+						<td>
+							<input type='number' name='seats' value='${seat}'>
+						</td>
+					</tr>
+					
+					<!-- Select Class and Berth Preference -->
+					<tr>
+						<td>Select Class:</td>
+						<td><select name='seatType' required>
+								<option value='Sleeper(SL)'>Sleeper(SL)</option>
+								<option value='Second Sitting(2S)'>Second Sitting(2S)</option>
+								<option value='AC First Class(1A)'>AC First Class(1A)</option>
+								<option value='AC 2 Tier(2A)'>AC 2 Tier(2A)</option>
+						</select></td>
+						<td>Berth Preference:</td>
+						<td><select name='berth'>
+								<option value='NO'>No Preference</option>
+								<option value='LB'>Lower Berth(LB)</option>
+								<option value='UB'>Lower Berth(UB)</option>
+								<option value='C'>Cabin</option>
+						</select></td>
+					</tr>
+				</table>
+		</div>
+		<div class='tab'>
+			<p1 class='menu'> <!-- Submit button --> <input type='submit'
+				value='Pay And Book'> </p1>
+		</div>
+		</form>
+
+	</section>
+
+</body>
+
+</html>

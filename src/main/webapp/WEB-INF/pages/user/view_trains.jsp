@@ -130,7 +130,7 @@
 								<td>${train.fare}</td>
 								<td>
 									<!-- Creating url for Booking trains-->
-									<c:url var="bookNowLink" value="/user/bookTrainByRef">
+									<c:url var="bookNowLink" value="/user/showPreBookingFormForTrain">
 										<!-- passing the trainNo in queryString -->
 										<c:param name="trainNo" value="${train.trainNo}"/>
 										<c:param name="fromStation" value="${train.fromStation}"/>
