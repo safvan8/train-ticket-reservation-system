@@ -8,29 +8,29 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.safvan.beans.Train;
-import com.safvan.dao.ITrainDAO;
 import com.safvan.exception.TrainException;
 import com.safvan.exception.TrainNotFoundException;
+import com.safvan.repository.ITrainRepository;
 import com.safvan.service.ITrainService;
 
 @Service
 public class TrainServiceImpl implements ITrainService {
 
 	@Autowired
-	private ITrainDAO trainDAO;
+	private ITrainRepository trainRepository;
 
 	// to Display all trains
 	@Override
 	public List<Train> getAllTrains() {
 		System.out.println("TrainServiceImpl.getAllTrains()");
-		return (List<Train>) trainDAO.findAll();
+		return (List<Train>) trainRepository.findAll();
 	}
 
 	// get a train using Id throw TNF Execption
 	@Override
 	public Train getTrainByNumber(Long trainNo) {
 
-		Optional<Train> train = trainDAO.findById(trainNo);
+		Optional<Train> train = trainRepository.findById(trainNo);
 		System.out.println("TrainServiceImpl.getTrainByNumber()");
 		if (train.isPresent())
 			return train.get();
@@ -41,7 +41,7 @@ public class TrainServiceImpl implements ITrainService {
 	@Override
 	public String addTrain(Train train) {
 		try {
-			Train savedTrain = trainDAO.save(train);
+			Train savedTrain = trainRepository.save(train);
 			if (train.getTrainNo() == null)
 				return "Train added Sucessfull with train Number :" + savedTrain.getTrainNo();
 			else
@@ -56,7 +56,7 @@ public class TrainServiceImpl implements ITrainService {
 	@Override
 	public String deleteTrain(Long trainNo) throws TrainNotFoundException {
 		try {
-			trainDAO.deleteById(trainNo);
+			trainRepository.deleteById(trainNo);
 			return "train with Number:" + trainNo + " deleted successfully";
 		} catch (EmptyResultDataAccessException erd) {
 			throw new TrainNotFoundException("Train Not Found With the Id :" + trainNo);
@@ -69,6 +69,6 @@ public class TrainServiceImpl implements ITrainService {
 	@Override
 	public List<Train> getTrainsBetweenStations(String fromStation, String toStation) {
 		System.out.println("TrainServiceImpl.getTrainsBetweenStation()");
-		return trainDAO.findTrainsBetweenStations(fromStation, toStation);
+		return trainRepository.findTrainsBetweenStations(fromStation, toStation);
 	}
 }

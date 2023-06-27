@@ -124,7 +124,7 @@
 							<input type='date' name='journeyDate' value='<%= currentDate %>'></td>
 						<td>No of Seats:</td>
 						<td>
-							<input type='number' name='seats' value='${seat}'>
+							<input type='number' name='seatsRequired' value='1'>
 						</td>
 					</tr>
 					
@@ -138,7 +138,7 @@
 								<option value='AC 2 Tier(2A)'>AC 2 Tier(2A)</option>
 						</select></td>
 						<td>Berth Preference:</td>
-						<td><select name='berth'>
+						<td><select name='berthPreference'>
 								<option value='NO'>No Preference</option>
 								<option value='LB'>Lower Berth(LB)</option>
 								<option value='UB'>Lower Berth(UB)</option>

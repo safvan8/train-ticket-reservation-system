@@ -6,10 +6,12 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.safvan.beans.Ticket;
 import com.safvan.beans.Train;
 import com.safvan.service.ITrainService;
 
@@ -72,9 +74,9 @@ public class UserController {
 	public String showPreBookingFormForTrain(@RequestParam Long trainNo, @RequestParam String fromStation,
 			@RequestParam String toStation, Map<String, Object> model) {
 
-		// saving to train obj and forwarding
+		// get all train details using number for saving inside ticket
 		Train train = new Train();
-		train.setTrainNo(trainNo);
+		// setting train from and to with user preferences
 		train.setFromStation(fromStation);
 		train.setToStation(toStation);
 
@@ -82,6 +84,19 @@ public class UserController {
 		model.put("preBookingDetails", train);
 
 		return "user/train_pre_booking_form";
-
 	}
+
+	@PostMapping("/procedTrainBooking")
+	public String procedTrainBookingForUser(Long trainNo, @RequestParam String fromStation,
+			@RequestParam String toStation, @ModelAttribute Ticket ticket, Map<String, Object> model) {
+
+		// get all train details using number for saving inside ticket
+		Train train = trainService.getTrainByNumber(trainNo);
+		// setting train from and to with user preferences
+		train.setFromStation(fromStation);
+		train.setToStation(toStation);
+
+		return "user/payment_inputs_form";
+	}
+
 }
