@@ -43,6 +43,6 @@ public class UserController {
 	@GetMapping("/findTrainsbetweenStaionsFwd")
 	public String findTrainsbetweenStaionsForward()
 	{
-		return "user/trains_btwn_staions_form";
+		return "user/trains_btwn_stations_form";
 	}
 }
