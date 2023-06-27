@@ -6,7 +6,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.safvan.beans.Train;
 import com.safvan.service.ITrainService;
@@ -29,20 +31,38 @@ public class UserController {
 
 		System.out.println("UserController.viewAllTrainsForward()");
 
-		List<Train> allTrains = trainService.getAllTrains();
+		List<Train> trainsList = trainService.getAllTrains();
 
-		allTrains.forEach(System.out::println);
+		trainsList.forEach(System.out::println);
 
-		model.put("allTrains", allTrains);
-
-		allTrains.forEach(System.out::println);
+		// writing page heading and setting data to request scope
+		model.put("pageHeading", "All Available running Trains - displaying to user..");
+		model.put("trainsList", trainsList);
 
 		return "user/view_trains";
 	}
-	
+
+	// forwarding method
 	@GetMapping("/findTrainsbetweenStaionsFwd")
-	public String findTrainsbetweenStaionsForward()
-	{
+	public String findTrainsbetweenStaionsForward() {
 		return "user/trains_btwn_stations_form";
+	}
+
+	// fomd trains betwen 2 stations
+	@PostMapping("/findTrainsbetweenStaions")
+	public String findTrainsbetweenStaions(@RequestParam String fromStation, @RequestParam String toStation,
+			Map<String, Object> model) {
+
+		System.out.println("UserController.findTrainsbetweenStaions()");
+
+		List<Train> trainsList = trainService.getTrainsBetweenStations(fromStation, toStation);
+		trainsList.forEach(System.out::println);
+
+		// writing page heading and setting data to request scope
+		model.put("pageHeading", "Trains Between stations.." + fromStation + " & " + toStation);
+		model.put("trainsList", trainsList);
+
+		return "user/view_trains";
+
 	}
 }

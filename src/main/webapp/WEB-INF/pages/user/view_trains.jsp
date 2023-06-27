@@ -85,8 +85,7 @@
 
 	<!-- To display all trains details received from DB -->
 	<div class="main">
-		<p class="menu">All Available running Trains - displaying to user
-		</p>
+		<p class="menu">${pageHeading}</p>
 		<div class="tab">
 			<table border="1">
 				<tr>
@@ -100,9 +99,9 @@
 					<th>Booking</th>
 				</tr>
 
-				<!-- checking if allTrains List is null or not before displying it -->
+				<!-- checking if trainsList List is null or not before displying it -->
 				<c:choose>
-					<c:when test="${empty allTrains}">
+					<c:when test="${empty trainsList}">
 						<tr>
 							<td colspan="7">
 								<h1>No Running trains available</h1>
@@ -110,7 +109,7 @@
 						</tr>
 					</c:when>
 					<c:otherwise>
-						<c:forEach var="train" items="${allTrains}">
+						<c:forEach var="train" items="${trainsList}">
 							<!-- Generating Random Train Time -->
 							<%
 							// Generate random hours and minutes

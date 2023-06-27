@@ -16,4 +16,6 @@ public interface ITrainService {
 	public String addTrain(Train train) throws TrainException;
 	
 	public String deleteTrain(Long trainNo) throws TrainNotFoundException;
+	
+	public List<Train> getTrainsBetweenStations(String fromStation,String toStation);
 }

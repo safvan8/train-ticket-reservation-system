@@ -43,10 +43,10 @@ public class TrainServiceImpl implements ITrainService {
 		try {
 			Train savedTrain = trainDAO.save(train);
 			if (train.getTrainNo() == null)
-			 return "Train added Sucessfull with train Number :" + savedTrain.getTrainNo();
+				return "Train added Sucessfull with train Number :" + savedTrain.getTrainNo();
 			else
-				return "Train details updated successfully for the train Number :"+train.getTrainNo();
-				
+				return "Train details updated successfully for the train Number :" + train.getTrainNo();
+
 		} catch (Exception e) {
 			throw new TrainException("Error occured while adding a new Train :" + e.getMessage());
 		}
@@ -63,5 +63,12 @@ public class TrainServiceImpl implements ITrainService {
 		} catch (Exception e) {
 			throw new TrainException("Exception ouccured while deleteing train:" + e.getMessage());
 		}
+	}
+
+	// to find trains between to stations
+	@Override
+	public List<Train> getTrainsBetweenStations(String fromStation, String toStation) {
+		System.out.println("TrainServiceImpl.getTrainsBetweenStation()");
+		return trainDAO.findTrainsBetweenStations(fromStation, toStation);
 	}
 }
