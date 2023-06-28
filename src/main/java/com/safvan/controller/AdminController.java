@@ -72,7 +72,7 @@ public class AdminController {
 	public String addTrain(@ModelAttribute Train train, Map<String, Object> model) {
 		System.out.println("AdminController.addTrain()");
 
-		String message = trainService.addTrain(train);
+		String message = trainService.saveOrUpdateTrain(train);
 
 		model.put("message", message);
 

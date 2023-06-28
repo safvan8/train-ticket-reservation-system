@@ -39,7 +39,7 @@ public class TrainServiceImpl implements ITrainService {
 
 	// to add a new Train
 	@Override
-	public String addTrain(Train train) {
+	public String saveOrUpdateTrain(Train train) {
 		try {
 			Train savedTrain = trainRepository.save(train);
 			if (train.getTrainNo() == null)

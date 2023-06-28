@@ -13,7 +13,7 @@ public interface ITrainService {
 	
 	public Train getTrainByNumber(Long trainNo) throws TrainNotFoundException;
 	
-	public String addTrain(Train train) throws TrainException;
+	public String saveOrUpdateTrain(Train train) throws TrainException;
 	
 	public String deleteTrain(Long trainNo) throws TrainNotFoundException;
 	

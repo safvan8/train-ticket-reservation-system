@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -81,8 +82,8 @@ public class UserController {
 	public String showPreBookingFormForTrain(@RequestParam Long trainNo, @RequestParam String fromStation,
 			@RequestParam String toStation, Map<String, Object> model) {
 
-		System.out.println("UserController.showPreBookingFormForTrain()+ "+ trainNo);
-		
+		System.out.println("UserController.showPreBookingFormForTrain()+ " + trainNo);
+
 		// get all train details using number for saving inside ticket
 		TrainDTO trainDTO = new TrainDTO();
 		// setting train from and to with user preferences
@@ -108,7 +109,7 @@ public class UserController {
 		System.out.println("UserController.procedTrainBookingForUser()");
 		System.out.println(trainDTO);
 		System.out.println(ticketDTO);
-		
+
 		model.put("ticketDTO", ticketDTO);
 		model.put("trainDTO", trainDTO);
 
@@ -117,23 +118,30 @@ public class UserController {
 
 	@PostMapping("/confirmTrainBooking")
 	public String confirmTrainBooking(@ModelAttribute("trainDTO") TrainDTO trainDTO,
-			@ModelAttribute("ticketDTO") TicketDTO ticketDTO) {
+			@ModelAttribute("ticketDTO") TicketDTO ticketDTO, Map<String, Object> model) {
 		System.out.println("UserController.confirmTrainBooking().................");
 		System.out.println(ticketDTO);
 		System.out.println(trainDTO);
-		
-		// to copy property values from one object to another based on matching property names.
+
+		// to copy property values from one object to another based on matching property
+		// names.
 		Train train = new Train();
 		BeanUtils.copyProperties(trainDTO, train);
-		
+
 		Ticket ticket = new Ticket();
 		BeanUtils.copyProperties(ticketDTO, ticket);
-		
-		// saving train details to ticket object 
+
+		// saving train details to ticket object
 		ticket.setTrain(train);
-		
+
 		System.out.println("Fina....");
 		System.out.println(ticket);
+
+		// booking ticket
+		Ticket ticketBookingResult = bookingService.bookTicket(ticket);
+
+		model.put("ticketBookingResult", ticketBookingResult);
+
 		return null;
 	}
 
