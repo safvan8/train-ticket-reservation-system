@@ -4,15 +4,14 @@ import java.util.UUID;
 
 import javax.transaction.Transactional;
 
-import org.hibernate.annotations.OptimisticLocking;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.safvan.beans.Ticket;
 import com.safvan.beans.Train;
 import com.safvan.exception.BookingFailedException;
+import com.safvan.exception.NoEnoughSeatsForBooking;
 import com.safvan.repository.ITicketRepository;
-import com.safvan.repository.ITrainRepository;
 import com.safvan.service.IBookingService;
 import com.safvan.service.ITrainService;
 
@@ -32,15 +31,18 @@ public class BookingServiceImpl implements IBookingService {
 
 		// fetching complete train details and saving to ticket before booking
 		Train train = trainService.getTrainByNumber(ticket.getTrain().getTrainNo());
+
 		train.setFromStation(ticket.getTrain().getFromStation());
 		train.setToStation(ticket.getTrain().getToStation());
 
 		Integer seatsVaialble = train.getSeats();
 
-		String message = "";
+		Ticket ticketBookigResult = null;
 
 		if (ticket.getSeatsRequired() > seatsVaialble) {
-			message = "Only " + seatsVaialble + " are Availble in this Train ! ";
+
+			throw new NoEnoughSeatsForBooking("Only " + seatsVaialble + " are Availble in this Train ! ");
+
 		} else if (ticket.getSeatsRequired() <= seatsVaialble) {
 			seatsVaialble = seatsVaialble - ticket.getSeatsRequired();
 
@@ -61,7 +63,10 @@ public class BookingServiceImpl implements IBookingService {
 				ticket.setTicketAmount(totalAmount);
 
 				// creating ticket and confirmation
-				Ticket ticketBookigResult = ticketRepository.save(ticket);
+				ticketBookigResult = ticketRepository.save(ticket);
+
+				// adding trains complete infor to ticketBookingResult object for displying
+				ticketBookigResult.setTrain(train);
 
 				System.out.println("BookingServiceImpl.bookTicket()=============================");
 				System.out.println(ticket);
@@ -76,7 +81,7 @@ public class BookingServiceImpl implements IBookingService {
 		System.out.println(ticket);
 
 		// Save the ticket to the database
-		return null;
+		return ticketBookigResult;
 	}
 
 }

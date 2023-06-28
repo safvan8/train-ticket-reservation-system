@@ -1,6 +1,6 @@
 package com.safvan.exception;
 
-public class BookingFailedException extends RuntimeException {
+public class BookingFailedException extends BookingException {
 	public BookingFailedException(String customExceptionMessage) {
 		super(customExceptionMessage);
 	}

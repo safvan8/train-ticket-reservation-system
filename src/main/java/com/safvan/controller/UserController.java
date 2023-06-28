@@ -142,7 +142,7 @@ public class UserController {
 
 		model.put("ticketBookingResult", ticketBookingResult);
 
-		return null;
+		return "user/ticket_booking_result";
 	}
 
 }
