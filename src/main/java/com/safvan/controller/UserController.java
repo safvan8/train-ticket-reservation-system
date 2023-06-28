@@ -25,6 +25,7 @@ public class UserController {
 
 	@Autowired
 	private IBookingService bookingService;
+	
 
 	@GetMapping(value = { "/", "/home" })
 	public String showHomePage() {
@@ -90,9 +91,9 @@ public class UserController {
 		return "user/train_pre_booking_form";
 	}
 
-	@PostMapping("/procedTrainBooking")
-	public String procedTrainBookingForUser(Long trainNo, @RequestParam String fromStation,
-			@RequestParam String toStation, @ModelAttribute Ticket ticket, Map<String, Object> model) {
+	@PostMapping("/proceedTrainBooking")
+	public String procedTrainBookingForUser(@ModelAttribute Ticket ticket,Long trainNo, @RequestParam String fromStation,
+			@RequestParam String toStation, Map<String, Object> model) {
 
 		// get all train details using number for saving inside ticket
 		Train train = trainService.getTrainByNumber(trainNo);
@@ -101,11 +102,9 @@ public class UserController {
 		train.setToStation(toStation);
 		ticket.setTrain(train);
 
-		Ticket processedTicket = bookingService.bookTicket(ticket);
+		System.out.println(ticket);
 
-		System.out.println(processedTicket);
-
-		model.put("processedTicket", processedTicket);
+		model.put("ticketBeforeConfirming", ticket);
 
 		return "user/payment_inputs_form";
 	}

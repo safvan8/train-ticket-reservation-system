@@ -20,18 +20,19 @@ public class Train {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "tr_no")
+	@Column(name = "train_no")
 	private Long trainNo;
 
-	@Column(name = "tr_name")
+	@Column(name = "train_name")
 	private String trainName;
 	
-	@Column(name = "from_stn")
+	@Column(name = "from_station")
 	private String fromStation;
 	
-	@Column(name = "to_stn")
+	@Column(name = "to_station")
 	private String toStation;
 	
+	@Column(name="seats_available")
 	private Integer seats;
 	
 	private Double fare;

@@ -10,6 +10,6 @@ import com.safvan.beans.Train;
 
 public interface ITrainRepository extends PagingAndSortingRepository<Train, Long> {
 
-	@Query("FROM com.safvan.beans.Train WHERE UPPER(fromStation)=UPPER(:from) AND UPPER(toStation)=UPPER(:to)")
+	@Query("FROM com.safvan.beans.Train WHERE ( UPPER(fromStation)=UPPER(:from) AND UPPER(toStation)=UPPER(:to)) OR (UPPER(fromStation)=UPPER(:to) AND UPPER(toStation)=UPPER(:from))")
 	public List<Train> findTrainsBetweenStations(@Param("from") String fromStation, @Param("to") String toStation);
 }

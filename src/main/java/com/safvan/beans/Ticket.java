@@ -43,9 +43,9 @@ public class Ticket {
 	@Column(name = "seat_type")
 	private String seatType;
 
-	@Column(name = "berth_preference")
-	private String berthPreference;
-
+	@Column(name = "amount")
+	private Double ticketAmount;
+	
 	@ManyToOne
 	@JoinColumn(name = "trainNo")
 	private Train train;

@@ -88,7 +88,7 @@
 
 	<section>
 		<div class='tab'>
-			<form action='payment' method='post'>
+			<form action='${pageContext.request.contextPath}/user/proceedTrainBooking' method='post'>
 				<table border="2" style="border: thick;">
 
 				<% String userName="safvan";
