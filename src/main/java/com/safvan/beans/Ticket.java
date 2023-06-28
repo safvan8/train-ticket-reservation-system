@@ -2,8 +2,10 @@ package com.safvan.beans;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -46,7 +48,23 @@ public class Ticket {
 	@Column(name = "amount")
 	private Double ticketAmount;
 
-	@ManyToOne
+	/**
+	 * By setting fetch = FetchType.LAZY on the @ManyToOne relationship, the Train
+	 * object will be lazily loaded, meaning it will be fetched from the database
+	 * only when accessed explicitly. This way, when you save a Ticket, the
+	 * associated Train will not be saved automatically. However, when you retrieve
+	 * a Ticket, you can access its Train object and it will be fetched from the
+	 * database. Similarly, when you update the Train, changes will reflect in the
+	 * associated Ticket objects.
+	 */
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "trainNo")
 	private Train train;
+
+	/**
+	 * With this configuration, when you update the Train entity and save it, the
+	 * associated Ticket entities will be automatically updated in the database.
+	 * 
+	 * cascade = CascadeType.MERGE
+	 */
 }

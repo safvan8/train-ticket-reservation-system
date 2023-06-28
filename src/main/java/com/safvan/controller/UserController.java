@@ -3,6 +3,7 @@ package com.safvan.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.safvan.beans.Ticket;
 import com.safvan.beans.TicketDTO;
 import com.safvan.beans.Train;
 import com.safvan.beans.TrainDTO;
@@ -79,33 +81,60 @@ public class UserController {
 	public String showPreBookingFormForTrain(@RequestParam Long trainNo, @RequestParam String fromStation,
 			@RequestParam String toStation, Map<String, Object> model) {
 
+		System.out.println("UserController.showPreBookingFormForTrain()+ "+ trainNo);
+		
 		// get all train details using number for saving inside ticket
-		Train train = new Train();
+		TrainDTO trainDTO = new TrainDTO();
 		// setting train from and to with user preferences
-		train.setFromStation(fromStation);
-		train.setToStation(toStation);
+		trainDTO.setTrainNo(trainNo);
+		trainDTO.setFromStation(fromStation);
+		trainDTO.setToStation(toStation);
 
 		// saving object to request scope
-		model.put("preBookingDetails", train);
+		model.put("preBookingDetails", trainDTO);
 
 		return "user/train_pre_booking_form";
 	}
 
 	@PostMapping("/proceedTrainBooking")
-	public String procedTrainBookingForUser(@ModelAttribute TicketDTO ticketDTO, Long trainNo,
+	public String procedTrainBookingForUser(@ModelAttribute TicketDTO ticketDTO, @RequestParam Long trainNo,
 			@RequestParam String fromStation, @RequestParam String toStation, Map<String, Object> model) {
-
-		System.out.println(ticketDTO);
 
 		TrainDTO trainDTO = new TrainDTO();
 		trainDTO.setTrainNo(trainNo);
 		trainDTO.setFromStation(fromStation);
 		trainDTO.setToStation(toStation);
+
+		System.out.println("UserController.procedTrainBookingForUser()");
+		System.out.println(trainDTO);
+		System.out.println(ticketDTO);
 		
-		model.put("ticketForBooking", ticketDTO);
-		model.put("trainBeforeBooking", trainDTO);
+		model.put("ticketDTO", ticketDTO);
+		model.put("trainDTO", trainDTO);
 
 		return "user/payment_inputs_form";
+	}
+
+	@PostMapping("/confirmTrainBooking")
+	public String confirmTrainBooking(@ModelAttribute("trainDTO") TrainDTO trainDTO,
+			@ModelAttribute("ticketDTO") TicketDTO ticketDTO) {
+		System.out.println("UserController.confirmTrainBooking().................");
+		System.out.println(ticketDTO);
+		System.out.println(trainDTO);
+		
+		// to copy property values from one object to another based on matching property names.
+		Train train = new Train();
+		BeanUtils.copyProperties(trainDTO, train);
+		
+		Ticket ticket = new Ticket();
+		BeanUtils.copyProperties(ticketDTO, ticket);
+		
+		// saving train details to ticket object 
+		ticket.setTrain(train);
+		
+		System.out.println("Fina....");
+		System.out.println(ticket);
+		return null;
 	}
 
 }

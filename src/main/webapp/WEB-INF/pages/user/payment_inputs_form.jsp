@@ -100,9 +100,20 @@
 							</div>
 						</div>
 					</div>
-					<form role="form" action="booktrains" method="post">
-						<div class="panel-body">
+					<form role="form" action="${pageContext.request.contextPath}/user/confirmTrainBooking" method="post">
 
+					<!--  form data will be mapped directly to the respective TrainDTO and TicketDTO objects without any nesting, and you should be able to access the values correctly in your controller method. -->
+					<input type="hidden" name="trainNo" value="${trainDTO.trainNo}" />
+					<input type="hidden" name="fromStation" value="${trainDTO.fromStation}" />
+					<input type="hidden" name="toStation" value="${trainDTO.toStation}" />
+					
+					<input type="hidden" name="journeyDate" value="${ticketDTO.journeyDate}" />
+					<input type="hidden" name="seatsRequired" value="${ticketDTO.seatsRequired}" />
+					<input type="hidden" name="seatType" value="${ticketDTO.seatType}" />
+
+						
+						
+						<div class="panel-body">
 							<div class="row">
 								<div class="col-xs-12">
 									<div class="form-group">
