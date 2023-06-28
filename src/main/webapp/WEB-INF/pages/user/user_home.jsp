@@ -41,7 +41,7 @@
 			<!-- Diplay train booking History Hyperlink -->
 			<div class="home">
 				<p class="menu">
-					<a href="${pageContext.request.contextPath}/user/showBookingHistoryFwd">Ticket Booking History</a>
+					<a href="${pageContext.request.contextPath}/user/showTicketBookingHistory">Ticket Booking History</a>
 				</p>
 			</div>
 

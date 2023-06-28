@@ -47,7 +47,7 @@
 		<div class="home">
 			<p class="menu">
 				<a
-					href="${pageContext.request.contextPath}/user/showBookingHistoryFwd">Ticket
+					href="${pageContext.request.contextPath}/user/showTicketBookingHistory">Ticket
 					Booking History</a>
 			</p>
 		</div>

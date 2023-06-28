@@ -89,27 +89,28 @@
 		<div class="tab">
 			<table border="1">
 				<tr>
+					<th>Ticket ID</th>
 					<th>Train Name</th>
-					<th>Train No.</th>
 					<th>From Station</th>
 					<th>To Station</th>
 					<th>Time</th>
-					<th>Seats Available</th>
-					<th>Fare (INR)</th>
-					<th>Booking</th>
-				</tr>
+					<th>Journey Date</th>
+					<th>Seats Booked</th>
+					<th>Seat Type</th>
+					<th>Amount Payed</th>
+					</tr>
 
 				<!-- checking if trainsList List is null or not before displying it -->
 				<c:choose>
-					<c:when test="${empty trainsList}">
+					<c:when test="${empty ticketsList}">
 						<tr>
 							<td colspan="7">
-								<h1>No Running trains available</h1>
+								<h1>No Tickets Booked Yet, Book Your First Ticket Today !!</h1>
 							</td>
 						</tr>
 					</c:when>
 					<c:otherwise>
-						<c:forEach var="train" items="${trainsList}">
+						<c:forEach var="ticket" items="${ticketsList}">
 							<!-- Generating Random Train Time -->
 							<%
 							// Generate random hours and minutes
@@ -121,14 +122,16 @@
 							%>
 
 							<tr>
-								<td>${train.trainName}</td>
-								<td>${train.trainNo}</td>
-								<td>${train.fromStation}</td>
-								<td>${train.toStation}</td>
+								<td>${ticket.ticketId}</td>
+								<td>${ticket.train.trainName}</td>
+								<td>${ticket.train.fromStation}</td>
+								<td>${ticket.train.toStation}</td>
 								<td><%=trainTime%></td>
-								<td>${train.seats}</td>
-								<td>${train.fare}</td>
-								<td>
+								<td>${ticket.journeyDate}</td>
+								<td>${ticket.seatsRequired}</td>
+								<td>${ticket.seatType}</td>
+								<td>${ticket.ticketAmount}</td>
+								<%-- <td>
 									<!-- Creating url for Booking trains-->
 									<c:url var="bookNowLink" value="/user/showPreBookingFormForTrain">
 										<!-- passing the trainNo in queryString -->
@@ -138,7 +141,7 @@
 									</c:url>
 									<!-- Hyperlink for Booking train -->
 									<a href="${bookNowLink }" style="color: red;"> BookNow</a>
-								</td>
+								</td> --%>
 							</tr>
 						</c:forEach>
 					</c:otherwise>

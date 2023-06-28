@@ -1,5 +1,6 @@
 package com.safvan.service.impl;
 
+import java.util.List;
 import java.util.UUID;
 
 import javax.transaction.Transactional;
@@ -82,6 +83,12 @@ public class BookingServiceImpl implements IBookingService {
 
 		// Save the ticket to the database
 		return ticketBookigResult;
+	}
+
+	@Override
+	public List<Ticket> getAllTickets() {
+		
+		return (List<Ticket>) ticketRepository.findAll();
 	}
 
 }

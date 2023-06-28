@@ -145,4 +145,15 @@ public class UserController {
 		return "user/ticket_booking_result";
 	}
 
+	@GetMapping("/showTicketBookingHistory")
+	public String getAllTicketsBooked(Map<String, Object> model) {
+
+		List<Ticket> ticketsList = bookingService.getAllTickets();
+
+		model.put("pageHeading","Ticket Booking History");
+		model.put("ticketsList", ticketsList);
+		
+
+		return "user/view_all_tickets";
+	}
 }
