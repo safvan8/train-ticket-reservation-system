@@ -33,10 +33,10 @@ public class Ticket {
 
 	@Column(name = "transaction_id")
 	private String transactionId;
-	
+
 	@Column(name = "journey_date")
 	private LocalDate journeyDate;
-	
+
 	@Column(name = "seats_required")
 	private Integer seatsRequired;
 
@@ -45,7 +45,7 @@ public class Ticket {
 
 	@Column(name = "amount")
 	private Double ticketAmount;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "trainNo")
 	private Train train;

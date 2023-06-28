@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.safvan.beans.Ticket;
+import com.safvan.beans.TicketDTO;
 import com.safvan.beans.Train;
+import com.safvan.beans.TrainDTO;
 import com.safvan.service.IBookingService;
 import com.safvan.service.ITrainService;
 
@@ -25,7 +26,6 @@ public class UserController {
 
 	@Autowired
 	private IBookingService bookingService;
-	
 
 	@GetMapping(value = { "/", "/home" })
 	public String showHomePage() {
@@ -92,19 +92,18 @@ public class UserController {
 	}
 
 	@PostMapping("/proceedTrainBooking")
-	public String procedTrainBookingForUser(@ModelAttribute Ticket ticket,Long trainNo, @RequestParam String fromStation,
-			@RequestParam String toStation, Map<String, Object> model) {
+	public String procedTrainBookingForUser(@ModelAttribute TicketDTO ticketDTO, Long trainNo,
+			@RequestParam String fromStation, @RequestParam String toStation, Map<String, Object> model) {
 
-		// get all train details using number for saving inside ticket
-		Train train = trainService.getTrainByNumber(trainNo);
-		// setting train from and to with user preferences
-		train.setFromStation(fromStation);
-		train.setToStation(toStation);
-		ticket.setTrain(train);
+		System.out.println(ticketDTO);
 
-		System.out.println(ticket);
-
-		model.put("ticketBeforeConfirming", ticket);
+		TrainDTO trainDTO = new TrainDTO();
+		trainDTO.setTrainNo(trainNo);
+		trainDTO.setFromStation(fromStation);
+		trainDTO.setToStation(toStation);
+		
+		model.put("ticketForBooking", ticketDTO);
+		model.put("trainBeforeBooking", trainDTO);
 
 		return "user/payment_inputs_form";
 	}
