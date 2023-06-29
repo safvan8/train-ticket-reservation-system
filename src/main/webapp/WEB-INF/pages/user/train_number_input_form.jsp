@@ -20,7 +20,7 @@
 			<!-- Home Hyperlik -->
 			<div class="home">
 				<p class="menu">
-					<a href="#">Home</a>
+					<a href="${pageContext.request.contextPath}/user/home">Home</a>
 				</p>
 			</div>
 
@@ -41,7 +41,7 @@
 			<!-- Diplay train booking History Hyperlink -->
 			<div class="home">
 				<p class="menu">
-					<a href="${pageContext.request.contextPath}/user/showBookingHistoryFwd">Ticket Booking History</a>
+					<a href="${pageContext.request.contextPath}/user/showTicketBookingHistory">Ticket Booking History</a>
 				</p>
 			</div>
 
@@ -59,20 +59,14 @@
 						Availability</a>
 				</p>
 			</div>
+			
+			<!-- Search a train using train Number Hyperlink -->
+            <div class="home">
+                <p class="menu">
+                    <a href="${pageContext.request.contextPath}/user/searchTrainByNumberFwd">Search Train By Number</a>
+                </p>
+            </div>
 
-			<!-- display user profile Hyperlink -->
-			<div class="home">
-				<p class="menu">
-					<a href="${pageContext.request.contextPath}/user/userProfile">Profile</a>
-				</p>
-			</div>
-
-			<!-- user Logout Hyperlink -->
-			<div class="home">
-				<p class="menu">
-					<a href="${pageContext.request.contextPath}/user/userLogout">Logout</a>
-				</p>
-			</div>
 		</header>
 		
 		<section>

@@ -36,7 +36,7 @@
 	<header>
 		<div class="home">
 			<p class="menu">
-				<a href="userhome">Home</a>
+				<a href="${pageContext.request.contextPath}/user/home">Home</a>
 			</p>
 		</div>
 		<div class="home">

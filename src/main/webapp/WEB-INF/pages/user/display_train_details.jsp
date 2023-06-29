@@ -14,65 +14,60 @@
 	href="${pageContext.request.contextPath}/css/UserHome_Css.css">
 </head>
 <body>
-	<header>
-		<h1 class="hd">National Ticket Booking Spot</h1>
+		<header>
+			<h1 class="hd">National Ticket Booking Spot UH</h1>
 
-		<!-- Home Hyperlik -->
-		<div class="home">
-			<p class="menu">
-				<a href="/">Home</a>
-			</p>
-		</div>
+			<!-- Home Hyperlik -->
+			<div class="home">
+				<p class="menu">
+					<a href="${pageContext.request.contextPath}/user/home">Home</a>
+				</p>
+			</div>
 
-		<!-- View All trains Hyperink-->
-		<div class="home">
-			<p class="menu">
-				<a href="${pageContext.request.contextPath}/user/home">View
-					All Trains</a>
-			</p>
-		</div>
+			<!-- View All trains Hyperink-->
+			<div class="home">
+				<p class="menu">
+					<a href="${pageContext.request.contextPath}/user/viewAllTrains">View All Trains</a>
+				</p>
+			</div>
 
-		<!-- Search a train using train Number Hyperlink -->
-		<div class="home">
-			<p class="menu">
-				<a
-					href="${pageContext.request.contextPath}/user/searchTrainByNumberFwd">Search
-					Train By Number</a>
-			</p>
-		</div>
+			<!-- Find Trains between 2 staions Hyperlink -->
+			<div class="home">
+				<p class="menu">
+					<a href="${pageContext.request.contextPath}/user/findTrainsbetweenStaionsFwd">Trains between staions</a>
+				</p>
+			</div>
 
-		<!-- Add new Train Hyperlink -->
-		<div class="home">
-			<p class="menu">
-				<a href="${pageContext.request.contextPath}/user/addTrainFwd">Add
-					new Train</a>
-			</p>
-		</div>
+			<!-- Diplay train booking History Hyperlink -->
+			<div class="home">
+				<p class="menu">
+					<a href="${pageContext.request.contextPath}/user/showTicketBookingHistory">Ticket Booking History</a>
+				</p>
+			</div>
 
-		<!-- Delete a train Hyperlink -->
-		<div class="home">
-			<p class="menu">
-				<a href="${pageContext.request.contextPath}/user/deleteTrainFwd">Delete
-					an Existing Train</a>
-			</p>
-		</div>
+			<!-- train fair Enquery Hyperlink -->
+			<div class="home">
+				<p class="menu">
+					<a href="${pageContext.request.contextPath}/user/trainFairEnqueryFwd">Fair Enquery</a>
+				</p>
+			</div>
 
-		<!-- Logout Admin Hyperlink -->
-		<div class="home">
-			<p class="menu">
-				<a href="${pageContext.request.contextPath}/user/updateTrainFwd">Update
-					Train Details</a>
-			</p>
-		</div>
+			<!-- Check Seats Availability Hyperlink -->
+			<div class="home">
+				<p class="menu">
+					<a href="${pageContext.request.contextPath}/user/trainSeatsAvailablityCheckFwd">Check Seats
+						Availability</a>
+				</p>
+			</div>
+			
+			<!-- Search a train using train Number Hyperlink -->
+            <div class="home">
+                <p class="menu">
+                    <a href="${pageContext.request.contextPath}/user/searchTrainByNumberFwd">Search Train By Number</a>
+                </p>
+            </div>
 
-		<!-- Add new Train -->
-		<div class="home">
-			<p class="menu">
-				<a href="${pageContext.request.contextPath}/user/adminLogout">Logout</a>
-			</p>
-		</div>
-
-	</header>
+		</header>
 
 	<!-- Displaying the train search result to User -->
 	<div class="main">
