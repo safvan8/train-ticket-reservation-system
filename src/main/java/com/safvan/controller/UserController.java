@@ -3,6 +3,8 @@ package com.safvan.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,8 +55,19 @@ public class UserController {
 	}
 
 	// forwarding method
-	@GetMapping("/findTrainsbetweenStaionsFwd")
-	public String findTrainsbetweenStaionsForward() {
+	@GetMapping(value = { "/findTrainsbetweenStaionsFwd", "/trainFairEnqueryFwd" })
+	public String findTrainsbetweenStaionsForward(Map<String, Object> model, HttpServletRequest request) {
+
+		System.out.println(request.getRequestURI());
+		
+		if (request.getRequestURI().equals("/TRSApp/user/findTrainsbetweenStaionsFwd")) {
+			model.put("pageHeading", "Search trains Between stations");
+			model.put("submitButtonValue", "SEARCH TRAINS");
+		} else {
+			model.put("pageHeading", "Trains Fair Enquery");
+			model.put("submitButtonValue", "SHOW FARE");
+		}
+
 		return "user/trains_btwn_stations_form";
 	}
 

@@ -76,11 +76,11 @@
 		</header>
 
 		<section>
-			<h1>Find Trains betweem stations</h1>
+			<h1>${pageHeading}</h1>
 			<form action="${pageContext.request.contextPath}/user/findTrainsbetweenStaions" class="tab red" method="post">
 				From Station : <input type="text" name="fromStation"> <br>
 				To Station   : <input type="text" name="toStation"> <br>
-				<input type="submit" value="SEARCH TRAINS">
+				<input type="submit" value="${submitButtonValue}">
 			</form>
 		</section>
 	</body>
