@@ -172,20 +172,22 @@ public class UserController {
 		
 
 		return "user/view_all_tickets";
-
-	@GetMapping(value = { "/trainSeatsAvailablityCheckFwd", "/searchTrainByNumberFwd" })
-	public String showTrainNumberinputForm(HttpServletRequest request, Map<String, Object> model) {
-
-		if (request.getRequestURI().equals(servletContext.getContextPath() + "/user/trainSeatsAvailablityCheckFwd")) {
-			model.put("pageHeading", "Train Seats Availability Check !");
-			model.put("submitButtonValue", "CHECK SEATS AVAILABLE");
-		} else {
-			model.put("pageHeading", "Search Trains!");
-			model.put("submitButtonValue", "SEARCH TRAIN");
-		}
-
-		return "user/train_number_input_form";
 	}
+
+		
+		@GetMapping(value = {"/trainSeatsAvailablityCheckFwd", "/searchTrainByNumberFwd"})
+		public String showTrainNumberinputForm(HttpServletRequest request, Map<String, Object> model) {
+
+		    if (request.getRequestURI().equals("/user/trainSeatsAvailablityCheckFwd")) {
+		        model.put("pageHeading", "Train Seats Availability Check !");
+		        model.put("submitButtonValue", "CHECK SEATS AVAILABLE");
+		    } else {
+		        model.put("pageHeading", "Search Trains!");
+		        model.put("submitButtonValue", "SEARCH TRAIN");
+		    }
+
+		    return "user/train_number_input_form";
+		}
 
 	@PostMapping("/searchTrainByNumber")
 	public String searchTrainByNumber(@RequestParam Long trainNo, Map<String, Object> model) {
