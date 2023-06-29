@@ -41,7 +41,7 @@
 			<!-- Diplay train booking History Hyperlink -->
 			<div class="home">
 				<p class="menu">
-					<a href="${pageContext.request.contextPath}/user/showTicketBookingHistory">Ticket Booking History</a>
+					<a href="${pageContext.request.contextPath}/user/showBookingHistoryFwd">Ticket Booking History</a>
 				</p>
 			</div>
 
@@ -59,13 +59,6 @@
 						Availability</a>
 				</p>
 			</div>
-			
-			<!-- Search a train using train Number Hyperlink -->
-            <div class="home">
-                <p class="menu">
-                    <a href="${pageContext.request.contextPath}/user/searchTrainByNumberFwd">Search Train By Number</a>
-                </p>
-            </div>
 
 			<!-- display user profile Hyperlink -->
 			<div class="home">
@@ -81,6 +74,14 @@
 				</p>
 			</div>
 		</header>
+		
+		<section>
+			<h1>${pageHeading}</h1>
+			<form action="${pageContext.request.contextPath}/user/searchTrainByNumber" class="tab red" method="post">
+				Train No : <input type="number" name="trainNo"> <br>
+				<input type="submit" value="${submitButtonValue}">
+			</form>
+		</section>
 	</body>
 
 	</html>

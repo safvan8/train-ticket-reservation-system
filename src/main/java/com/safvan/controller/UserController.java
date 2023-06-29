@@ -3,12 +3,12 @@ package com.safvan.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,6 +31,9 @@ public class UserController {
 
 	@Autowired
 	private IBookingService bookingService;
+
+	@Autowired
+	private ServletContext servletContext;
 
 	@GetMapping(value = { "/", "/home" })
 	public String showHomePage() {
@@ -59,8 +62,8 @@ public class UserController {
 	public String findTrainsbetweenStaionsForward(Map<String, Object> model, HttpServletRequest request) {
 
 		System.out.println(request.getRequestURI());
-		
-		if (request.getRequestURI().equals("/TRSApp/user/findTrainsbetweenStaionsFwd")) {
+
+		if (request.getRequestURI().equals(servletContext.getContextPath() + "/user/findTrainsbetweenStaionsFwd")) {
 			model.put("pageHeading", "Search trains Between stations");
 			model.put("submitButtonValue", "SEARCH TRAINS");
 		} else {
@@ -158,6 +161,7 @@ public class UserController {
 		return "user/ticket_booking_result";
 	}
 
+
 	@GetMapping("/showTicketBookingHistory")
 	public String getAllTicketsBooked(Map<String, Object> model) {
 
@@ -168,5 +172,28 @@ public class UserController {
 		
 
 		return "user/view_all_tickets";
+
+	@GetMapping(value = { "/trainSeatsAvailablityCheckFwd", "/searchTrainByNumberFwd" })
+	public String showTrainNumberinputForm(HttpServletRequest request, Map<String, Object> model) {
+
+		if (request.getRequestURI().equals(servletContext.getContextPath() + "/user/trainSeatsAvailablityCheckFwd")) {
+			model.put("pageHeading", "Train Seats Availability Check !");
+			model.put("submitButtonValue", "CHECK SEATS AVAILABLE");
+		} else {
+			model.put("pageHeading", "Search Trains!");
+			model.put("submitButtonValue", "SEARCH TRAIN");
+		}
+
+		return "user/train_number_input_form";
+	}
+
+	@PostMapping("/searchTrainByNumber")
+	public String searchTrainByNumber(@RequestParam Long trainNo, Map<String, Object> model) {
+
+		Train train = trainService.getTrainByNumber(trainNo);
+
+		model.put("train", train);
+
+		return "user/display_train_details";
 	}
 }
