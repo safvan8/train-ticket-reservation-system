@@ -1,5 +1,6 @@
 package com.safvan.controller;
 
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.safvan.beans.User;
@@ -28,13 +30,15 @@ public class LoginController {
 	@PostMapping("/login")
 	public String login(@RequestParam String username, @RequestParam String password, HttpSession session) {
 		User user = loginManagementService.authenticateUser(username, password);
+
 		System.out.println("LoginController.login()");
+
 		if (user != null) {
 			System.out.println("LoginController.login(888888888888888888888888)");
 			String sessionId = UUID.randomUUID().toString(); // Generate a unique session ID
 			session.setAttribute("sessionId", sessionId);
 			session.setAttribute("user", user);
-			session.setMaxInactiveInterval(10 *60);
+			session.setMaxInactiveInterval(60);
 
 			loginManagementService.storeUserSession(user.getUserId(), sessionId);
 			// Additional code to store the session ID and associate it with the user in the
@@ -67,6 +71,15 @@ public class LoginController {
 			}
 		}
 		return "redirect:/login";
+	}
+
+	@RequestMapping("/logout")
+	public String logout(HttpSession session, Map<String, Object> model) {
+		model.put("message", "Logout Success, Login again below if needed");
+
+		session.invalidate();
+
+		return "login";
 	}
 
 }

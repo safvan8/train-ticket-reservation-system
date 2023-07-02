@@ -77,7 +77,7 @@
 			<!-- user Logout Hyperlink -->
 			<div class="home">
 				<p class="menu">
-					<a href="${pageContext.request.contextPath}/user/userLogout">Logout</a>
+					<a href="${pageContext.request.contextPath}/logout">Logout</a>
 				</p>
 			</div>
 		</header>
