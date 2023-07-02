@@ -8,7 +8,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Document</title>
 
-		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/UserHome_Css.css">
+<link type="text/css" rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/UserHome_Css.css">
 
 	</head>
 
@@ -20,7 +21,7 @@
 			<!-- Home Hyperlik -->
 			<div class="home">
 				<p class="menu">
-					<a href="${pageContext.request.contextPath}/user/home">Home</a>
+					<a href="#">Home</a>
 				</p>
 			</div>
 
@@ -73,23 +74,52 @@
 					<a href="${pageContext.request.contextPath}/userProfile/view">Profile</a>
 				</p>
 			</div>
-			
+
 			<!-- user Logout Hyperlink -->
 			<div class="home">
 				<p class="menu">
 					<a href="${pageContext.request.contextPath}/logout">Logout</a>
 				</p>
 			</div>
-
 		</header>
-		
-		<section>
-			<h1>${pageHeading}</h1>
-			<form action="${pageContext.request.contextPath}/user/searchTrainByNumber" class="tab red" method="post">
-				Train No : <input type="number" name="trainNo"> <br>
-				<input type="submit" value="${submitButtonValue}">
-			</form>
-		</section>
+        <section>
+            
+            <div class="container">
+                <div class="row">
+                  <div class="col-md-8 offset-md-2">
+                    <div class="card">
+                      <div class="card-body">
+                        <h2 class="card-title">User Profile</h2>
+                        <table class="table table-bordered">
+                          <tbody>
+                            <tr>
+                              <th scope="row">Username</th>
+                              <td><%= user.userProfile.getUsername() %></td>
+                            </tr>
+                            <tr>
+                              <th scope="row">Full Name</th>
+                              <td><%= user.userProfile.getFirstName() %></td>
+                            </tr>
+                            <tr>
+                              <th scope="row">Phone Number</th>
+                              <td><%= user.userProfile.getPhoneNumber() %></td>
+                            </tr>
+                            <tr>
+                              <th scope="row">Image</th>
+                              <td>
+                                <img src="<%= user.userProfile.getImageUrl() %>" alt="User Image" class="img-fluid">
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+
+        </section>
 	</body>
 
-	</html>
+</html>

@@ -72,7 +72,7 @@
 			<!-- display user profile Hyperlink -->
 			<div class="home">
 				<p class="menu">
-					<a href="${pageContext.request.contextPath}/user/showUserProfile">Profile</a>
+					<a href="${pageContext.request.contextPath}/userProfile/view">Profile</a>
 				</p>
 			</div>
 			
