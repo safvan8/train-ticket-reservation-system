@@ -21,7 +21,7 @@
 	<h1>National Ticket Booking Spot</h1>
 
 	<div class="main">
-		<span class="menu"> <a href="userlogin.html"> Register New
+		<span class="menu"> <a href="${pageContext.request.contextPath}/appUsers/register"> Register New
 				User</a>
 		</span>
 	</div>
