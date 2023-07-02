@@ -1,5 +1,7 @@
 package com.safvan.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,7 +48,8 @@ public class RegistrationController {
 			@RequestParam("lastName") String lastName, @RequestParam("username") String username,
 			@RequestParam("password") String password, @RequestParam("address") String address,
 			@RequestParam("phoneNumber") String phoneNumber,
-			@RequestParam(name = "image", required = false) MultipartFile image) {
+			@RequestParam(name = "image", required = false) MultipartFile image,
+			Map<String, Object> model) {
 
 		System.out.println("Heloooo");
 
@@ -54,10 +57,11 @@ public class RegistrationController {
 
 		User user = UserUtils.createUser(username, password, firstName, lastName, address, phoneNumber, imageBytes);
 
-		User result = userManagementService.registerNewCustomer(user);
+		User userRegResult = userManagementService.registerNewCustomer(user);
+		
+		model.put("userRegResult", userRegResult);
+		
 
-		System.out.println(result);
-
-		return null;
+		return "user_registration_success";
 	}
 }
