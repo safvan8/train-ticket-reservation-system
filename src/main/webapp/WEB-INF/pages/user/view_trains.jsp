@@ -67,6 +67,13 @@
                 </p>
             </div>
             
+			<!-- display user profile Hyperlink -->
+			<div class="home">
+				<p class="menu">
+					<a href="${pageContext.request.contextPath}/user/showUserProfile">Profile</a>
+				</p>
+			</div>
+            
             <!-- user Logout Hyperlink -->
 			<div class="home">
 				<p class="menu">

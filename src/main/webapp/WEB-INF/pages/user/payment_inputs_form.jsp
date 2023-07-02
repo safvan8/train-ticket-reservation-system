@@ -33,54 +33,75 @@
 	<div class="hd">
 		<h1>Card Payment Gateway</h1>
 	</div>
-	<header>
-		<div class="home">
-			<p class="menu">
-				<a href="${pageContext.request.contextPath}/user/home">Home</a>
-			</p>
-		</div>
-		<div class="home">
-			<p class="menu">
-				<a href="userviewtrainfwd">View Trains</a>
-			</p>
-		</div>
-		<div class="home">
-			<p class="menu">
-				<a href="trainbwstnfwd">Trains BW Stations</a>
-			</p>
-		</div>
-		<div class="home">
-			<p class="menu">
-				<a href="bookingdetails">Booking History</a>
-			</p>
-		</div>
-		<div class="home">
-			<p class="menu">
-				<a href="fareenqfwd">Fare Enquiry</a>
-			</p>
-		</div>
-		<div class="home">
-			<p class="menu">
-				<a href="useravailfwd">Seat Availability</a>
-			</p>
-		</div>
-		<div class="home">
-			<p class="menu">
-				<a href="usersearchtrain">Search By TrainNo</a>
-			</p>
-		</div>
-		<div class="home">
-			<p class="menu">
-				<a href="userprofile">Profile</a>
-			</p>
-		</div>
-		<div class="home">
-			<p class="menu">
-				<a href="${pageContext.request.contextPath}/logout">Logout</a>
-			</p>
-		</div>
-	</header>
+	
+		<header>
+			<h1 class="hd">National Ticket Booking Spot UH</h1>
 
+			<!-- Home Hyperlik -->
+			<div class="home">
+				<p class="menu">
+					<a href="#">Home</a>
+				</p>
+			</div>
+
+			<!-- View All trains Hyperink-->
+			<div class="home">
+				<p class="menu">
+					<a href="${pageContext.request.contextPath}/user/viewAllTrains">View All Trains</a>
+				</p>
+			</div>
+
+			<!-- Find Trains between 2 staions Hyperlink -->
+			<div class="home">
+				<p class="menu">
+					<a href="${pageContext.request.contextPath}/user/findTrainsbetweenStaionsFwd">Trains between staions</a>
+				</p>
+			</div>
+
+			<!-- Diplay train booking History Hyperlink -->
+			<div class="home">
+				<p class="menu">
+					<a href="${pageContext.request.contextPath}/user/showTicketBookingHistory">Ticket Booking History</a>
+				</p>
+			</div>
+
+			<!-- train fair Enquery Hyperlink -->
+			<div class="home">
+				<p class="menu">
+					<a href="${pageContext.request.contextPath}/user/trainFairEnqueryFwd">Fair Enquery</a>
+				</p>
+			</div>
+
+			<!-- Check Seats Availability Hyperlink -->
+			<div class="home">
+				<p class="menu">
+					<a href="${pageContext.request.contextPath}/user/trainSeatsAvailablityCheckFwd">Check Seats
+						Availability</a>
+				</p>
+			</div>
+			
+			<!-- Search a train using train Number Hyperlink -->
+            <div class="home">
+                <p class="menu">
+                    <a href="${pageContext.request.contextPath}/user/searchTrainByNumberFwd">Search Train By Number</a>
+                </p>
+            </div>
+
+			<!-- display user profile Hyperlink -->
+			<div class="home">
+				<p class="menu">
+					<a href="${pageContext.request.contextPath}/user/showUserProfile">Profile</a>
+				</p>
+			</div>
+
+			<!-- user Logout Hyperlink -->
+			<div class="home">
+				<p class="menu">
+					<a href="${pageContext.request.contextPath}/logout">Logout</a>
+				</p>
+			</div>
+		</header>
+		
 	<!-- Credit Card Payment Form - START -->
 	<div class="container-fluid" style="position: fixed;">
 		<div class="row">
