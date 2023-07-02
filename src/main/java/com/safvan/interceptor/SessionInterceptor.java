@@ -8,16 +8,17 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 public class SessionInterceptor implements HandlerInterceptor {
 
-    @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-    	System.out.println("SessionInterceptor.preHandle()");
-        HttpSession session = request.getSession(false);
-        if (session == null || session.getAttribute("user") == null) {
-            response.sendRedirect(request.getContextPath() + "/login?sessionExpired");
-            return false;
-        }
-        return true;
-    }
+	@Override
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+			throws Exception {
+		System.out.println("SessionInterceptor.preHandle()");
+		HttpSession session = request.getSession(false);
+		if (session == null || session.getAttribute("user") == null) {
+			response.sendRedirect(request.getContextPath() + "/login?sessionExpired=true");
+			return false;
+		}
+		return true;
+	}
 
-    // Implement other methods if needed
+	// Implement other methods if needed
 }

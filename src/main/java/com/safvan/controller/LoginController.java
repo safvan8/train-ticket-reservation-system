@@ -28,7 +28,9 @@ public class LoginController {
 	}
 
 	@PostMapping("/login")
-	public String login(@RequestParam String username, @RequestParam String password, HttpSession session) {
+	public String login(@RequestParam String username, @RequestParam String password, HttpSession session,
+			Map<String, Object> model) {
+
 		User user = loginManagementService.authenticateUser(username, password);
 
 		System.out.println("LoginController.login()");
@@ -38,14 +40,17 @@ public class LoginController {
 			String sessionId = UUID.randomUUID().toString(); // Generate a unique session ID
 			session.setAttribute("sessionId", sessionId);
 			session.setAttribute("user", user);
-			session.setMaxInactiveInterval(60);
+			session.setMaxInactiveInterval(1);
 
 			loginManagementService.storeUserSession(user.getUserId(), sessionId);
 			// Additional code to store the session ID and associate it with the user in the
 			// database or a cache
 			return "redirect:/home";
+		} else {
+			System.out.println("LoginController.login() Invalid username or Passwo");
+			model.put("loginFailedMessage", "Login Failed, Invalid username or Password");
+			return "/login";
 		}
-		return "redirect:/login?error";
 	}
 
 	@GetMapping("/home")
@@ -75,7 +80,7 @@ public class LoginController {
 
 	@RequestMapping("/logout")
 	public String logout(HttpSession session, Map<String, Object> model) {
-		model.put("message", "Logout Success, Login again below if needed");
+		model.put("logoutMessage", "Logout Success, Login again below if needed");
 
 		session.invalidate();
 
