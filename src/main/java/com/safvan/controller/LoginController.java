@@ -40,7 +40,9 @@ public class LoginController {
 			String sessionId = UUID.randomUUID().toString(); // Generate a unique session ID
 			session.setAttribute("sessionId", sessionId);
 			session.setAttribute("user", user);
-			session.setMaxInactiveInterval(1);
+
+			// session expiry set for 10 minutes
+			session.setMaxInactiveInterval(10 * 60);
 
 			loginManagementService.storeUserSession(user.getUserId(), sessionId);
 			// Additional code to store the session ID and associate it with the user in the
