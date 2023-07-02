@@ -21,15 +21,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
-    private Integer userId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "user_id")
+	private Integer userId;
 
-    private String username;
-    private String password;
+	private String username;
+	private String password;
 
-    @Enumerated(EnumType.STRING)
-    private UserRole role;
+	@Enumerated(EnumType.STRING)
+	private UserRole role;
+
+	private String sessionId;
 }
-

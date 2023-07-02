@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.safvan.beans.Ticket;
 import com.safvan.beans.Train;
-import com.safvan.exception.BookingFailedException;
-import com.safvan.exception.NoEnoughSeatsForBooking;
+import com.safvan.exception.booking.BookingFailedException;
+import com.safvan.exception.booking.NoEnoughSeatsForBooking;
 import com.safvan.repository.ITicketRepository;
 import com.safvan.service.IBookingService;
 import com.safvan.service.ITrainService;

@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.safvan.beans.User;
 import com.safvan.constants.UserRole;
-import com.safvan.service.IUserService;
+import com.safvan.service.ILoginManagementService;
 
 @Controller
 public class LoginController {
 
 	@Autowired
-	private IUserService userService;
+	private ILoginManagementService loginManagementService;
 
 	@GetMapping("/login")
 	public String showLoginPage() {
@@ -27,7 +27,7 @@ public class LoginController {
 
 	@PostMapping("/login")
 	public String login(@RequestParam String username, @RequestParam String password, HttpSession session) {
-		User user = userService.authenticateUser(username, password);
+		User user = loginManagementService.authenticateUser(username, password);
 		System.out.println("LoginController.login()");
 		if (user != null) {
 			System.out.println("LoginController.login(888888888888888888888888)");
@@ -41,7 +41,6 @@ public class LoginController {
 		return "redirect:/login?error";
 	}
 
-	
 	@GetMapping("/home")
 	public String showHome(HttpSession session) {
 		System.out.println("HomeController.showHome()");

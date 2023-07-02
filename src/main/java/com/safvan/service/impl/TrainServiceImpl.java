@@ -8,8 +8,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.safvan.beans.Train;
-import com.safvan.exception.TrainException;
-import com.safvan.exception.TrainNotFoundException;
+import com.safvan.exception.train.TrainException;
+import com.safvan.exception.train.TrainNotFoundException;
 import com.safvan.repository.ITrainRepository;
 import com.safvan.service.ITrainService;
 

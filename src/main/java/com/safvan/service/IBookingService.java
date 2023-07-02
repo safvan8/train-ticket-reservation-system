@@ -3,7 +3,7 @@ package com.safvan.service;
 import java.util.List;
 
 import com.safvan.beans.Ticket;
-import com.safvan.exception.BookingFailedException;
+import com.safvan.exception.booking.BookingFailedException;
 
 public interface IBookingService {
 

@@ -1,4 +1,4 @@
-package com.safvan.exception;
+package com.safvan.exception.booking;
 
 public class NoEnoughSeatsForBooking extends BookingException {
 
