@@ -66,6 +66,13 @@
                     <a href="${pageContext.request.contextPath}/user/searchTrainByNumberFwd">Search Train By Number</a>
                 </p>
             </div>
+			
+			<!-- user Logout Hyperlink -->
+			<div class="home">
+				<p class="menu">
+					<a href="${pageContext.request.contextPath}/logout">Logout</a>
+				</p>
+			</div>
 
 		</header>
 

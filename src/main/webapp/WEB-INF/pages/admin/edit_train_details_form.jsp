@@ -69,7 +69,7 @@ edit_train_details_form<%@ page language="java"
 		<!-- Add new Train -->
 		<div class="home">
 			<p class="menu">
-				<a href="${pageContext.request.contextPath}/admin/adminLogout">Logout</a>
+				<a href="${pageContext.request.contextPath}/logout">Logout</a>
 			</p>
 		</div>
 

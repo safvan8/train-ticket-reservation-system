@@ -76,7 +76,7 @@
 		</div>
 		<div class="home">
 			<p class="menu">
-				<a href="userlogout">Logout</a>
+				<a href="${pageContext.request.contextPath}/logout">Logout</a>
 			</p>
 		</div>
 	</header>
