@@ -34,6 +34,9 @@ public class LoginController {
 			String sessionId = UUID.randomUUID().toString(); // Generate a unique session ID
 			session.setAttribute("sessionId", sessionId);
 			session.setAttribute("user", user);
+			session.setMaxInactiveInterval(10 *60);
+
+			loginManagementService.storeUserSession(user.getUserId(), sessionId);
 			// Additional code to store the session ID and associate it with the user in the
 			// database or a cache
 			return "redirect:/home";
@@ -46,8 +49,13 @@ public class LoginController {
 		System.out.println("HomeController.showHome()");
 		String sessionId = (String) session.getAttribute("sessionId");
 		System.out.println(sessionId);
-		User user = new User();
-		user.setRole(UserRole.CUSTOMER);
+
+		User user = null;
+		// if sessionId is not null , find user by using that sessionId
+		if (sessionId != null) {
+			user = loginManagementService.getUserbySessionId(sessionId);
+		}
+
 		// Additional code to retrieve the user based on the session ID from the
 		// database or cache
 		if (sessionId != null && user != null) {

@@ -7,4 +7,6 @@ public interface ILoginManagementService {
 	public User authenticateUser(String username, String password);
 
 	public void storeUserSession(Integer userId, String sessionId);
+	
+	public User getUserbySessionId(String sessionId);
 }

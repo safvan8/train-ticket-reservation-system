@@ -32,5 +32,6 @@ public class User {
 	@Enumerated(EnumType.STRING)
 	private UserRole role;
 
+	@Column(name = "session_id")
 	private String sessionId;
 }
