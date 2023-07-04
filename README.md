@@ -51,7 +51,7 @@ Users of the system have the following access and functionalities:
 
 **Front-End Technologies:**
 
-- JSP 
+- JSP & JSTL
 - CSS 
 - Bootstrap
 
