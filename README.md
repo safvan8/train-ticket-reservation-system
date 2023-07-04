@@ -51,9 +51,9 @@ Users of the system have the following access and functionalities:
 
 **Front-End Technologies:**
 
-- JSP (JavaServer Pages): Used for dynamic web content generation.
-- CSS (Cascading Style Sheets): Used for styling the web pages.
-- Bootstrap: Used for responsive and user-friendly design.
+- JSP 
+- CSS 
+- Bootstrap
 
 **Back-End Development:**
 
