@@ -57,24 +57,24 @@ Users of the system have the following access and functionalities:
 
 **Back-End Development:**
 
-- Java: Programming language used for server-side development.
-- Spring Boot: Framework for easy application setup and configuration.
-- Spring MVC (Model-View-Controller): Handling web requests and responses.
-- Spring AOP (Aspect-Oriented Programming): Modularizing cross-cutting concerns.
-- Spring Data JPA: Database access and Object-Relational Mapping (ORM).
-- Project Lombok: Reducing boilerplate code and enhancing productivity.
-- MySQL: Relational Database Management System.
+- Java Programming language
+- Spring Boot
+- Spring MVC 
+- Spring AOP 
+- Spring Data JPA
+- Project Lombok
+- MySQL
 
 **Project Management Tool:**
 
-- Maven: Dependency management and build automation.
+- Maven
 
 **Application Logging:**
 
-- Log4j2: Logging application events and messages.
+- Log4j2
 
 **Web Server:**
 
-- Embedded Apache Tomcat Server: Deployment and running of the web application.
-
+- Embedded Apache Tomcat Server
+  
 These technologies are carefully selected to provide a robust, efficient, and user-friendly solution for the Train Ticket Reservation System.
