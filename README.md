@@ -6,17 +6,17 @@ The Train Ticket Reservation System is a web application designed to provide var
 
 ## Key Features:
 
-- **View Trains Schedule**: Users can access the train schedule to see the departure and arrival times of different trains.
-- **Search Trains**: Users can search for trains based on specific criteria such as origin, destination, and travel dates.
-- **Check Seats Availability**: Users can check the availability of seats on selected trains and make informed booking decisions.
-- **Train Timings**: Users can obtain the detailed timings of trains, including departure and arrival times at various stations.
-- **Fare Enquiry**: Users can inquire about the fare for different train routes and classes.
-- **Trains Between Stations**: Users can find information about trains operating between two specific stations.
-- **Booking Seats Online**: Users can book seats online, providing a convenient and hassle-free reservation experience.
-- **Login and Logout Security**: User authentication and secure login/logout functionality ensure data privacy.
-- **Password Changes**: Users can change their passwords to maintain account security.
-- **Payment Gateway**: The system integrates a secure payment gateway for online transactions.
-- **Ticket Booking History**: Users can view their booking history, including details of past ticket reservations.
+- **View Trains Schedule**
+- **Search Trains**
+- **Check Seats Availability**
+- **Train Timings**
+- **Fare Enquiry**
+- **Trains Between Stations**
+- **Booking Seats Online**
+- **Login and Logout Security**
+- **Password Changes**
+- **Payment Gateway**
+- **Ticket Booking History**
 
 ## Admin Access:
 
