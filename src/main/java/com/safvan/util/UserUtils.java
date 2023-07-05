@@ -20,7 +20,7 @@ public class UserUtils {
 	 * @param address     The address of the user.
 	 * @param phoneNumber The phone number of the user.
 	 * @param imageBytes  The byte array representing the user's profile image.
-	 * @return The created `User` object.
+	 * @return The created User object.
 	 */
 	public static User createUser(String username, String password, String firstName, String lastName, String address,
 			String phoneNumber, byte[] imageBytes) {
