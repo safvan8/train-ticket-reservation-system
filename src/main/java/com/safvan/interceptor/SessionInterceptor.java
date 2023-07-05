@@ -8,6 +8,10 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 /**
  * Interceptor for checking user session validity.
+ * 
+ * @Author Safvan
+ * @Version 1.0
+ * @Since 1.0
  */
 public class SessionInterceptor implements HandlerInterceptor {
 
