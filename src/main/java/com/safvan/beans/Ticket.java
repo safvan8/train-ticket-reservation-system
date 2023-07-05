@@ -17,54 +17,68 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Represents a ticket object for booking train tickets.
+ * 
+ * @Author Safvan
+ * @Version 1.0
+ * @Since 1.0
+ */
 @Entity
 @Table(name = "ticket")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Ticket {
+	
+	/**
+	 * The unique identifier for the ticket.
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ticket_id")
 	private Long ticketId;
 
 	/**
-	 * one-to-many relationship where a Train can have multiple associated Ticket
-	 * objects, and each Ticket is linked to a specific Train.
+	 * The transaction ID associated with the ticket.
 	 */
-
 	@Column(name = "transaction_id")
 	private String transactionId;
 
+	/**
+	 * The date of the journey.
+	 */
 	@Column(name = "journey_date")
 	private LocalDate journeyDate;
 
+	/**
+	 * The number of seats required for the ticket.
+	 */
 	@Column(name = "seats_required")
 	private Integer seatsRequired;
 
+	/**
+	 * The type of seat for the ticket.
+	 */
 	@Column(name = "seat_type")
 	private String seatType;
 
+	/**
+	 * The amount of the ticket.
+	 */
 	@Column(name = "amount")
 	private Double ticketAmount;
 
 	/**
-	 * By setting fetch = FetchType.LAZY on the @ManyToOne relationship, the Train
-	 * object will be lazily loaded, meaning it will be fetched from the database
-	 * only when accessed explicitly. This way, when you save a Ticket, the
-	 * associated Train will not be saved automatically. However, when you retrieve
-	 * a Ticket, you can access its Train object and it will be fetched from the
-	 * database. Similarly, when you update the Train, changes will reflect in the
-	 * associated Ticket objects.
+	 * The train associated with the ticket.
+	 * 
+	 * This is a many-to-one relationship where a ticket can be associated with a
+	 * single train.
+	 * 
+	 * By setting fetch = FetchType.LAZY, the train object will be lazily loaded
+	 * from the database when accessed.
 	 */
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "trainNo")
 	private Train train;
-
-	/**
-	 * With this configuration, when you update the Train entity and save it, the
-	 * associated Ticket entities will be automatically updated in the database.
-	 * 
-	 * cascade = CascadeType.MERGE
-	 */
 }
