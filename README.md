@@ -6,17 +6,17 @@ The Train Ticket Reservation System is a web application designed to provide var
 
 ## Key Features:
 
-- **View Trains Schedule**: Users can access the train schedule to see the departure and arrival times of different trains.
-- **Search Trains**: Users can search for trains based on specific criteria such as origin, destination, and travel dates.
-- **Check Seats Availability**: Users can check the availability of seats on selected trains and make informed booking decisions.
-- **Train Timings**: Users can obtain the detailed timings of trains, including departure and arrival times at various stations.
-- **Fare Enquiry**: Users can inquire about the fare for different train routes and classes.
-- **Trains Between Stations**: Users can find information about trains operating between two specific stations.
-- **Booking Seats Online**: Users can book seats online, providing a convenient and hassle-free reservation experience.
-- **Login and Logout Security**: User authentication and secure login/logout functionality ensure data privacy.
-- **Password Changes**: Users can change their passwords to maintain account security.
-- **Payment Gateway**: The system integrates a secure payment gateway for online transactions.
-- **Ticket Booking History**: Users can view their booking history, including details of past ticket reservations.
+- **View Trains Schedule**
+- **Search Trains**
+- **Check Seats Availability**
+- **Train Timings**
+- **Fare Enquiry**
+- **Trains Between Stations**
+- **Booking Seats Online**
+- **Login and Logout Security**
+- **Password Changes**
+- **Payment Gateway**
+- **Ticket Booking History**
 
 ## Admin Access:
 
@@ -51,30 +51,30 @@ Users of the system have the following access and functionalities:
 
 **Front-End Technologies:**
 
-- JSP (JavaServer Pages): Used for dynamic web content generation.
-- CSS (Cascading Style Sheets): Used for styling the web pages.
-- Bootstrap: Used for responsive and user-friendly design.
+- JSP & JSTL
+- CSS 
+- Bootstrap
 
 **Back-End Development:**
 
-- Java: Programming language used for server-side development.
-- Spring Boot: Framework for easy application setup and configuration.
-- Spring MVC (Model-View-Controller): Handling web requests and responses.
-- Spring AOP (Aspect-Oriented Programming): Modularizing cross-cutting concerns.
-- Spring Data JPA: Database access and Object-Relational Mapping (ORM).
-- Project Lombok: Reducing boilerplate code and enhancing productivity.
-- MySQL: Relational Database Management System.
+- Java Programming language
+- Spring Boot
+- Spring MVC 
+- Spring AOP 
+- Spring Data JPA
+- Project Lombok
+- MySQL
 
 **Project Management Tool:**
 
-- Maven: Dependency management and build automation.
+- Maven
 
 **Application Logging:**
 
-- Log4j2: Logging application events and messages.
+- Log4j2
 
 **Web Server:**
 
-- Embedded Apache Tomcat Server: Deployment and running of the web application.
-
+- Embedded Apache Tomcat Server
+  
 These technologies are carefully selected to provide a robust, efficient, and user-friendly solution for the Train Ticket Reservation System.
