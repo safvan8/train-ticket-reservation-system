@@ -4,10 +4,22 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
+/**
+ * FileUploadUtils class provides utility methods for file upload operations.
+ *
+ * @Author Safvan
+ * @Version 1.0
+ * @Since 1.0
+ */
 public class FileUploadUtils {
 
-	// the convertToByteArray method takes a MultipartFile object and converts it to
-	// a byte array.
+	/**
+	 * Convert a MultipartFile object to a byte array.
+	 *
+	 * @param file the MultipartFile object to convert
+	 * @return the byte array representing the file data, or null if the file is
+	 *         empty or an error occurs
+	 */
 	public static byte[] convertToByteArray(MultipartFile file) {
 		if (file.isEmpty()) {
 			return null;
@@ -20,4 +32,5 @@ public class FileUploadUtils {
 		}
 	}
 
+	// Add other utility methods if needed
 }
