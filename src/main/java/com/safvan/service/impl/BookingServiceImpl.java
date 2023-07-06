@@ -16,6 +16,17 @@ import com.safvan.repository.ITicketRepository;
 import com.safvan.service.IBookingService;
 import com.safvan.service.ITrainService;
 
+/**
+ * The BookingServiceImpl class is responsible for handling booking-related
+ * operations.
+ *
+ * It implements the IBookingService interface and provides methods for booking
+ * tickets and retrieving all tickets.
+ * 
+ * @Author Safvan
+ * @Version 1.0
+ * @Since 1.0
+ */
 @Service
 public class BookingServiceImpl implements IBookingService {
 
@@ -25,8 +36,17 @@ public class BookingServiceImpl implements IBookingService {
 	@Autowired
 	private ITrainService trainService;
 
+	/**
+	 * Books a ticket based on the provided ticket details.
+	 *
+	 * @param ticket The Ticket object containing the details of the ticket to be
+	 *               booked.
+	 * @return The Ticket object representing the booked ticket.
+	 * @throws NoEnoughSeatsForBooking If there are not enough seats available on
+	 *                                 the train for booking.
+	 * @throws BookingFailedException  If an error occurs while booking the ticket.
+	 */
 	@Override
-
 	@Transactional
 	public Ticket bookTicket(Ticket ticket) {
 
@@ -36,19 +56,17 @@ public class BookingServiceImpl implements IBookingService {
 		train.setFromStation(ticket.getTrain().getFromStation());
 		train.setToStation(ticket.getTrain().getToStation());
 
-		Integer seatsVaialble = train.getSeats();
+		Integer seatsAvailable = train.getSeats();
 
-		Ticket ticketBookigResult = null;
+		Ticket ticketBookingResult = null;
 
-		if (ticket.getSeatsRequired() > seatsVaialble) {
+		if (ticket.getSeatsRequired() > seatsAvailable) {
+			throw new NoEnoughSeatsForBooking("Only " + seatsAvailable + " seats are available on this train!");
+		} else if (ticket.getSeatsRequired() <= seatsAvailable) {
+			seatsAvailable = seatsAvailable - ticket.getSeatsRequired();
 
-			throw new NoEnoughSeatsForBooking("Only " + seatsVaialble + " are Availble in this Train ! ");
-
-		} else if (ticket.getSeatsRequired() <= seatsVaialble) {
-			seatsVaialble = seatsVaialble - ticket.getSeatsRequired();
-
-			// updating vailble seats with new number
-			train.setSeats(seatsVaialble);
+			// updating available seats with the new number
+			train.setSeats(seatsAvailable);
 
 			try {
 				// updating train
@@ -64,10 +82,11 @@ public class BookingServiceImpl implements IBookingService {
 				ticket.setTicketAmount(totalAmount);
 
 				// creating ticket and confirmation
-				ticketBookigResult = ticketRepository.save(ticket);
+				ticketBookingResult = ticketRepository.save(ticket);
 
-				// adding trains complete infor to ticketBookingResult object for displying
-				ticketBookigResult.setTrain(train);
+				// adding train's complete information to ticketBookingResult object for
+				// displaying
+				ticketBookingResult.setTrain(train);
 
 				System.out.println("BookingServiceImpl.bookTicket()=============================");
 				System.out.println(ticket);
@@ -82,13 +101,16 @@ public class BookingServiceImpl implements IBookingService {
 		System.out.println(ticket);
 
 		// Save the ticket to the database
-		return ticketBookigResult;
+		return ticketBookingResult;
 	}
 
+	/**
+	 * Retrieves a list of all tickets from the database.
+	 *
+	 * @return A list of Ticket objects representing all tickets in the system.
+	 */
 	@Override
 	public List<Ticket> getAllTickets() {
-		
 		return (List<Ticket>) ticketRepository.findAll();
 	}
-
 }

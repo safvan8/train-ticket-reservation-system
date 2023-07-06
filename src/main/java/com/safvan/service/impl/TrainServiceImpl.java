@@ -13,23 +13,49 @@ import com.safvan.exception.train.TrainNotFoundException;
 import com.safvan.repository.ITrainRepository;
 import com.safvan.service.ITrainService;
 
+/**
+ * TrainServiceImpl class is an implementation of the ITrainService interface.
+ * 
+ * This class provides the implementation for various operations related to
+ * trains, such as retrieving train details,
+ * 
+ * adding or updating train information, deleting trains, and finding trains
+ * between stations.
+ * 
+ * This class interacts with TrainRepository to perform these operations.
+ * 
+ * @Author Safvan
+ * @Version 1.0 * 
+ * @Since 1.0
+ * 
+ */
+
 @Service
 public class TrainServiceImpl implements ITrainService {
 
 	@Autowired
 	private ITrainRepository trainRepository;
 
-	// to Display all trains
+	/**
+	 * Retrieves all trains from the database.
+	 *
+	 * @return List of all trains.
+	 */
 	@Override
 	public List<Train> getAllTrains() {
 		System.out.println("TrainServiceImpl.getAllTrains()");
 		return (List<Train>) trainRepository.findAll();
 	}
 
-	// get a train using Id throw TNF Execption
+	/**
+	 * Retrieves a train by its train number.
+	 *
+	 * @param trainNo The train number.
+	 * @return The train with the specified number.
+	 * @throws TrainNotFoundException If the train is not found.
+	 */
 	@Override
 	public Train getTrainByNumber(Long trainNo) {
-
 		Optional<Train> train = trainRepository.findById(trainNo);
 		System.out.println("TrainServiceImpl.getTrainByNumber()");
 		if (train.isPresent())
@@ -37,35 +63,54 @@ public class TrainServiceImpl implements ITrainService {
 		throw new TrainNotFoundException("Train Not Found with the Number : " + trainNo);
 	}
 
-	// to add a new Train
+	/**
+	 * Saves or updates a train in the database.
+	 *
+	 * @param train The train to be saved or updated.
+	 * @return A success message indicating the action performed.
+	 * @throws TrainException If an error occurs while adding or updating the train.
+	 */
 	@Override
 	public String saveOrUpdateTrain(Train train) {
 		try {
 			Train savedTrain = trainRepository.save(train);
 			if (train.getTrainNo() == null)
-				return "Train added Sucessfull with train Number :" + savedTrain.getTrainNo();
+				return "Train added successfully with train Number: " + savedTrain.getTrainNo();
 			else
-				return "Train details updated successfully for the train Number :" + train.getTrainNo();
+				return "Train details updated successfully for the train Number: " + train.getTrainNo();
 
 		} catch (Exception e) {
-			throw new TrainException("Error occured while adding a new Train :" + e.getMessage());
+			throw new TrainException("Error occurred while adding or updating a train: " + e.getMessage());
 		}
 	}
 
-	// to delete a train
+	/**
+	 * Deletes a train from the database.
+	 *
+	 * @param trainNo The train number to be deleted.
+	 * @return A success message indicating the deletion.
+	 * @throws TrainNotFoundException If the train is not found.
+	 * @throws TrainException         If an error occurs while deleting the train.
+	 */
 	@Override
 	public String deleteTrain(Long trainNo) throws TrainNotFoundException {
 		try {
 			trainRepository.deleteById(trainNo);
-			return "train with Number:" + trainNo + " deleted successfully";
+			return "Train with Number: " + trainNo + " deleted successfully";
 		} catch (EmptyResultDataAccessException erd) {
-			throw new TrainNotFoundException("Train Not Found With the Id :" + trainNo);
+			throw new TrainNotFoundException("Train Not Found with the Id: " + trainNo);
 		} catch (Exception e) {
-			throw new TrainException("Exception ouccured while deleteing train:" + e.getMessage());
+			throw new TrainException("Exception occurred while deleting train: " + e.getMessage());
 		}
 	}
 
-	// to find trains between to stations
+	/**
+	 * Retrieves trains between two stations.
+	 *
+	 * @param fromStation The source station.
+	 * @param toStation   The destination station.
+	 * @return List of trains between the specified stations.
+	 */
 	@Override
 	public List<Train> getTrainsBetweenStations(String fromStation, String toStation) {
 		System.out.println("TrainServiceImpl.getTrainsBetweenStation()");
