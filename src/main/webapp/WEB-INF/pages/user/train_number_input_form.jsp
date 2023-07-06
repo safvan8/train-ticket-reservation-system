@@ -85,7 +85,7 @@
 		
 		<section>
 			<h1>${pageHeading}</h1>
-			<form action="${pageContext.request.contextPath}/user/searchTrainByNumber" class="tab red" method="post">
+			<form action="${pageContext.request.contextPath}/user/searchTrainByNumber" class="tab red" method="get">
 				Train No : <input type="number" name="trainNo"> <br>
 				<input type="submit" value="${submitButtonValue}">
 			</form>

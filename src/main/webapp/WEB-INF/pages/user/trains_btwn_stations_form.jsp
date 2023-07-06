@@ -85,7 +85,7 @@
 
 		<section>
 			<h1>${pageHeading}</h1>
-			<form action="${pageContext.request.contextPath}/user/findTrainsbetweenStaions" class="tab red" method="post">
+			<form action="${pageContext.request.contextPath}/user/findTrainsbetweenStaions" class="tab red" method="get">
 				From Station : <input type="text" name="fromStation"> <br>
 				To Station   : <input type="text" name="toStation"> <br>
 				<input type="submit" value="${submitButtonValue}">
