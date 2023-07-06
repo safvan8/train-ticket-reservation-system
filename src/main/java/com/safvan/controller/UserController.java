@@ -19,6 +19,9 @@ import com.safvan.beans.Ticket;
 import com.safvan.beans.TicketDTO;
 import com.safvan.beans.Train;
 import com.safvan.beans.TrainDTO;
+import com.safvan.exception.booking.BookingFailedException;
+import com.safvan.exception.booking.NoEnoughSeatsForBooking;
+import com.safvan.exception.train.TrainNotFoundException;
 import com.safvan.service.IBookingService;
 import com.safvan.service.ITrainService;
 
@@ -201,8 +204,8 @@ public class UserController {
 	public String proceedTrainBookingForUser(@ModelAttribute TicketDTO ticketDTO, @RequestParam Long trainNo,
 			@RequestParam String fromStation, @RequestParam String toStation, Map<String, Object> model) {
 
-		// Create a TrainDTO object and set the train number, from station, and to
-		// station
+		// Create a TrainDTO object and set the train number,
+		// from station, and to station
 		TrainDTO trainDTO = new TrainDTO();
 		trainDTO.setTrainNo(trainNo);
 		trainDTO.setFromStation(fromStation);
@@ -218,6 +221,23 @@ public class UserController {
 		return "user/payment_inputs_form";
 	}
 
+	/**
+	 * Confirms the train booking for the user and perfroms train booking.
+	 * 
+	 * this method receives the TrainDTO object containing the train details and the
+	 * TicketDTO object containing the booking details. this details are then used
+	 * for booking train.
+	 * 
+	 * @param trainDTO  The TrainDTO object containing the train details.
+	 * @param ticketDTO The TicketDTO object containing the booking details.
+	 * @param model     The model object to pass ticketBookingResult object to the
+	 *                  view.
+	 * @return The view name for the ticket booking result. * @throws
+	 * @throws NoEnoughSeatsForBooking If there are not enough seats available on
+	 *                                 the train for booking.
+	 * @throws BookingFailedException  If an error occurs while booking the ticket.
+	 * 
+	 */
 	@PostMapping("/confirmTrainBooking")
 	public String confirmTrainBooking(@ModelAttribute("trainDTO") TrainDTO trainDTO,
 			@ModelAttribute("ticketDTO") TicketDTO ticketDTO, Map<String, Object> model) {
@@ -225,28 +245,31 @@ public class UserController {
 		System.out.println(ticketDTO);
 		System.out.println(trainDTO);
 
-		// to copy property values from one object to another based on matching property
-		// names.
+		// Create new Train and Ticket objects and copy property values from TrainDTO
+		// and TicketDTO
 		Train train = new Train();
 		BeanUtils.copyProperties(trainDTO, train);
 
 		Ticket ticket = new Ticket();
 		BeanUtils.copyProperties(ticketDTO, ticket);
 
-		// saving train details to ticket object
+		// Set train details in the ticket object
 		ticket.setTrain(train);
 
-		System.out.println("Fina....");
+		System.out.println("Final....");
 		System.out.println(ticket);
 
-		// booking ticket
+		// Book the ticket using the bookingService
 		Ticket ticketBookingResult = bookingService.bookTicket(ticket);
 
+		// passing the bookings results to view
 		model.put("ticketBookingResult", ticketBookingResult);
 
 		return "user/ticket_booking_result";
 	}
 
+	// this method needs imporovements, instead of diplaying all tckets need tos
+	// diplsy specific tickets for user
 	@GetMapping("/showTicketBookingHistory")
 	public String getAllTicketsBooked(Map<String, Object> model) {
 
@@ -258,27 +281,62 @@ public class UserController {
 		return "user/view_all_tickets";
 	}
 
+	/**
+	 * Shows the train number input form for checking seat availability or searching
+	 * a train by number.
+	 * 
+	 * Depending on the requested URL, it sets the appropriate page heading and
+	 * submit button value in the model for rendering the form.
+	 * 
+	 * @param request The HttpServletRequest object containing the request
+	 *                information.
+	 * 
+	 * @param model   The model object to pass page heading and button values to the
+	 *                view for dynamic form generation.
+	 * 
+	 * @return The view name for the train number input form.
+	 */
 	@GetMapping(value = { "/trainSeatsAvailablityCheckFwd", "/searchTrainByNumberFwd" })
 	public String showTrainNumberinputForm(HttpServletRequest request, Map<String, Object> model) {
 
+		String pageHeading;
+		String submitButtonValue;
+
 		if (request.getRequestURI().equals("/user/trainSeatsAvailablityCheckFwd")) {
-			model.put("pageHeading", "Train Seats Availability Check !");
-			model.put("submitButtonValue", "CHECK SEATS AVAILABLE");
+			pageHeading = "Train Seats Availability Check !";
+			submitButtonValue = "CHECK SEATS AVAILABLE";
 		} else {
-			model.put("pageHeading", "Search Trains!");
-			model.put("submitButtonValue", "SEARCH TRAIN");
+			pageHeading = "Search Trains!";
+			submitButtonValue = "SEARCH TRAIN";
 		}
+
+		// Set the page heading and trains list in the model to pass to view
+		model.put("pageHeading", pageHeading);
+		model.put("submitButtonValue", submitButtonValue);
 
 		return "user/train_number_input_form";
 	}
 
+	/**
+	 * Searches for a train by its number and displays its details.
+	 *
+	 * It retrieves the train information based on the provided train number using
+	 * the trainService.
+	 *
+	 * @param trainNo The train number to search for.
+	 * @param model   The model object to pass data to the view.
+	 * @return The view name for displaying the train details.
+	 * @throws TrainNotFoundException If the train is not found.
+	 */
 	@GetMapping("/searchTrainByNumber")
 	public String searchTrainByNumber(@RequestParam Long trainNo, Map<String, Object> model) {
 
+		// retrive train details based on train number
 		Train train = trainService.getTrainByNumber(trainNo);
 
 		model.put("train", train);
 
 		return "user/display_train_details";
 	}
+
 }

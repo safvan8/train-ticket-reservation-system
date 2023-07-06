@@ -41,5 +41,6 @@ public class UserProfileController {
 			model.put("userImage", Base64.getEncoder().encodeToString(imageByteArray));
 		}
 		return "display_profile";
+
 	}
 }
