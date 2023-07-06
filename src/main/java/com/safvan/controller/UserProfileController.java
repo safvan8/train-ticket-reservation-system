@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.safvan.beans.User;
-import com.safvan.constants.UserRole;
 import com.safvan.service.ILoginManagementService;
 
 @Controller
@@ -42,7 +41,5 @@ public class UserProfileController {
 			model.put("userImage", Base64.getEncoder().encodeToString(imageByteArray));
 		}
 		return "display_profile";
-
 	}
-
 }

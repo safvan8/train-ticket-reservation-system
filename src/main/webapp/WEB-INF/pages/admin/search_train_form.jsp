@@ -86,7 +86,7 @@
 		<!-- Search Trains by Number - form-->
 		<form
 			action="${pageContext.request.contextPath}/admin/searchTrainByNumber"
-			class="tab red" method="post">
+			class="tab red" method="get">
 			TrainNumber: <input type="number" name="trainNo"> <br>
 			<input type="submit" value="SEARCH TRAIN">
 		</form>

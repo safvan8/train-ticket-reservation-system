@@ -84,7 +84,7 @@ edit_train_details_form<%@ page language="java"
 	<div class="main">
 		<p class="menu">Train details for update displaying to Admin</p>
 		<div class="tab">
-			<form action="${pageContext.request.contextPath}/admin/saveTrain"
+			<form action="${pageContext.request.contextPath}/admin/saveOrUpdateTrain"
 				method="post">
 				<table>
 					<tr>
