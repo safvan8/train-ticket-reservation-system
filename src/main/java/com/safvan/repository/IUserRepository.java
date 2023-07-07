@@ -22,7 +22,7 @@ public interface IUserRepository extends CrudRepository<User, Integer> {
 	
 	/**
      * Find a user by username and password.
-     * this method id used for User authenatication while logging in
+     * this method id used for User authenatication while logging in.
      * 
      * @param username the username of the user
      * @param password the password of the user

@@ -288,9 +288,13 @@ public class UserController {
 	// this method needs imporovements, instead of diplaying all tckets need tos
 	// diplsy specific tickets for user
 	@GetMapping("/showTicketBookingHistory")
-	public String getAllTicketsBooked(Map<String, Object> model) {
+	public String getAllTicketsBooked(HttpSession session, Map<String, Object> model) {
+		// find userId using the session id.
+		String sessionId = session.getAttribute("sessionId").toString();
 
-		List<Ticket> ticketsList = bookingService.getAllTickets();
+		User user = loginManagementService.getUserbySessionId(sessionId);
+
+		List<Ticket> ticketsList = bookingService.getTicketsByUser(user);
 
 		model.put("pageHeading", "Ticket Booking History");
 		model.put("ticketsList", ticketsList);

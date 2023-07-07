@@ -1,8 +1,11 @@
 package com.safvan.repository;
 
+import java.util.List;
+
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.safvan.beans.Ticket;
+import com.safvan.beans.User;
 
 /**
  * ITicketRepository interface.
@@ -16,5 +19,12 @@ import com.safvan.beans.Ticket;
  * @Since 1.0
  */
 public interface ITicketRepository extends PagingAndSortingRepository<Ticket, Long> {
-	// Add custom methods if needed
+	/**
+	 * Find all tickets booked by a user (Customer) and return as a list.
+	 * 
+	 * @param user the user object representing the customer.
+	 * @return a List of tickets booked by the user.
+	 */
+	public List<Ticket> findByUser(User user);
+
 }

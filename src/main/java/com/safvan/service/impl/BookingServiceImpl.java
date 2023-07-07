@@ -86,7 +86,6 @@ public class BookingServiceImpl implements IBookingService {
 				ticket.setTransactionId(transactionId);
 				ticket.setTicketAmount(totalAmount);
 
-				
 				// creating ticket and confirmation
 				ticketBookingResult = ticketRepository.save(ticket);
 
@@ -119,4 +118,16 @@ public class BookingServiceImpl implements IBookingService {
 	public List<Ticket> getAllTickets() {
 		return (List<Ticket>) ticketRepository.findAll();
 	}
+
+	/**
+	 * Retrieves all tickets booked by a specific user.
+	 * 
+	 * @param user the user object representing the customer.
+	 * @return a List of tickets booked by the user.
+	 */
+	@Override
+	public List<Ticket> getTicketsByUser(User user) {
+		return ticketRepository.findByUser(user);
+	}
+
 }
