@@ -30,7 +30,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Ticket {
-	
+
 	/**
 	 * The unique identifier for the ticket.
 	 */
@@ -74,11 +74,18 @@ public class Ticket {
 	 * 
 	 * This is a many-to-one relationship where a ticket can be associated with a
 	 * single train.
-	 * 
-	 * By setting fetch = FetchType.LAZY, the train object will be lazily loaded
-	 * from the database when accessed.
 	 */
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "trainNo")
 	private Train train;
+
+	/**
+	 * The user associated with the ticket.
+	 * 
+	 * This is a many-to-one relationship where many tickets can be associated with
+	 * a single user.
+	 */
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "userId")
+	private User user;
 }

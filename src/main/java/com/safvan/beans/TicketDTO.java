@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TicketDTO {
-	
+
 	/**
 	 * The unique identifier for the ticket.
 	 */
@@ -31,20 +31,18 @@ public class TicketDTO {
 	 */
 	@Nullable
 	private String transactionId;
-	
+
 	/**
 	 * The date of the journey.
 	 * 
 	 * This field represents the date of the journey for the ticket. It is annotated
-	 * with @DateTimeFormat and configured with the pattern "yyyy-MM-dd". This allows
-	 * automatic parsing and formatting of the date using the specified pattern.
-	 * register the LocalDateFormatter bean in application context
-	 * to enable the parsing and formatting of LocalDate objects.
+	 * with @DateTimeFormat and configured with the pattern "yyyy-MM-dd". This
+	 * allows automatic parsing and formatting of the date using the specified
+	 * pattern. register the LocalDateFormatter bean in application context to
+	 * enable the parsing and formatting of LocalDate objects.
 	 */
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate journeyDate;
-
-	
 
 	/**
 	 * The number of seats required for the ticket.
@@ -55,13 +53,13 @@ public class TicketDTO {
 	 * The type of seat for the ticket.
 	 */
 	private String seatType;
-	
+
 	/**
 	 * The amount of the ticket.
 	 */
 	@Nullable
 	private Double ticketAmount;
-	
+
 	/**
 	 * The TrainDTO object associated with the ticket.
 	 * 
@@ -69,4 +67,14 @@ public class TicketDTO {
 	 */
 	@Nullable
 	private TrainDTO trainDTO;
+
+	/**
+	 * The user associated with the ticket.
+	 * 
+	 * This is a many-to-one relationship where many tickets can be associated with
+	 * a single user.
+	 * 
+	 */
+	@Nullable
+	private User user;
 }

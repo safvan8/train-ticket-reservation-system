@@ -45,6 +45,7 @@ public class User {
 	private Integer userId;
 
 	/**
+	 * 
 	 * The username of the user.
 	 */
 	private String username;

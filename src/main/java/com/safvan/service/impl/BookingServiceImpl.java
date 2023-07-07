@@ -10,10 +10,12 @@ import org.springframework.stereotype.Service;
 
 import com.safvan.beans.Ticket;
 import com.safvan.beans.Train;
+import com.safvan.beans.User;
 import com.safvan.exception.booking.BookingFailedException;
 import com.safvan.exception.booking.NoEnoughSeatsForBooking;
 import com.safvan.repository.ITicketRepository;
 import com.safvan.service.IBookingService;
+import com.safvan.service.ILoginManagementService;
 import com.safvan.service.ITrainService;
 
 /**
@@ -35,6 +37,9 @@ public class BookingServiceImpl implements IBookingService {
 
 	@Autowired
 	private ITrainService trainService;
+
+	@Autowired
+	private ILoginManagementService loginManagementService;
 
 	/**
 	 * Books a ticket based on the provided ticket details.
@@ -81,6 +86,12 @@ public class BookingServiceImpl implements IBookingService {
 				ticket.setTransactionId(transactionId);
 				ticket.setTicketAmount(totalAmount);
 
+				// addin user
+				User user = loginManagementService.authenticateUser("user1@gmail.com", "1");
+				
+				// set user before saving 
+				ticket.setUser(user);
+				
 				// creating ticket and confirmation
 				ticketBookingResult = ticketRepository.save(ticket);
 
