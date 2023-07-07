@@ -78,3 +78,75 @@ Users of the system have the following access and functionalities:
 - Embedded Apache Tomcat Server
   
 These technologies are carefully selected to provide a robust, efficient, and user-friendly solution for the Train Ticket Reservation System.
+
+
+
+
+```sql
+-- Create table train
+CREATE TABLE train (
+    train_no BIGINT NOT NULL,      -- Unique identifier for the train
+    fare DECIMAL(10, 2),           -- Fare for the train
+    from_station VARCHAR(50),      -- Source station for the train
+    seats_available INTEGER,       -- Number of available seats in the train
+    to_station VARCHAR(50),        -- Destination station for the train
+    train_name VARCHAR(100),       -- Name of the train
+    PRIMARY KEY (train_no)         -- Primary key constraint
+) ENGINE=INNODB;
+
+-- Create table user_profiles
+CREATE TABLE user_profiles (
+    profile_id INTEGER NOT NULL,    -- Unique identifier for the user profile
+    address VARCHAR(100),           -- Address of the user
+    first_name VARCHAR(50),         -- First name of the user
+    image LONGBLOB,                 -- Image data of the user
+    last_name VARCHAR(50),          -- Last name of the user
+    phone_number VARCHAR(20),       -- Phone number of the user
+    PRIMARY KEY (profile_id)        -- Primary key constraint
+) ENGINE=INNODB;
+
+-- Create table users
+CREATE TABLE users (
+    user_id INTEGER NOT NULL,       -- Unique identifier for the user
+    PASSWORD VARCHAR(50),           -- Password of the user
+    ROLE VARCHAR(50),               -- Role of the user
+    session_id VARCHAR(50),         -- Session ID for the user
+    username VARCHAR(50),           -- Username of the user
+    profile_id INTEGER,             -- Foreign key referencing user_profiles table
+    PRIMARY KEY (user_id),          -- Primary key constraint
+    CONSTRAINT FK_users_profile FOREIGN KEY (profile_id) REFERENCES user_profiles (profile_id) -- Foreign key constraint
+) ENGINE=INNODB;
+
+-- Create table ticket
+CREATE TABLE ticket (
+    ticket_id BIGINT NOT NULL,      -- Unique identifier for the ticket
+    journey_date DATE,              -- Date of the journey
+    seat_type VARCHAR(50),          -- Type of seat
+    seats_required INTEGER,         -- Number of seats required
+    amount DECIMAL(10, 2),          -- Amount for the ticket
+    transaction_id VARCHAR(50),     -- Transaction ID for the ticket
+    train_no BIGINT,                -- Foreign key referencing train table
+    user_id INTEGER,                -- Foreign key referencing users table
+    PRIMARY KEY (ticket_id),        -- Primary key constraint
+    CONSTRAINT FK_ticket_train FOREIGN KEY (train_no) REFERENCES train (train_no),   -- Foreign key constraint
+    CONSTRAINT FK_ticket_user FOREIGN KEY (user_id) REFERENCES users (user_id)      -- Foreign key constraint
+) ENGINE=INNODB; 
+
+-- Insert dummy data into train table
+INSERT INTO train (train_no, train_name, from_station, to_station, seats_available, fare)
+VALUES (10001, 'Rajdhani Express', 'New Delhi', 'Mumbai Central', 250, 1500.00);
+
+INSERT INTO train (train_no, train_name, from_station, to_station, seats_available, fare)
+VALUES (10002, 'Shatabdi Express', 'Chennai Central', 'Bengaluru City', 200, 800.50);
+
+-- Insert dummy data into user_profiles table
+INSERT INTO user_profiles (profile_id, address, first_name, image, last_name, phone_number)
+VALUES (1, '123 Street, City', 'John', null, 'Doe', '1234567890');
+
+-- Insert dummy data into users table
+INSERT INTO users (user_id, password, role, session_id, username, profile_id)
+VALUES (1, 'password123', 'user', 'session123', 'johndoe', 1);
+
+-- Insert dummy data into ticket table
+INSERT INTO ticket (ticket_id, journey_date, seat_type, seats_required, amount, transaction_id, train_no, user_id)
+VALUES (1, '2023-01-01', 'AC', 2, 200.00, 'ABC123', 10001, 1);
