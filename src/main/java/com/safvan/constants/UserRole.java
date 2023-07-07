@@ -6,9 +6,9 @@ package com.safvan.constants;
  * ADMIN: Represents the role of an administrator. 
  * CUSTOMER: Represents the role of a customer.
  *
- * @Author Safvan
- * @Version 1.0
- * @Since 1.0
+ * @author Safvan
+ * @version 1.0
+ * @since 1.0
  */
 public enum UserRole {
 	ADMIN, CUSTOMER
