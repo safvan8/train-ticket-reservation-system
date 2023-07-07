@@ -82,6 +82,7 @@ These technologies are carefully selected to provide a robust, efficient, and us
 
 
 
+## Create Database Schema and Insert Dummy data for Project settup
 ```sql
 -- Create table train
 CREATE TABLE train (
