@@ -13,6 +13,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.safvan.beans.User;
 import com.safvan.service.ILoginManagementService;
 
+/**
+ * The UserProfileController handles all the functionalities related to user
+ * profiles.
+ * 
+ * The controller is responsible for retrieving the user data and passing it to
+ * the view for rendering.
+ * 
+ * 
+ * @author [Your Name]
+ * @version 1.0
+ * @since 1.0
+ */
 @Controller
 @RequestMapping("/userProfile")
 public class UserProfileController {
@@ -20,6 +32,13 @@ public class UserProfileController {
 	@Autowired
 	private ILoginManagementService loginManagementService;
 
+	/**
+	 * Displays the user profile based on the session ID.
+	 * 
+	 * @param session The HttpSession object to retrieve the session ID.
+	 * @param model   The model object to pass data to the view.
+	 * @return The view name for displaying the user profile.
+	 */
 	@GetMapping("/view")
 	public String showUserProfile(HttpSession session, Map<String, Object> model) {
 
@@ -27,20 +46,22 @@ public class UserProfileController {
 		System.out.println(sessionId);
 
 		User user = null;
-		// if sessionId is not null , find user by using that sessionId
 		if (sessionId != null) {
+			// retrieve the user based on the session ID from the database
 			user = loginManagementService.getUserbySessionId(sessionId);
 		}
 
 		System.out.println("============" + user);
-		// Additional code to retrieve the user based on the session ID from the
-		// database or cache
 		if (sessionId != null && user != null) {
 			model.put("user", user);
 			byte[] imageByteArray = user.getUserProfile().getImage();
+			/*
+			 * Note: The user's profile image is encoded as a byte array in the database.
+			 * here we are converting the image byte array to Base64 encoding before passing
+			 * it to the view.
+			 */
 			model.put("userImage", Base64.getEncoder().encodeToString(imageByteArray));
 		}
 		return "display_profile";
-
 	}
 }
