@@ -7,9 +7,9 @@ import com.safvan.exception.login.UserNotFoundException;
  * The ILoginManagementService interface defines methods for user authentication
  * and session management.
  *
- * @Author Safvan
- * @Version 1.0
- * @Since 1.0
+ * @author Safvan
+ * @version 1.0
+ * @since 1.0
  */
 public interface ILoginManagementService {
 

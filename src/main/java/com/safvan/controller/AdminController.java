@@ -22,9 +22,9 @@ import com.safvan.service.ITrainService;
  * managing trains in the system. It interacts with the TrainService to perform
  * CRUD operations on trains.
  *
- * @Author Safvan
- * @Version 1.0
- * @Since 1.0
+ * @author Safvan
+ * @version 1.0
+ * @since 1.0
  */
 
 @Controller

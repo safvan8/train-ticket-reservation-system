@@ -7,9 +7,9 @@ import java.io.IOException;
 /**
  * FileUploadUtils class provides utility methods for file upload operations.
  *
- * @Author Safvan
- * @Version 1.0
- * @Since 1.0
+ * @author Safvan
+ * @version 1.0
+ * @since 1.0
  */
 public class FileUploadUtils {
 

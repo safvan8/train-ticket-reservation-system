@@ -14,9 +14,10 @@ import com.safvan.beans.User;
  * Spring Data. It allows performing CRUD ,Sorting,paging operations on the
  * Ticket entity.
  * 
- * @Author Safvan
- * @Version 1.0
- * @Since 1.0
+ * @author Safvan
+ * @version 1.0
+ * @since 1.0
+ * 
  */
 public interface ITicketRepository extends PagingAndSortingRepository<Ticket, Long> {
 	/**

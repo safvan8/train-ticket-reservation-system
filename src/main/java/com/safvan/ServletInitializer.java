@@ -4,9 +4,13 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 /**
- * The ServletInitializer class extends the SpringBootServletInitializer
- * class to configure the application when deploying it as a WAR file in a
- * servlet container.
+ * The ServletInitializer class extends the SpringBootServletInitializer class
+ * to configure the application when deploying it as a WAR file in a servlet
+ * container.
+ * 
+ * @author Safvan
+ * @version 1.0
+ * @since 1.0
  */
 public class ServletInitializer extends SpringBootServletInitializer {
 

@@ -6,9 +6,9 @@ import com.safvan.beans.User;
  * The IUserManagementService interface defines methods for managing
  * user-related operations.
  *
- * @Author Safvan
- * @Version 1.0
- * @Since 1.0
+ * @author Safvan
+ * @version 1.0
+ * @since 1.0
  */
 public interface IUserManagementService {
 

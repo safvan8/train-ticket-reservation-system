@@ -15,9 +15,9 @@ import org.springframework.stereotype.Component;
  * 
  * This Class represents a LoggingAdvice object.
  *
- * @Author Safvan
- * @Version 1.0
- * @Since 1.0
+ * @author Safvan
+ * @version 1.0
+ * @since 1.0
  */
 @Aspect
 @Component

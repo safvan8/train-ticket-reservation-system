@@ -21,7 +21,7 @@ import com.safvan.service.ILoginManagementService;
  * the view for rendering.
  * 
  * 
- * @author [Your Name]
+ * @author Safvan
  * @version 1.0
  * @since 1.0
  */

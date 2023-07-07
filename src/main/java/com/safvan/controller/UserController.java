@@ -34,9 +34,9 @@ import com.safvan.service.ITrainService;
  * stations, booking tickets, viewing booking history, checking seat
  * availability, and more.
  * 
- * @Author Safvan
- * @Version 1.0
- * @Since 1.0
+ * @author Safvan
+ * @version 1.0
+ * @since 1.0
  */
 @Controller
 @RequestMapping("/user")

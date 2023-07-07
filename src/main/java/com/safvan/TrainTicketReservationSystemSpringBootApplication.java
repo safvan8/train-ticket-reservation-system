@@ -6,6 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * The main class of the Train Ticket Reservation System Spring Boot
  * application. It is responsible for starting the application.
+ * 
+ * @author Safvan
+ * @version 1.0
+ * @since 1.0
  */
 @SpringBootApplication
 public class TrainTicketReservationSystemSpringBootApplication {

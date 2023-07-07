@@ -20,7 +20,7 @@ import com.safvan.util.UserUtils;
  * endpoints for displaying the registration form and processing the
  * registration data.
  *
- * @author [Your Name]
+ * @author Safvan
  * @version 1.0
  * @since 1.0
  */

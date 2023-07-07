@@ -18,9 +18,9 @@ import lombok.NoArgsConstructor;
  * stations, available seats, and fare. Train objects are persisted in the
  * "train" table in the database.
  * 
- * @Author Safvan
- * @Version 1.0
- * @Since 1.0
+ * @author Safvan
+ * @version 1.0
+ * @since 1.0
  */
 @Entity
 @Table(name = "train")

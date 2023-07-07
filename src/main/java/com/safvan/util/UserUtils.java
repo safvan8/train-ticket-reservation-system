@@ -7,6 +7,11 @@ import com.safvan.beans.UserProfile;
  * This class provides utility methods for creating User objects with associated
  * UserProfile. It encapsulates the logic of constructing a User object with the
  * given attributes.
+ * 
+ * @author Safvan
+ * @version 1.0
+ * @since 1.0
+ * 
  */
 public class UserUtils {
 

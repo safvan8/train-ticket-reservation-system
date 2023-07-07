@@ -14,6 +14,11 @@ import lombok.NoArgsConstructor;
  * 
  * The TicketDTO class is used to transfer ticket-related information between
  * different layers or components of the application.
+ * 
+ * @author Safvan
+ * @version 1.0
+ * @since 1.0
+ * 
  */
 @Data
 @AllArgsConstructor

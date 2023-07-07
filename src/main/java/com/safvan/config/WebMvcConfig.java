@@ -13,9 +13,9 @@ import com.safvan.interceptor.SessionInterceptor;
  * It registers the SessionInterceptor as an interceptor to be applied for
  * specific URL patterns.
  *
- * @Author Safvan
- * @Version 1.0
- * @Since 1.0
+ * @author Safvan
+ * @version 1.0
+ * @since 1.0
  */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {

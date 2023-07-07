@@ -25,9 +25,9 @@ import com.safvan.service.ITrainService;
  * It implements the IBookingService interface and provides methods for booking
  * tickets and retrieving all tickets.
  * 
- * @Author Safvan
- * @Version 1.0
- * @Since 1.0
+ * @author Safvan
+ * @version 1.0
+ * @since 1.0
  */
 @Service
 public class BookingServiceImpl implements IBookingService {

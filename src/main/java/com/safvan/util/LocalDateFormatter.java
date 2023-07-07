@@ -16,9 +16,9 @@ import java.util.Locale;
  * objects to and from String representations. This allows seamless binding of
  * LocalDate properties in your Spring MVC controllers and forms.
  *
- * @Author Safvan
- * @Version 1.0
- * @Since 1.0
+ * @author Safvan
+ * @version 1.0
+ * @since 1.0
  * @see https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/format/Formatter.html
  */
 @Component

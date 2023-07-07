@@ -25,9 +25,9 @@ import lombok.NoArgsConstructor;
  * This class contains information about the user, such as username, password,
  * role, and profile.
  *
- * @Author Safvan
- * @Version 1.0
- * @Since 1.0
+ * @author Safvan
+ * @version 1.0
+ * @since 1.0
  */
 @Entity
 @Table(name = "users")

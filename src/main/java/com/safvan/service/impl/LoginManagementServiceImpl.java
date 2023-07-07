@@ -13,9 +13,9 @@ import com.safvan.service.IUserManagementService;
  * The LoginManagementServiceImpl class provides implementations for user
  * authentication and session management.
  *
- * @Author Safvan
- * @Version 1.0
- * @Since 1.0
+ * @author Safvan
+ * @version 1.0
+ * @since 1.0
  */
 @Service
 public class LoginManagementServiceImpl implements ILoginManagementService {

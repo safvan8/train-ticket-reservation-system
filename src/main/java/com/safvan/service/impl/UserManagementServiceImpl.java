@@ -14,9 +14,9 @@ import com.safvan.service.IUserManagementService;
  * interface. It provides methods for managing user-related operations, such as
  * retrieving a user by ID and registering a new customer.
  *
- * @Author Safvan
- * @Version 1.0
- * @Since 1.0
+ * @author Safvan
+ * @version 1.0
+ * @since 1.0
  */
 @Service
 public class UserManagementServiceImpl implements IUserManagementService {

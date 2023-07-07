@@ -20,9 +20,9 @@ import lombok.NoArgsConstructor;
 /**
  * Represents a ticket object for booking train tickets.
  * 
- * @Author Safvan
- * @Version 1.0
- * @Since 1.0
+ * @author Safvan
+ * @version 1.0
+ * @since 1.0
  */
 @Entity
 @Table(name = "ticket")
