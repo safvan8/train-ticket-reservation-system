@@ -165,6 +165,7 @@ public class UserController {
 	 *                    will be diplayed in train_pre_booking_form.
 	 * @param fromStation The name of the from station.
 	 * @param toStation   The name of the to station.
+	 * @param session     The HttpSession object.
 	 * @param model       The model object to pass data to the view.
 	 * @return The view name for the pre-booking form.
 	 */
@@ -240,6 +241,7 @@ public class UserController {
 	 * 
 	 * @param trainDTO  The TrainDTO object containing the train details.
 	 * @param ticketDTO The TicketDTO object containing the booking details.
+	 * @param session   the HttpSession Object.
 	 * @param model     The model object to pass ticketBookingResult object to the
 	 *                  view.
 	 * @return The view name for the ticket booking result. * @throws
