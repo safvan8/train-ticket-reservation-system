@@ -84,11 +84,10 @@ public class UserController {
 	 * Forwards to the form for searching trains between stations or finding train
 	 * fare between stations based on the requested URL.
 	 * 
-	 * This method handles the GET request for "/findTrainsbetweenStaionsFwd" and
-	 * "/trainFairEnqueryFwd" URLs. It determines the functionality based on the
-	 * requested URL and sets the appropriate form field names and button labels in
-	 * the model. The form is designed to be dynamic, allowing the button names to
-	 * change based on requirements.
+	 * It determines the functionality based on the requested URL and sets the
+	 * appropriate form field names and button labels in the model. The form is
+	 * designed to be dynamic, allowing the button names to change based on
+	 * requirements.
 	 * 
 	 * @param model   The model object to pass data to the view.
 	 * @param request The HTTP request object.
