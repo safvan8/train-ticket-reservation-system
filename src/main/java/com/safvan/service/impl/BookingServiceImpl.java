@@ -86,11 +86,6 @@ public class BookingServiceImpl implements IBookingService {
 				ticket.setTransactionId(transactionId);
 				ticket.setTicketAmount(totalAmount);
 
-				// addin user
-				User user = loginManagementService.authenticateUser("user1@gmail.com", "1");
-				
-				// set user before saving 
-				ticket.setUser(user);
 				
 				// creating ticket and confirmation
 				ticketBookingResult = ticketRepository.save(ticket);

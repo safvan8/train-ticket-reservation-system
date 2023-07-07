@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,12 @@ import com.safvan.beans.Ticket;
 import com.safvan.beans.TicketDTO;
 import com.safvan.beans.Train;
 import com.safvan.beans.TrainDTO;
+import com.safvan.beans.User;
 import com.safvan.exception.booking.BookingFailedException;
 import com.safvan.exception.booking.NoEnoughSeatsForBooking;
 import com.safvan.exception.train.TrainNotFoundException;
 import com.safvan.service.IBookingService;
+import com.safvan.service.ILoginManagementService;
 import com.safvan.service.ITrainService;
 
 /**
@@ -47,6 +50,9 @@ public class UserController {
 
 	@Autowired
 	private ServletContext servletContext;
+
+	@Autowired
+	private ILoginManagementService loginManagementService;
 
 	/**
 	 * Shows the home page for the user.
@@ -164,7 +170,7 @@ public class UserController {
 	 */
 	@GetMapping("/showPreBookingFormForTrain")
 	public String showPreBookingFormForTrain(@RequestParam Long trainNo, @RequestParam String fromStation,
-			@RequestParam String toStation, Map<String, Object> model) {
+			@RequestParam String toStation, HttpSession session, Map<String, Object> model) {
 
 		System.out.println("UserController.showPreBookingFormForTrain()+ " + trainNo);
 
@@ -175,8 +181,13 @@ public class UserController {
 		trainDTO.setFromStation(fromStation);
 		trainDTO.setToStation(toStation);
 
-		// Store the TrainDTO object in the model
+		// get the user details to display in prebookig form
+		String sessionId = session.getAttribute("sessionId").toString();
+		User user = loginManagementService.getUserbySessionId(sessionId);
+
+		// Store the TrainDTO object and user details in the model
 		model.put("preBookingDetails", trainDTO);
+		model.put("user", user);
 
 		return "user/train_pre_booking_form";
 	}
@@ -239,7 +250,7 @@ public class UserController {
 	 */
 	@PostMapping("/confirmTrainBooking")
 	public String confirmTrainBooking(@ModelAttribute("trainDTO") TrainDTO trainDTO,
-			@ModelAttribute("ticketDTO") TicketDTO ticketDTO, Map<String, Object> model) {
+			@ModelAttribute("ticketDTO") TicketDTO ticketDTO, HttpSession session, Map<String, Object> model) {
 		System.out.println("UserController.confirmTrainBooking().................");
 		System.out.println(ticketDTO);
 		System.out.println(trainDTO);
@@ -257,6 +268,13 @@ public class UserController {
 
 		System.out.println("Final....");
 		System.out.println(ticket);
+
+		// retrive user details based on sesionId
+		String sessionId = session.getAttribute("sessionId").toString();
+		User user = loginManagementService.getUserbySessionId(sessionId);
+
+		// add user details to the ticket , before booking
+		ticket.setUser(user);
 
 		// Book the ticket using the bookingService
 		Ticket ticketBookingResult = bookingService.bookTicket(ticket);

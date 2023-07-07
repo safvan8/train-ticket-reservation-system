@@ -91,14 +91,11 @@
 			<form action='${pageContext.request.contextPath}/user/proceedTrainBooking' method='post'>
 				<table border="2" style="border: thick;">
 
-				<% String userName="safvan";
-				request.setAttribute("userName", userName);
-				%>
 
 					<!-- User ID and Train Number -->
 					<tr>
-						<td>USER ID:</td>
-						<td>${userName}</td>
+						<td>User Name:</td>
+						<td>${user.username}</td>
 						<td>Train NO:</td>
 						<td>${preBookingDetails.trainNo}</td>
 					</tr>
