@@ -285,15 +285,22 @@ public class UserController {
 		return "user/ticket_booking_result";
 	}
 
-	// this method needs imporovements, instead of diplaying all tckets need tos
-	// diplsy specific tickets for user
+	/**
+	 * Retrieves and displays the ticket booking history for the currently logged-in
+	 * user.
+	 * 
+	 * @param session the HttpSession object to retrieve the user's session ID.
+	 * @param model   the model object to pass data to the view.
+	 * @return the view name for displaying the ticket booking history.
+	 */
 	@GetMapping("/showTicketBookingHistory")
 	public String getAllTicketsBooked(HttpSession session, Map<String, Object> model) {
-		// find userId using the session id.
-		String sessionId = session.getAttribute("sessionId").toString();
 
+		// Retrieve user details of logged in user using sessionId.
+		String sessionId = session.getAttribute("sessionId").toString();
 		User user = loginManagementService.getUserbySessionId(sessionId);
 
+		// Retrieve the list of tickets booked by the user
 		List<Ticket> ticketsList = bookingService.getTicketsByUser(user);
 
 		model.put("pageHeading", "Ticket Booking History");
