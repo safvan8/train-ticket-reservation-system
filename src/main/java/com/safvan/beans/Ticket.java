@@ -75,7 +75,7 @@ public class Ticket {
 	 * This is a many-to-one relationship where a ticket can be associated with a
 	 * single train.
 	 */
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
 	@JoinColumn(name = "trainNo")
 	private Train train;
 
@@ -84,8 +84,14 @@ public class Ticket {
 	 * 
 	 * This is a many-to-one relationship where many tickets can be associated with
 	 * a single user.
+	 * 
+	 * By using CascadeType.DETACH, when you save a Ticket entity, it will
+	 * automatically link the associated User entity without making any changes to
+	 * the User entity or persisting it. This cascade type is appropriate when you
+	 * want to establish an association without modifying or persisting the
+	 * associated entity.
 	 */
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
 	@JoinColumn(name = "userId")
 	private User user;
 }

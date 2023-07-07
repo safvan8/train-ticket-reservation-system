@@ -68,13 +68,4 @@ public class TicketDTO {
 	@Nullable
 	private TrainDTO trainDTO;
 
-	/**
-	 * The user associated with the ticket.
-	 * 
-	 * This is a many-to-one relationship where many tickets can be associated with
-	 * a single user.
-	 * 
-	 */
-	@Nullable
-	private User user;
 }
