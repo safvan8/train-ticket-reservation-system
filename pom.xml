@@ -81,18 +81,6 @@
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
 	
-		<!-- dependecies  for java docs-->
-		<!-- javax.annotation -->
-	    <dependency>
-	        <groupId>javax.annotation</groupId>
-	        <artifactId>javax.annotation-api</artifactId>
-	    </dependency>
-	    
-	    <!-- javax.interceptor -->
-	    <dependency>
-	        <groupId>javax.interceptor</groupId>
-	        <artifactId>javax.interceptor-api</artifactId>
-	    </dependency>
     </dependencies>
 
 	<build>
@@ -100,29 +88,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
-			
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>attach-javadocs</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>
 
 </project>
+
