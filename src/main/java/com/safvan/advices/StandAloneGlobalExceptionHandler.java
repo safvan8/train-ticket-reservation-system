@@ -83,6 +83,13 @@ public class StandAloneGlobalExceptionHandler {
 		return "admin/display_message";
 	}
 
+	/**
+	 * 
+	 * @param e       the BookingException or it's child classes.
+	 * @param request the HttpServletREquest.
+	 * @param model   the Model object to pass data to the view.
+	 * @return the view name to diplay the error message.
+	 */
 	@ExceptionHandler(value = { BookingException.class, NoEnoughSeatsForBooking.class, BookingFailedException.class })
 	public String handleNoEnoughSeatsForBooking(BookingException e, HttpServletRequest request, Model model) {
 
