@@ -38,9 +38,6 @@ public class BookingServiceImpl implements IBookingService {
 	@Autowired
 	private ITrainService trainService;
 
-	@Autowired
-	private ILoginManagementService loginManagementService;
-
 	/**
 	 * Books a ticket based on the provided ticket details.
 	 *
@@ -66,7 +63,8 @@ public class BookingServiceImpl implements IBookingService {
 		Ticket ticketBookingResult = null;
 
 		if (ticket.getSeatsRequired() > seatsAvailable) {
-			throw new NoEnoughSeatsForBooking("Only " + seatsAvailable + " seats are available on this train!");
+			String userFriendlyMessage = "Only " + seatsAvailable + " seats are available on this train!";
+			throw new NoEnoughSeatsForBooking(Thread.currentThread().getStackTrace(), userFriendlyMessage);
 		} else if (ticket.getSeatsRequired() <= seatsAvailable) {
 			seatsAvailable = seatsAvailable - ticket.getSeatsRequired();
 
@@ -97,7 +95,8 @@ public class BookingServiceImpl implements IBookingService {
 				System.out.println(ticket);
 
 			} catch (Exception e) {
-				throw new BookingFailedException("Booking failed for the train number: " + train.getTrainNo());
+				String userFriendlyMessage = "Booking failed for the train number: " + train.getTrainNo();
+				throw new BookingFailedException(Thread.currentThread().getStackTrace(), userFriendlyMessage);
 			}
 
 		}

@@ -1,8 +1,16 @@
 package com.safvan.exception.booking;
 
+import lombok.Data;
+
+@Data
 public class BookingException extends RuntimeException {
 
-	public BookingException(String customExceptionMessage) {
-		super(customExceptionMessage);
+	private StackTraceElement[] stackTrace;
+	private String userFriendlyMessage;
+
+	public BookingException(StackTraceElement[] stackTrace, String userFriendlyMessage) {
+		super(userFriendlyMessage);
+		this.stackTrace = stackTrace;
+		this.userFriendlyMessage = userFriendlyMessage;
 	}
 }

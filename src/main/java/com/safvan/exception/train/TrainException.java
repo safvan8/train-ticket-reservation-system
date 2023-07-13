@@ -15,7 +15,7 @@ public class TrainException extends RuntimeException {
 	private String userFriendlyMessage;
 
 	public TrainException(StackTraceElement[] stackTrace, String userFriendlyMessage) {
-		super(userFriendlyMessage);
+		super(stackTrace.toString());
 		this.stackTrace = stackTrace;
 		this.userFriendlyMessage = userFriendlyMessage;
 	}

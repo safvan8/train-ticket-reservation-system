@@ -1,8 +1,11 @@
 package com.safvan.exception.booking;
 
+import lombok.Data;
+
+@Data
 public class NoEnoughSeatsForBooking extends BookingException {
 
-	public NoEnoughSeatsForBooking(String customExceptionMessage) {
-		super(customExceptionMessage);
+	public NoEnoughSeatsForBooking(StackTraceElement[] stackTrace, String userFriendlyMessage) {
+		super(stackTrace, userFriendlyMessage);
 	}
 }

@@ -2,12 +2,17 @@ package com.safvan.advices;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.safvan.constants.UserRole;
+import com.safvan.exception.booking.BookingException;
+import com.safvan.exception.booking.BookingFailedException;
+import com.safvan.exception.booking.NoEnoughSeatsForBooking;
 import com.safvan.exception.train.TrainException;
 import com.safvan.exception.train.TrainNotFoundException;
 import com.safvan.util.ExceptionLoggerUtil;
@@ -16,16 +21,18 @@ import com.safvan.util.UserUtils;
 @ControllerAdvice
 public class WebAppGlobalExceptionHandler {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(WebAppGlobalExceptionHandler.class);
+
 	@Autowired
 	private UserUtils userUtils;
 
-	
 	/**
-	 * for handling trasin not found eception 
+	 * for handling trasin not found eception
+	 * 
 	 * @param e
 	 * @param request
 	 * @param model
-	 * @return
+	 * @return viewPage the page to diplay the error message.
 	 */
 	@ExceptionHandler(TrainNotFoundException.class)
 	public String handleTrainNotFoundException(TrainNotFoundException e, HttpServletRequest request, Model model) {
@@ -74,11 +81,21 @@ public class WebAppGlobalExceptionHandler {
 		return "admin/display_message";
 	}
 
+	@ExceptionHandler(value = { NoEnoughSeatsForBooking.class, BookingFailedException.class, BookingException.class })
+	public String handleNoEnoughSeatsForBooking(NoEnoughSeatsForBooking e, HttpServletRequest request, Model model) {
+
+		LOGGER.error("Exception Occurred for the URL: {}", request.getRequestURI(), e);
+
+		String message = e.getUserFriendlyMessage();
+		model.addAttribute("message", message);
+		return "user/display_message";
+	}
+
 	@ExceptionHandler(Exception.class)
 	public String handleAllExceptions(Exception e) {
 		System.out.println("Exception occurred: " + e.getMessage());
 		System.out.println();
 		return "user/display_message";
-
 	}
+
 }
