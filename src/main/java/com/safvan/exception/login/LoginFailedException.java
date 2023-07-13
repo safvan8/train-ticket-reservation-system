@@ -1,8 +1,16 @@
 package com.safvan.exception.login;
 
+import lombok.Data;
+
+@Data
 public class LoginFailedException extends RuntimeException {
 
-	public LoginFailedException(String customExceptionMesage) {
-		super(customExceptionMesage);
+	private StackTraceElement[] stackTrace;
+	private String userFriendlyMessage;
+
+	public LoginFailedException(StackTraceElement[] stackTrace, String userFriendlyMessage) {
+		super(userFriendlyMessage);
+		this.stackTrace = stackTrace;
+		this.userFriendlyMessage = userFriendlyMessage;
 	}
 }

@@ -34,7 +34,8 @@ public class UserManagementServiceImpl implements IUserManagementService {
 	@Override
 	public User getUserById(Integer userId) {
 		return userRepository.findById(userId)
-				.orElseThrow(() -> new UserNotFoundException("User not found with ID: " + userId));
+				.orElseThrow(() -> new UserNotFoundException(Thread.currentThread().getStackTrace(),
+						"User not found with ID: " + userId));
 	}
 
 	/**

@@ -50,8 +50,10 @@ public class LoginManagementServiceImpl implements ILoginManagementService {
 		User user = userManagementService.getUserById(userId);
 		if (user != null)
 			userRepository.updateSessionIdByUserId(userId, sessionId);
-		else
-			throw new UserNotFoundException("User Not found for the Id: " + userId);
+		else {
+			String userFriendlyMessage = "User Not found for the Id: " + userId;
+			throw new UserNotFoundException(Thread.currentThread().getStackTrace(), userFriendlyMessage);
+		}
 	}
 
 	/**

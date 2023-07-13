@@ -13,6 +13,8 @@ import com.safvan.constants.UserRole;
 import com.safvan.exception.booking.BookingException;
 import com.safvan.exception.booking.BookingFailedException;
 import com.safvan.exception.booking.NoEnoughSeatsForBooking;
+import com.safvan.exception.login.LoginFailedException;
+import com.safvan.exception.login.UserNotFoundException;
 import com.safvan.exception.train.TrainException;
 import com.safvan.exception.train.TrainNotFoundException;
 import com.safvan.util.ExceptionLoggerUtil;
@@ -81,8 +83,8 @@ public class StandAloneGlobalExceptionHandler {
 		return "admin/display_message";
 	}
 
-	@ExceptionHandler(value = { NoEnoughSeatsForBooking.class, BookingFailedException.class, BookingException.class })
-	public String handleNoEnoughSeatsForBooking(NoEnoughSeatsForBooking e, HttpServletRequest request, Model model) {
+	@ExceptionHandler(value = { BookingException.class, NoEnoughSeatsForBooking.class, BookingFailedException.class })
+	public String handleNoEnoughSeatsForBooking(BookingException e, HttpServletRequest request, Model model) {
 
 		LOGGER.error("Exception Occurred for the URL: {}", request.getRequestURI(), e);
 
@@ -91,11 +93,38 @@ public class StandAloneGlobalExceptionHandler {
 		return "user/display_message";
 	}
 
+	@ExceptionHandler(value = { LoginFailedException.class, UserNotFoundException.class })
+	public String handleLonginRelatedExceptions(LoginFailedException e, HttpServletRequest request, Model model) {
+		// Logging exception
+		ExceptionLoggerUtil.logException(e, request.getRequestURI());
+
+		String sessionId = (String) request.getSession().getAttribute("sessionId");
+		// finding userRole
+		UserRole userRole = userUtils.getUserRoleBySessionId(sessionId);
+		String message = "Something went wrong at :" + getClass().getName() + ".handleTrainNotFoundException(-,-,-)";
+		System.out.println(message);
+		String viewPage = null;
+
+		System.out.println("***********************************************");
+		if (userRole != null) {
+			if (userRole == UserRole.ADMIN) {
+				viewPage
+
+						= "admin/display_message";
+			} else if (userRole == UserRole.CUSTOMER) {
+				viewPage = "user/display_message";
+			}
+
+			message = e.getUserFriendlyMessage();
+		}
+		model.addAttribute("message", message);
+		return viewPage;
+	}
+
 	@ExceptionHandler(Exception.class)
 	public String handleAllExceptions(Exception e) {
 		System.out.println("Exception occurred: " + e.getMessage());
 		System.out.println();
 		return "user/display_message";
 	}
-
 }
