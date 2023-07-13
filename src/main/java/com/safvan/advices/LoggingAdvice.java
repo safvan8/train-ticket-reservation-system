@@ -2,6 +2,7 @@ package com.safvan.advices;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
@@ -75,17 +76,17 @@ public class LoggingAdvice {
 		LOGGER.debug("Returned value: {}", result);
 	}
 
-//	/**
-//	 * Log method exception. for general execption logging
-//	 *
-//	 * @param joinPoint the join point
-//	 * @param ex        the ex
-//	 */
-//	@AfterThrowing(pointcut = "execution(* com.safvan..*(..)) && !within(com.safvan.advices.LoggingAdvice)", throwing = "ex")
-//	public void logMethodException(JoinPoint joinPoint, Exception ex) {
-//		String methodName = joinPoint.getSignature().getName();
-//		String className = joinPoint.getTarget().getClass().getName();
-//		LOGGER.error("Exception in method: {}.{}", className, methodName);
-//		LOGGER.error("Exception message: {}", ex.getMessage());
-//	}
+	/**
+	 * Log method exception. for general execption logging
+	 *
+	 * @param joinPoint the join point
+	 * @param ex        the ex
+	 */
+	@AfterThrowing(pointcut = "execution(* com.safvan..*(..)) && !within(com.safvan.advices.LoggingAdvice)", throwing = "ex")
+	public void logMethodException(JoinPoint joinPoint, Exception ex) {
+		String methodName = joinPoint.getSignature().getName();
+		String className = joinPoint.getTarget().getClass().getName();
+		LOGGER.error("Exception in method: {}.{}", className, methodName);
+		LOGGER.error("Exception message: {}", ex.getMessage());
+	}
 }

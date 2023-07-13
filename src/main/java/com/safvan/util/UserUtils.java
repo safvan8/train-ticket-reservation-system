@@ -1,6 +1,7 @@
 package com.safvan.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.safvan.beans.User;
 import com.safvan.beans.UserProfile;
@@ -17,10 +18,11 @@ import com.safvan.service.ILoginManagementService;
  * @since 1.0
  * 
  */
+@Component
 public class UserUtils {
 
 	@Autowired
-	private static ILoginManagementService loginManagementService;
+	private ILoginManagementService loginManagementService;
 
 	/**
 	 * Creates a new `User` object with the specified attributes.
@@ -55,7 +57,13 @@ public class UserUtils {
 		return user;
 	}
 
-	public static UserRole getUserRoleBySessionId(String sessionId) {
+	/**
+	 * Utilty method for finding UserRole based on User sessionId
+	 * 
+	 * @param sessionId the sessionId of the User
+	 * @return UserRole based on the sessionId given
+	 */
+	public UserRole getUserRoleBySessionId(String sessionId) {
 
 		User user = null;
 		UserRole userRole = null;
@@ -64,6 +72,7 @@ public class UserUtils {
 			user = loginManagementService.getUserbySessionId(sessionId);
 		}
 
+		// return UserRole based on the User.
 		if (user != null) {
 			if (user.getRole() == UserRole.ADMIN)
 				userRole = UserRole.ADMIN;

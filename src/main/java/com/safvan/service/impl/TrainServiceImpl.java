@@ -83,7 +83,7 @@ public class TrainServiceImpl implements ITrainService {
 
 		} catch (Exception e) {
 			throw new TrainException(e.getStackTrace(),
-					"Error occurred while adding or updating a train with Number: " + train.getTrainNo());
+					"Error occurred while saving or updating a train with  train Number: " + train.getTrainNo());
 		}
 	}
 
