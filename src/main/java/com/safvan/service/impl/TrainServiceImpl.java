@@ -59,7 +59,10 @@ public class TrainServiceImpl implements ITrainService {
 		System.out.println("TrainServiceImpl.getTrainByNumber()");
 		if (train.isPresent())
 			return train.get();
-		throw new TrainNotFoundException("Train Not Found with the Number : " + trainNo);
+		// throwing execption if train not found
+
+		String userFriendlyMessage = "Train Not Found with the Number : " + trainNo;
+		throw new TrainNotFoundException(Thread.currentThread().getStackTrace(), userFriendlyMessage);
 	}
 
 	/**
@@ -79,7 +82,8 @@ public class TrainServiceImpl implements ITrainService {
 				return "Train details updated successfully for the train Number: " + train.getTrainNo();
 
 		} catch (Exception e) {
-			throw new TrainException("Error occurred while adding or updating a train: " + e.getMessage());
+			throw new TrainException(e.getStackTrace(),
+					"Error occurred while adding or updating a train with Number: " + train.getTrainNo());
 		}
 	}
 
@@ -93,13 +97,18 @@ public class TrainServiceImpl implements ITrainService {
 	 */
 	@Override
 	public String deleteTrain(Long trainNo) throws TrainNotFoundException {
+
+		String userFriendlyMessage = null;
+
 		try {
 			trainRepository.deleteById(trainNo);
 			return "Train with Number: " + trainNo + " deleted successfully";
 		} catch (EmptyResultDataAccessException erd) {
-			throw new TrainNotFoundException("Train Not Found with the Id: " + trainNo);
+			userFriendlyMessage = "Train Not Found with the Number : " + trainNo;
+			throw new TrainNotFoundException(erd.getStackTrace(), userFriendlyMessage);
 		} catch (Exception e) {
-			throw new TrainException("Exception occurred while deleting train: " + e.getMessage());
+			userFriendlyMessage = "Exception occurred while deleting train with Number: " + trainNo;
+			throw new TrainException(e.getStackTrace(), userFriendlyMessage);
 		}
 	}
 

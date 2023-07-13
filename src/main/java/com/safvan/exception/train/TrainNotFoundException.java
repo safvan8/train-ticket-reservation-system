@@ -1,13 +1,16 @@
 package com.safvan.exception.train;
 
-public class TrainNotFoundException extends TrainException{
+import lombok.Data;
+
+@Data
+public class TrainNotFoundException extends TrainException {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public TrainNotFoundException(String customExceptionMessage) {
-		super(customExceptionMessage);
+	public TrainNotFoundException(StackTraceElement[] stackTrace, String userFriendlyMessage) {
+		super(stackTrace, userFriendlyMessage);
 	}
 }

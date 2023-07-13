@@ -1,7 +1,11 @@
 package com.safvan.util;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.safvan.beans.User;
 import com.safvan.beans.UserProfile;
+import com.safvan.constants.UserRole;
+import com.safvan.service.ILoginManagementService;
 
 /**
  * This class provides utility methods for creating User objects with associated
@@ -14,6 +18,9 @@ import com.safvan.beans.UserProfile;
  * 
  */
 public class UserUtils {
+
+	@Autowired
+	private static ILoginManagementService loginManagementService;
 
 	/**
 	 * Creates a new `User` object with the specified attributes.
@@ -48,4 +55,21 @@ public class UserUtils {
 		return user;
 	}
 
+	public static UserRole getUserRoleBySessionId(String sessionId) {
+
+		User user = null;
+		UserRole userRole = null;
+		// If sessionId is not null, find user by using that sessionId.
+		if (sessionId != null) {
+			user = loginManagementService.getUserbySessionId(sessionId);
+		}
+
+		if (user != null) {
+			if (user.getRole() == UserRole.ADMIN)
+				userRole = UserRole.ADMIN;
+			else if (user.getRole() == UserRole.CUSTOMER)
+				userRole = UserRole.CUSTOMER;
+		}
+		return userRole;
+	}
 }
