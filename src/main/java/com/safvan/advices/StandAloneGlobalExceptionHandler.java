@@ -19,9 +19,9 @@ import com.safvan.util.ExceptionLoggerUtil;
 import com.safvan.util.UserUtils;
 
 @ControllerAdvice
-public class WebAppGlobalExceptionHandler {
+public class StandAloneGlobalExceptionHandler {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(WebAppGlobalExceptionHandler.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(StandAloneGlobalExceptionHandler.class);
 
 	@Autowired
 	private UserUtils userUtils;
