@@ -20,6 +20,19 @@ import com.safvan.exception.train.TrainNotFoundException;
 import com.safvan.util.ExceptionLoggerUtil;
 import com.safvan.util.UserUtils;
 
+/**
+ * Global Exception Handler for Standalone Spring Boot Application.
+ * 
+ * This class serves as the centralized exception handling point for the entire
+ * application. It is annotated with @ControllerAdvice, allowing it to provide
+ * common exception handling for all controllers.
+ * 
+ * Note: Controller advice classes provide a way to apply cross-cutting concerns
+ * like exception handling, model attribute pre-processing, etc., to multiple
+ * controllers in a centralized manner.
+ * 
+ * Author: Safvan Version: 1.0 Since: 1.0
+ */
 @ControllerAdvice
 public class StandAloneGlobalExceptionHandler {
 
@@ -29,12 +42,20 @@ public class StandAloneGlobalExceptionHandler {
 	private UserUtils userUtils;
 
 	/**
-	 * for handling trasin not found eception
+	 * Exception handler method for handling TrainNotFoundException.
 	 * 
-	 * @param e
-	 * @param request
-	 * @param model
-	 * @return viewPage the page to diplay the error message.
+	 * This method is responsible for handling the custom exception
+	 * TrainNotFoundException, which may be thrown when a train is not found in the
+	 * system. It logs the exception, determines the user's role based on the
+	 * session, and displays an appropriate error page to the user based on their
+	 * role (ADMIN or CUSTOMER).
+	 * 
+	 * @param e       The TrainNotFoundException that was thrown.
+	 * @param request The HttpServletRequest for the current request.
+	 * @param model   The Model object to add attributes for the view.
+	 * 
+	 *                Returns:
+	 * @return The viewPage to display the error message.
 	 */
 	@ExceptionHandler(TrainNotFoundException.class)
 	public String handleTrainNotFoundException(TrainNotFoundException e, HttpServletRequest request, Model model) {
