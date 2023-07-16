@@ -70,10 +70,8 @@ public class StandAloneGlobalExceptionHandler {
 
 		// default message setting.
 		String message = "Something went wrong at :" + getClass().getName() + ".handleTrainNotFoundException(-,-,-)";
-		System.out.println(message);
 		String viewPage = null;
 
-		System.out.println("***********************************************");
 		// Displaying the user-based error page based on the user's role
 		if (userRole != null) {
 			if (userRole == UserRole.ADMIN) {
@@ -147,16 +145,14 @@ public class StandAloneGlobalExceptionHandler {
 		String sessionId = (String) request.getSession().getAttribute("sessionId");
 		// finding userRole
 		UserRole userRole = userUtils.getUserRoleBySessionId(sessionId);
+		
 		String message = "Something went wrong at :" + getClass().getName() + ".handleTrainNotFoundException(-,-,-)";
-		System.out.println(message);
 		String viewPage = null;
 
 		System.out.println("***********************************************");
 		if (userRole != null) {
 			if (userRole == UserRole.ADMIN) {
-				viewPage
-
-						= "admin/display_message";
+				viewPage = "admin/display_message";
 			} else if (userRole == UserRole.CUSTOMER) {
 				viewPage = "user/display_message";
 			}
@@ -176,7 +172,6 @@ public class StandAloneGlobalExceptionHandler {
 	@ExceptionHandler(Exception.class)
 	public String handleAllExceptions(Exception e) {
 		System.out.println("Exception occurred: " + e.getMessage());
-		System.out.println();
 		return "user/display_message";
 	}
 }
