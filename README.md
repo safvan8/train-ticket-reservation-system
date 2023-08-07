@@ -21,7 +21,6 @@ The Train Ticket Reservation System is a web application designed to provide var
 
 The admin of the system has additional privileges, including:
 
-
 - **Login**: Admin can log in to access the admin panel.
 - **Add Trains**: Admin can add new trains to the system.
 - **Update Train Details**: Admin can update the details of existing trains.
