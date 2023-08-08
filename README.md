@@ -18,7 +18,6 @@ The Train Ticket Reservation System is a web application designed to provide var
 - **Ticket Booking History**
 
 ## Admin Access:
-
 The admin of the system has additional privileges, including:
 
 - **Login**: Admin can log in to access the admin panel.
