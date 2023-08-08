@@ -30,7 +30,6 @@ The admin of the system has additional privileges, including:
 - **Logout**: Admin can safely log out from the admin panel.
 
 ## User Access:
-
 Users of the system have the following access and functionalities:
 
 - **Register new User with profile photo**: Users can create new accounts with profile photos.
