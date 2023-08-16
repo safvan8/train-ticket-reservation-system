@@ -95,9 +95,10 @@
 			<p class='menu'>
 			<table>
 				<tr>
-					<td>PNR No:</td>
-					<td colspan='3' style='color: blue;'>${ticketBookingResult.transactionId}</td>
+					<td>Ticket ID:</td>
+					<td colspan='1' style='color: blue;'>${ticketBookingResult.ticketId}</td>
 				</tr>
+
 				<tr>
 					<td>Train Name:</td>
 					<td>${ticketBookingResult.train.trainName}</td>
@@ -129,8 +130,8 @@
 					<td>&#8377; ${ticketBookingResult.ticketAmount}</td>
 				</tr>
 			</table>
-			</p>
 		</div>
+		<h3 style="color: black;text-align: center;">Save Ticket Id to track details</h3>
 	</section>
 </body>
 
