@@ -19,7 +19,7 @@ import com.safvan.beans.User;
  * @since 1.0
  * 
  */
-public interface ITicketRepository extends PagingAndSortingRepository<Ticket, Long> {
+public interface ITicketRepository extends PagingAndSortingRepository<Ticket, String> {
 	/**
 	 * Find all tickets booked by a user (Customer) and return as a list.
 	 * 

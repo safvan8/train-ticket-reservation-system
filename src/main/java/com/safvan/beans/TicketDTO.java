@@ -29,7 +29,7 @@ public class TicketDTO {
 	 * The unique identifier for the ticket.
 	 */
 	@Nullable
-	private Long ticketId;
+	private String ticketId;
 
 	/**
 	 * The transaction ID associated with the ticket.

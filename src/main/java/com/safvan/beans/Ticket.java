@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,10 +36,11 @@ public class Ticket {
 	/**
 	 * The unique identifier for the ticket.
 	 */
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "ticket_id")
-	private Long ticketId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "localUserTicketIdGenerator")
+    @GenericGenerator(name = "localUserTicketIdGenerator", strategy = "com.safvan.util.LocalUserTicketIdGenerator")
+    @Column(name = "ticket_id")
+    private String ticketId;
 
 	/**
 	 * The transaction ID associated with the ticket.
