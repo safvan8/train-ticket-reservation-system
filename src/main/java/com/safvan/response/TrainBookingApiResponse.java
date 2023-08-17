@@ -2,6 +2,8 @@ package com.safvan.response;
 
 import java.time.LocalDate;
 
+import com.safvan.constants.TicketStatus;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,6 +21,11 @@ public class TrainBookingApiResponse {
 	 */
 	private String transactionId;
 
+	/**
+	 * the status of the Ticktet.
+	 */
+	private TicketStatus ticketStatus;
+	
 	/**
 	 * The date of the journey.
 	 */

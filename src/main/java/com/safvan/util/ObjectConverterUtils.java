@@ -11,6 +11,7 @@ public class ObjectConverterUtils {
 
 		response.setTicketId(ticket.getTicketId());
 		response.setTransactionId(ticket.getTransactionId());
+		response.setTicketStatus(ticket.getTicketStatus());
 		response.setJourneyDate(ticket.getJourneyDate());
 		response.setSeatType(ticket.getSeatType());
 		response.setSeatsBooked(ticket.getSeatsRequired());
