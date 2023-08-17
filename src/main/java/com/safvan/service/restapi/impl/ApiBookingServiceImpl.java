@@ -2,11 +2,14 @@ package com.safvan.service.restapi.impl;
 
 import java.util.UUID;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.safvan.beans.Train;
 import com.safvan.beans.restapi.ApiTicket;
+import com.safvan.constants.TicketStatus;
 import com.safvan.exception.booking.BookingFailedException;
 import com.safvan.exception.booking.NoEnoughSeatsForBooking;
 import com.safvan.repository.restapi.IApiTicketRespository;
@@ -24,6 +27,7 @@ public class ApiBookingServiceImpl implements IApiBookingService {
 	private IApiTicketRespository apiTicketRespository;
 
 	@Override
+	@Transactional
 	public ApiTicket bookApiTicket(TrainBookingApiRequest trainBookingApiRequest) {
 
 		// fetching complete train details and saving to ticket before booking
@@ -32,10 +36,9 @@ public class ApiBookingServiceImpl implements IApiBookingService {
 
 		Integer seatsAvailable = trainForBooking.getSeats();
 		Integer seatsRequired = trainBookingApiRequest.getSeatsRequired();
-		
-		
+
 		ApiTicket apiTicketResult = null;
-		
+
 		if (seatsAvailable < seatsRequired) {
 			String userFriendlyMessage = "Only " + seatsAvailable + " seats are available on this train!";
 			throw new NoEnoughSeatsForBooking(Thread.currentThread().getStackTrace(), userFriendlyMessage);
@@ -53,6 +56,7 @@ public class ApiBookingServiceImpl implements IApiBookingService {
 
 				ApiTicket apiTicket = new ApiTicket();
 				apiTicket.setTransactionId(transactionId);
+				apiTicket.setTicketStatus(TicketStatus.BOOKED);
 				apiTicket.setJourneyDate(trainBookingApiRequest.getJourneyDate());
 				apiTicket.setSeatsRequired(seatsRequired);
 				apiTicket.setSeatType(trainBookingApiRequest.getSeatType());
@@ -63,11 +67,11 @@ public class ApiBookingServiceImpl implements IApiBookingService {
 
 				// writing the code in same place for concurrent access optimization
 
-				// updating train
-				trainService.saveOrUpdateTrain(trainForBooking);
-
 				// creating ticket and confirmation
-				 apiTicketResult = apiTicketRespository.save(apiTicket);
+				apiTicketResult = apiTicketRespository.save(apiTicket);
+
+				// updating train if ticket booked succesfully
+				trainService.saveOrUpdateTrain(trainForBooking);
 
 				// to genarate tickets , updating the details
 
@@ -76,9 +80,9 @@ public class ApiBookingServiceImpl implements IApiBookingService {
 				throw new BookingFailedException(Thread.currentThread().getStackTrace(), userFriendlyMessage);
 			}
 		}
-		
+
 		System.out.println("ApiBookingServiceImpl.bookApiTicket()");
-		
+
 		System.out.println("6347826478246782784637826");
 		System.out.println(apiTicketResult);
 		return apiTicketResult;
