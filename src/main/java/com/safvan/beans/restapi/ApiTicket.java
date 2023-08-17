@@ -19,10 +19,12 @@ import com.safvan.beans.Train;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "api_ticket")
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class ApiTicket {
 	/**

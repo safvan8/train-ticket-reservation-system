@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ApiUserTicketIdGenerator implements IdentifierGenerator {
 
-	private static final String PREFIX = "TP-";
+	private static final String PREFIX = "A-";
 	private static long sequence = 1;
 
 	/**
