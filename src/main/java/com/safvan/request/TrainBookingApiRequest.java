@@ -6,10 +6,13 @@ import org.springframework.stereotype.Component;
 
 import com.safvan.beans.restapi.PaymentDetails;
 
+import lombok.Data;
+
 /**
  * Represents a request to book train tickets using rest api.
  */
 @Component
+@Data
 public class TrainBookingApiRequest {
 
 	/**

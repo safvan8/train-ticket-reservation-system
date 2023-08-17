@@ -37,6 +37,8 @@ public class GlobalRestControllerExceptionHandler {
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<ErrorApiResponse> handleAllExceptions(Exception e, HttpServletRequest request) {
 
+		System.out.println("GlobalRestControllerExceptionHandler.handleAllExceptions()");
+		
 		ErrorApiResponse errorResponse = new ErrorApiResponse(LocalDateTime.now(), e.getMessage(),
 				HttpStatus.INTERNAL_SERVER_ERROR.toString(), request.getRequestURI());
 		e.printStackTrace(); // logging exception to console
