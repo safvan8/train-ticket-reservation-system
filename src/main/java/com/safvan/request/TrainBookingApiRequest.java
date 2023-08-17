@@ -1,12 +1,15 @@
-package com.safvan.request.restapi;
+package com.safvan.request;
 
 import java.time.LocalDate;
+
+import org.springframework.stereotype.Component;
 
 import com.safvan.beans.restapi.PaymentDetails;
 
 /**
  * Represents a request to book train tickets using rest api.
  */
+@Component
 public class TrainBookingApiRequest {
 
 	/**
@@ -33,7 +36,7 @@ public class TrainBookingApiRequest {
 	 * The details of the selected train for the booking. Contains information about
 	 * the train number, from and to stations, fare, and train name.
 	 */
-	private String trainNo;
+	private Long trainNo;
 
 	/**
 	 * The payment details associated with the booking.
