@@ -8,7 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * UserProfile class represents the profile information of a user.
@@ -22,7 +23,8 @@ import lombok.Data;
  */
 @Entity
 @Table(name = "user_profiles")
-@Data
+@Getter
+@Setter
 public class UserProfile {
 
 	/**
@@ -63,4 +65,11 @@ public class UserProfile {
 	 */
 	@Lob
 	private byte[] image;
+
+	@Override
+	public String toString() {
+		return "UserProfile [profileId=" + profileId + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", address=" + address + ", phoneNumber=" + phoneNumber + "]";
+	}
+
 }

@@ -28,6 +28,7 @@ public interface IBookingService {
 	 * @throws BookingFailedException  If an error occurs while booking the ticket.
 	 */
 	public Ticket bookTicket(Ticket ticket) throws NoEnoughSeatsForBooking, BookingFailedException;
+	
 
 	/**
 	 * Retrieves a list of all tickets from the database.
