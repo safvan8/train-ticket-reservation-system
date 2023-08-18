@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+
+import com.safvan.constants.TicketStatus;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,17 +40,24 @@ public class Ticket {
 	/**
 	 * The unique identifier for the ticket.
 	 */
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "localUserTicketIdGenerator")
-    @GenericGenerator(name = "localUserTicketIdGenerator", strategy = "com.safvan.util.LocalUserTicketIdGenerator")
-    @Column(name = "ticket_id")
-    private String ticketId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "localUserTicketIdGenerator")
+	@GenericGenerator(name = "localUserTicketIdGenerator", strategy = "com.safvan.util.LocalUserTicketIdGenerator")
+	@Column(name = "ticket_id")
+	private String ticketId;
 
 	/**
 	 * The transaction ID associated with the ticket.
 	 */
 	@Column(name = "transaction_id")
 	private String transactionId;
+
+	/**
+	 * The status of the ticket.
+	 */
+	@Column(name = "ticket_status")
+	@Enumerated(EnumType.STRING)
+	private TicketStatus ticketStatus;
 
 	/**
 	 * The date of the journey.
