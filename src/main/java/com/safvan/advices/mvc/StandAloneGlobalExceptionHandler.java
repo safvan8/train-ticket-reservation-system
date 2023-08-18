@@ -60,6 +60,8 @@ public class StandAloneGlobalExceptionHandler {
 	@ExceptionHandler(TrainNotFoundException.class)
 	public String handleTrainNotFoundException(TrainNotFoundException e, HttpServletRequest request, Model model) {
 
+		System.out.println("StandAloneGlobalExceptionHandler.handleTrainNotFoundException(************************)");
+		
 		// Logging the exception for debugging and tracing purposes
 		ExceptionLoggerUtil.logException(e, request.getRequestURI());
 

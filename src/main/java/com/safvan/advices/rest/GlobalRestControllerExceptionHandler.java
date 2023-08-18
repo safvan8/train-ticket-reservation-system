@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.safvan.exception.train.TrainNotFoundException;
 import com.safvan.response.ErrorApiResponse;
 
 /**
@@ -20,6 +21,26 @@ import com.safvan.response.ErrorApiResponse;
  */
 @RestControllerAdvice
 public class GlobalRestControllerExceptionHandler {
+
+	/**
+	 * Exception handler for TrainNotFoundException.
+	 *
+	 * @param e       the TrainNotFoundException that was thrown.
+	 * @param request the HttpServletRequest associated with the request that
+	 *                triggered the exception.
+	 *
+	 * @return a ResponseEntity with an ErrorResponse containing the error details
+	 *         as the response body.
+	 */
+	@ExceptionHandler(TrainNotFoundException.class)
+	public ResponseEntity<ErrorApiResponse> handleTrainNotFoundException(TrainNotFoundException e,
+			HttpServletRequest request) {
+		System.out.println("GlobalRestControllerExceptionHandler.handleTrainNotFoundException()$$$$$$$$$$$$$$$$$$$");
+		ErrorApiResponse errorResponse = new ErrorApiResponse(LocalDateTime.now(), e.getMessage(),
+				HttpStatus.NOT_FOUND.toString(), request.getRequestURI());
+
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+	}
 
 	/**
 	 * Exception handler for all exceptions that are not handled by other specific
@@ -38,7 +59,7 @@ public class GlobalRestControllerExceptionHandler {
 	public ResponseEntity<ErrorApiResponse> handleAllExceptions(Exception e, HttpServletRequest request) {
 
 		System.out.println("GlobalRestControllerExceptionHandler.handleAllExceptions()");
-		
+
 		ErrorApiResponse errorResponse = new ErrorApiResponse(LocalDateTime.now(), e.getMessage(),
 				HttpStatus.INTERNAL_SERVER_ERROR.toString(), request.getRequestURI());
 		System.out.println(e.getMessage() + e.getCause());

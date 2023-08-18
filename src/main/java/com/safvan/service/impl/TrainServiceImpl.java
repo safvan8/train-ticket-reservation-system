@@ -121,7 +121,7 @@ public class TrainServiceImpl implements ITrainService {
 	 */
 	@Override
 	public List<Train> getTrainsBetweenStations(String fromStation, String toStation) {
-		System.out.println("TrainServiceImpl.getTrainsBetweenStation()");
+
 		return trainRepository.findTrainsBetweenStations(fromStation, toStation);
 	}
 }
