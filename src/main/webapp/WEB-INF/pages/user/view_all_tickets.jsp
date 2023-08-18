@@ -91,6 +91,7 @@
 				<tr>
 					<th>Ticket ID</th>
 					<th>Train Name</th>
+					<th>Ticket Status</th>					
 					<th>From Station</th>
 					<th>To Station</th>
 					<th>Time</th>
@@ -116,7 +117,7 @@
 							// Generate random hours and minutes
 							int hr = (int) (Math.random() * 24);
 							int min = (int) (Math.random() * 60);
-
+							System.out.println("Hi");
 							// Construct the time string ,adding leading zero if hr or min < 10
 							String trainTime = (hr < 10 ? "0" + hr : String.valueOf(hr)) + ":" + (min < 10 ? "0" + min : String.valueOf(min));
 							%>
@@ -124,6 +125,7 @@
 							<tr>
 								<td>${ticket.ticketId}</td>
 								<td>${ticket.train.trainName}</td>
+								<td>${ticket.ticketStatus}</td>
 								<td>${ticket.train.fromStation}</td>
 								<td>${ticket.train.toStation}</td>
 								<td><%=trainTime%></td>
