@@ -139,8 +139,6 @@ public class UserController {
 	public String findTrainsbetweenStaions(@RequestParam String fromStation, @RequestParam String toStation,
 			Map<String, Object> model) {
 
-		System.out.println("UserController.findTrainsbetweenStaions()");
-
 		// Retrieve the list of trains between the specified stations
 		List<Train> trainsList = trainService.getTrainsBetweenStations(fromStation, toStation);
 		trainsList.forEach(System.out::println);
@@ -253,9 +251,6 @@ public class UserController {
 	@PostMapping("/confirmTrainBooking")
 	public String confirmTrainBooking(@ModelAttribute("trainDTO") TrainDTO trainDTO,
 			@ModelAttribute("ticketDTO") TicketDTO ticketDTO, HttpSession session, Map<String, Object> model) {
-		System.out.println("UserController.confirmTrainBooking().................");
-		System.out.println(ticketDTO);
-		System.out.println(trainDTO);
 
 		// Create new Train and Ticket objects and copy property values from TrainDTO
 		// and TicketDTO
@@ -267,9 +262,6 @@ public class UserController {
 
 		// Set train details in the ticket object
 		ticket.setTrain(train);
-
-		System.out.println("Final....");
-		System.out.println(ticket);
 
 		// retrive user details based on sesionId
 		String sessionId = session.getAttribute("sessionId").toString();
