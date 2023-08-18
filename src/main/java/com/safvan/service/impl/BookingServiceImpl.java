@@ -92,6 +92,7 @@ public class BookingServiceImpl implements IBookingService {
 				ticketBookingResult.setTrain(train);
 
 			} catch (Exception e) {
+				e.printStackTrace();
 				String userFriendlyMessage = "Booking failed for the train number: " + train.getTrainNo();
 				throw new BookingFailedException(Thread.currentThread().getStackTrace(), userFriendlyMessage);
 			}

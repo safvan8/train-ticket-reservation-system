@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class LocalUserTicketIdGenerator implements IdentifierGenerator {
 
 	private static final String PREFIX = "L-";
-	private static long sequence = 1;
+	private static long counter = 1;
 
 	/**
 	 * Generates a unique ticket ID for a local user.
@@ -24,6 +24,18 @@ public class LocalUserTicketIdGenerator implements IdentifierGenerator {
 	 */
 	@Override
 	public Serializable generate(SharedSessionContractImplementor session, Object object) {
-		return PREFIX + String.format("%06d", sequence++);
+
+		// Get the current timestamp in milliseconds
+		long timestamp = System.currentTimeMillis();
+
+		// Create a unique value by combining timestamp and counter using bitwise OR
+		// Shifting the timestamp to the left by 20 bits to create space for the counter
+		long uniqueValue = (timestamp << 20) | (counter & 0xFFFFF);
+
+		// Increment the counter and wrap around if necessary
+		counter = (counter + 1) & 0xFFFFF;
+
+		// Format the unique value with the prefix and padding zeros
+		return PREFIX + String.format("%010d", uniqueValue);
 	}
 }

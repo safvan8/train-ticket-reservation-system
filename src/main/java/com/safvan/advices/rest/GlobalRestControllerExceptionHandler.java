@@ -1,4 +1,4 @@
-package com.safvan.advices;
+package com.safvan.advices.rest;
 
 import java.time.LocalDateTime;
 
@@ -41,6 +41,7 @@ public class GlobalRestControllerExceptionHandler {
 		
 		ErrorApiResponse errorResponse = new ErrorApiResponse(LocalDateTime.now(), e.getMessage(),
 				HttpStatus.INTERNAL_SERVER_ERROR.toString(), request.getRequestURI());
+		System.out.println(e.getMessage() + e.getCause());
 		e.printStackTrace(); // logging exception to console
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
 	}

@@ -125,7 +125,7 @@
 				</tr>
 				<tr>
 					<td>Booking Status:</td>
-					<td style='color: green;'>CNF/S10/35</td>
+					<td style='color: green;'>ticketBookingResult.ticketStaus</td>
 					<td>Amount Paid:</td>
 					<td>&#8377; ${ticketBookingResult.ticketAmount}</td>
 				</tr>
