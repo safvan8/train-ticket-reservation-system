@@ -1,6 +1,7 @@
 package com.safvan.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.safvan.beans.User;
@@ -25,6 +26,9 @@ public class LoginManagementServiceImpl implements ILoginManagementService {
 
 	@Autowired
 	private IUserManagementService userManagementService;
+
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
 	/**
 	 * Authenticates a user based on the provided username and password.
@@ -66,5 +70,31 @@ public class LoginManagementServiceImpl implements ILoginManagementService {
 	public User getUserbySessionId(String sessionId) {
 		User user = userRepository.findBySessionId(sessionId);
 		return user;
+	}
+
+	/**
+	 * used to hash a plain password uisng cryptographic algorithm.
+	 * 
+	 * @param plainPassword the human readble password
+	 * @return the salted hash value corresponding to the password.
+	 */
+	@Override
+	public String hashPassword(String plainPassword) {
+
+		return passwordEncoder.encode(plainPassword);
+	}
+
+	/**
+	 * Compares a plain password with a hashed password to determine if they match.
+	 *
+	 * @param plainPassword  The plain password to be checked.
+	 * @param hashedPassword The hashed password to be compared against.
+	 * @return True if the plain password matches the hashed password, false
+	 *         otherwise.
+	 */
+	@Override
+	public boolean isPasswordHashMatching(String plainPassword, String hashedPassword) {
+
+		return passwordEncoder.matches(plainPassword, hashedPassword);
 	}
 }

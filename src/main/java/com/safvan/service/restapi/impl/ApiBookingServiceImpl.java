@@ -81,10 +81,6 @@ public class ApiBookingServiceImpl implements IApiBookingService {
 			}
 		}
 
-		System.out.println("ApiBookingServiceImpl.bookApiTicket()");
-
-		System.out.println("6347826478246782784637826");
-		System.out.println(apiTicketResult);
 		return apiTicketResult;
 	}
 

@@ -38,4 +38,22 @@ public interface ILoginManagementService {
 	 * @return The User object representing the user.
 	 */
 	public User getUserbySessionId(String sessionId);
+
+	/**
+	 * used to hash a plain password uisng cryptographic algorithm.
+	 * 
+	 * @param plainPassword the human readble password
+	 * @return the salted hash value corresponding to the password.
+	 */
+	public String hashPassword(String plainPassword);
+
+	/**
+	 * Compares a plain password with a hashed password to determine if they match.
+	 *
+	 * @param plainPassword  The plain password to be checked.
+	 * @param hashedPassword The hashed password to be compared against.
+	 * @return True if the plain password matches the hashed password, false
+	 *         otherwise.
+	 */
+	public boolean isPasswordHashMatching(String plainPassword, String hashedPassword);
 }
