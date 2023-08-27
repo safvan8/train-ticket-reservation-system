@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.safvan.constants.UserRole;
-import com.safvan.exception.booking.BookingException;
-import com.safvan.exception.booking.BookingFailedException;
-import com.safvan.exception.booking.NoEnoughSeatsForBooking;
-import com.safvan.exception.login.LoginFailedException;
-import com.safvan.exception.login.UserNotFoundException;
-import com.safvan.exception.train.TrainException;
-import com.safvan.exception.train.TrainNotFoundException;
+import com.safvan.exception.mvc.booking.BookingException;
+import com.safvan.exception.mvc.booking.BookingFailedException;
+import com.safvan.exception.mvc.booking.NoEnoughSeatsForBooking;
+import com.safvan.exception.mvc.login.LoginFailedException;
+import com.safvan.exception.mvc.login.UserNotFoundException;
+import com.safvan.exception.mvc.train.TrainException;
+import com.safvan.exception.mvc.train.TrainNotFoundException;
 import com.safvan.util.ExceptionLoggerUtil;
 import com.safvan.util.UserUtils;
 
@@ -42,15 +42,15 @@ public class StandAloneGlobalExceptionHandler {
 	private UserUtils userUtils;
 
 	/**
-	 * Exception handler method for handling TrainNotFoundException.
+	 * Exception handler method for handling ApiTrainNotFoundException.
 	 * 
 	 * This method is responsible for handling the custom exception
-	 * TrainNotFoundException, which may be thrown when a train is not found in the
+	 * ApiTrainNotFoundException, which may be thrown when a train is not found in the
 	 * system. It logs the exception, determines the user's role based on the
 	 * session, and displays an appropriate error page to the user based on their
 	 * role (ADMIN or CUSTOMER).
 	 * 
-	 * @param e       The TrainNotFoundException that was thrown.
+	 * @param e       The ApiTrainNotFoundException that was thrown.
 	 * @param request The HttpServletRequest for the current request.
 	 * @param model   The Model object to add attributes for the view.
 	 * 
@@ -90,10 +90,10 @@ public class StandAloneGlobalExceptionHandler {
 	}
 
 	/**
-	 * This exception handler is specifically for TrainException, which will be
+	 * This exception handler is specifically for ApiTrainException, which will be
 	 * raised only for admin features.
 	 * 
-	 * @param e       The TrainException object
+	 * @param e       The ApiTrainException object
 	 * @param request The HttpServletRequest
 	 * @param model   The Model object to pass data to the view
 	 * @return The view name to display the error message for admin users.
@@ -110,9 +110,9 @@ public class StandAloneGlobalExceptionHandler {
 	}
 
 	/**
-	 * Exception handler for BookingException and its child classes.
+	 * Exception handler for ApiBookingException and its child classes.
 	 * 
-	 * @param e       The BookingException object or its child classes.
+	 * @param e       The ApiBookingException object or its child classes.
 	 * @param request The HttpServletRequest.
 	 * @param model   The Model object to pass data to the view.
 	 * @return The view name to display the error message for user-related booking
@@ -131,9 +131,9 @@ public class StandAloneGlobalExceptionHandler {
 	}
 
 	/**
-	 * Exception handler for LoginFailedException and UserNotFoundException.
+	 * Exception handler for ApiLoginFailedException and ApiUserNotFoundException.
 	 * 
-	 * @param e       The LoginFailedException or UserNotFoundException object that
+	 * @param e       The ApiLoginFailedException or ApiUserNotFoundException object that
 	 *                is raised when there is an issue related to user login.
 	 * @param request The HttpServletRequest object containing the incoming request
 	 *                information.
@@ -167,15 +167,15 @@ public class StandAloneGlobalExceptionHandler {
 		return viewPage;
 	}
 
-	/**
-	 * Generic exception handler to handle any other unhandled exceptions.
-	 *
-	 * @param e The Exception object representing the unhandled exception.
-	 * @return The view name to display a generic error message for the user.
-	 */
-	@ExceptionHandler(Exception.class)
-	public String handleAllExceptions(Exception e) {
-		System.out.println("Exception occurred: " + e.getMessage());
-		return "user/display_message";
-	}
+//	/**
+//	 * Generic exception handler to handle any other unhandled exceptions.
+//	 *
+//	 * @param e The Exception object representing the unhandled exception.
+//	 * @return The view name to display a generic error message for the user.
+//	 */
+//	@ExceptionHandler(Exception.class)
+//	public String handleAllExceptions(Exception e) {
+//		System.out.println("Exception occurred: " + e.getMessage());
+//		return "user/display_message";
+//	}
 }

@@ -43,7 +43,7 @@ public class LoggingAdvice {
 	 *
 	 * @param joinPoint the join point
 	 */
-	@Before("within(com.safvan.service.*)")
+	@Before("within(com.safvan.service.mvc.*)")
 	public void logServiceMethodEntry(JoinPoint joinPoint) {
 		String methodName = joinPoint.getSignature().getName();
 		String className = joinPoint.getTarget().getClass().getName();
@@ -55,7 +55,7 @@ public class LoggingAdvice {
 	 *
 	 * @param joinPoint the join point
 	 */
-	@Before("within(com.safvan.repository.*)")
+	@Before("within(com.safvan.repository.mvc.*)")
 	public void logRepositoryMethodEntry(JoinPoint joinPoint) {
 		String methodName = joinPoint.getSignature().getName();
 		String className = joinPoint.getTarget().getClass().getName();

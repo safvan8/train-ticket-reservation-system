@@ -1,4 +1,4 @@
-package com.safvan.repository;
+package com.safvan.repository.mvc;
 
 import java.util.List;
 

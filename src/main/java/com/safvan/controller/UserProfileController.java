@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.safvan.beans.User;
-import com.safvan.service.ILoginManagementService;
+import com.safvan.service.mvc.ILoginManagementService;
 
 /**
  * The UserProfileController handles all the functionalities related to user

@@ -10,13 +10,25 @@ import org.springframework.stereotype.Service;
 import com.safvan.beans.Train;
 import com.safvan.beans.restapi.ApiTicket;
 import com.safvan.constants.TicketStatus;
-import com.safvan.exception.booking.BookingFailedException;
-import com.safvan.exception.booking.NoEnoughSeatsForBooking;
+import com.safvan.exception.restapi.booking.ApiBookingFailedException;
+import com.safvan.exception.restapi.booking.ApiNoEnoughSeatsForBooking;
 import com.safvan.repository.restapi.IApiTicketRespository;
 import com.safvan.request.TrainBookingApiRequest;
-import com.safvan.service.ITrainService;
+import com.safvan.service.mvc.ITrainService;
 import com.safvan.service.restapi.IApiBookingService;
 
+/**
+ * The ApiBookingServiceImpl class is an implementation of the
+ * IApiBookingService interface, responsible for handling booking operations
+ * through the REST API.
+ * 
+ * This class interacts with the ITrainService and IApiTicketRepository to
+ * manage train bookings and ticket creations.
+ * 
+ * @author Safvan
+ * @version 2.0
+ * @since 2.0
+ */
 @Service
 public class ApiBookingServiceImpl implements IApiBookingService {
 
@@ -26,6 +38,16 @@ public class ApiBookingServiceImpl implements IApiBookingService {
 	@Autowired
 	private IApiTicketRespository apiTicketRespository;
 
+	/**
+	 * Books an API ticket based on the provided TrainBookingApiRequest.
+	 * 
+	 * @param trainBookingApiRequest The request containing booking details.
+	 * @return An ApiTicket representing the booked ticket.
+	 * @throws ApiNoEnoughSeatsForBooking If there are not enough seats available
+	 *                                    for booking.
+	 * @throws ApiBookingFailedException  If the booking process fails for any
+	 *                                    reason.
+	 */
 	@Override
 	@Transactional
 	public ApiTicket bookApiTicket(TrainBookingApiRequest trainBookingApiRequest) {
@@ -41,7 +63,7 @@ public class ApiBookingServiceImpl implements IApiBookingService {
 
 		if (seatsAvailable < seatsRequired) {
 			String userFriendlyMessage = "Only " + seatsAvailable + " seats are available on this train!";
-			throw new NoEnoughSeatsForBooking(Thread.currentThread().getStackTrace(), userFriendlyMessage);
+			throw new ApiNoEnoughSeatsForBooking(Thread.currentThread().getStackTrace(), userFriendlyMessage);
 		} else {
 			seatsAvailable = seatsAvailable - seatsRequired;
 
@@ -77,11 +99,10 @@ public class ApiBookingServiceImpl implements IApiBookingService {
 
 			} catch (Exception e) {
 				String userFriendlyMessage = "Booking failed for the train number: " + trainForBooking.getTrainNo();
-				throw new BookingFailedException(Thread.currentThread().getStackTrace(), userFriendlyMessage);
+				throw new ApiBookingFailedException(Thread.currentThread().getStackTrace(), userFriendlyMessage);
 			}
 		}
 
 		return apiTicketResult;
 	}
-
 }

@@ -1,7 +1,7 @@
-package com.safvan.service;
+package com.safvan.service.mvc;
 
 import com.safvan.beans.User;
-import com.safvan.exception.login.UserNotFoundException;
+import com.safvan.exception.mvc.login.UserNotFoundException;
 
 /**
  * The ILoginManagementService interface defines methods for user authentication
@@ -27,7 +27,7 @@ public interface ILoginManagementService {
 	 *
 	 * @param userId    The ID of the user.
 	 * @param sessionId The session ID to be stored.
-	 * @throws UserNotFoundException If the user is not found for the given ID.
+	 * @throws ApiUserNotFoundException If the user is not found for the given ID.
 	 */
 	public void storeUserSession(Integer userId, String sessionId) throws UserNotFoundException;
 

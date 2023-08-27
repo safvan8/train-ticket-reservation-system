@@ -1,13 +1,13 @@
-package com.safvan.service.impl;
+package com.safvan.service.mvc.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.safvan.beans.User;
 import com.safvan.constants.UserRole;
-import com.safvan.exception.login.UserNotFoundException;
-import com.safvan.repository.IUserRepository;
-import com.safvan.service.IUserManagementService;
+import com.safvan.exception.mvc.login.UserNotFoundException;
+import com.safvan.repository.mvc.IUserRepository;
+import com.safvan.service.mvc.IUserManagementService;
 
 /**
  * The UserManagementServiceImpl class implements the IUserManagementService
@@ -29,7 +29,7 @@ public class UserManagementServiceImpl implements IUserManagementService {
 	 *
 	 * @param userId The ID of the user.
 	 * @return The User object representing the user.
-	 * @throws UserNotFoundException If the user is not found with the given ID.
+	 * @throws ApiUserNotFoundException If the user is not found with the given ID.
 	 */
 	@Override
 	public User getUserById(Integer userId) {

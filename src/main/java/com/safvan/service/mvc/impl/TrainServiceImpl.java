@@ -1,4 +1,4 @@
-package com.safvan.service.impl;
+package com.safvan.service.mvc.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,13 +8,13 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.safvan.beans.Train;
-import com.safvan.exception.train.TrainException;
-import com.safvan.exception.train.TrainNotFoundException;
-import com.safvan.repository.ITrainRepository;
-import com.safvan.service.ITrainService;
+import com.safvan.exception.mvc.train.TrainException;
+import com.safvan.exception.mvc.train.TrainNotFoundException;
+import com.safvan.repository.mvc.ITrainRepository;
+import com.safvan.service.mvc.ITrainService;
 
 /**
- * TrainServiceImpl class is an implementation of the ITrainService interface.
+ * ApiTrainServiceImpl class is an implementation of the IApiTrainService interface.
  * 
  * This class provides the implementation for various operations related to
  * trains, such as retrieving train details,
@@ -42,7 +42,7 @@ public class TrainServiceImpl implements ITrainService {
 	 */
 	@Override
 	public List<Train> getAllTrains() {
-		System.out.println("TrainServiceImpl.getAllTrains()");
+		System.out.println("ApiTrainServiceImpl.getAllTrains()");
 		return (List<Train>) trainRepository.findAll();
 	}
 
@@ -51,12 +51,12 @@ public class TrainServiceImpl implements ITrainService {
 	 *
 	 * @param trainNo The train number.
 	 * @return The train with the specified number.
-	 * @throws TrainNotFoundException If the train is not found.
+	 * @throws ApiTrainNotFoundException If the train is not found.
 	 */
 	@Override
 	public Train getTrainByNumber(Long trainNo) {
 		Optional<Train> train = trainRepository.findById(trainNo);
-		System.out.println("TrainServiceImpl.getTrainByNumber()");
+		System.out.println("ApiTrainServiceImpl.getTrainByNumber()");
 		if (train.isPresent())
 			return train.get();
 		// throwing execption if train not found
@@ -70,7 +70,7 @@ public class TrainServiceImpl implements ITrainService {
 	 *
 	 * @param train The train to be saved or updated.
 	 * @return A success message indicating the action performed.
-	 * @throws TrainException If an error occurs while adding or updating the train.
+	 * @throws ApiTrainException If an error occurs while adding or updating the train.
 	 */
 	@Override
 	public String saveOrUpdateTrain(Train train) {
@@ -92,8 +92,8 @@ public class TrainServiceImpl implements ITrainService {
 	 *
 	 * @param trainNo The train number to be deleted.
 	 * @return A success message indicating the deletion.
-	 * @throws TrainNotFoundException If the train is not found.
-	 * @throws TrainException         If an error occurs while deleting the train.
+	 * @throws ApiTrainNotFoundException If the train is not found.
+	 * @throws ApiTrainException         If an error occurs while deleting the train.
 	 */
 	@Override
 	public String deleteTrain(Long trainNo) throws TrainNotFoundException {
