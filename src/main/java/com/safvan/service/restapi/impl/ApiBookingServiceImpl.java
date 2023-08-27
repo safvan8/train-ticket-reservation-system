@@ -14,7 +14,7 @@ import com.safvan.exception.mvc.booking.BookingFailedException;
 import com.safvan.exception.mvc.booking.NoEnoughSeatsForBooking;
 import com.safvan.repository.restapi.IApiTicketRespository;
 import com.safvan.request.TrainBookingApiRequest;
-import com.safvan.service.ITrainService;
+import com.safvan.service.mvc.ITrainService;
 import com.safvan.service.restapi.IApiBookingService;
 
 @Service

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.safvan.beans.Train;
 import com.safvan.exception.mvc.train.TrainNotFoundException;
-import com.safvan.service.ITrainService;
+import com.safvan.service.mvc.ITrainService;
 
 @RestController
 @RequestMapping("/api/trains")

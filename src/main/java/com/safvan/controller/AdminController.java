@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.safvan.beans.Train;
 import com.safvan.exception.mvc.train.TrainException;
 import com.safvan.exception.mvc.train.TrainNotFoundException;
-import com.safvan.service.ITrainService;
+import com.safvan.service.mvc.ITrainService;
 
 /**
  * AdminController class handles the HTTP requests and manages the admin-related

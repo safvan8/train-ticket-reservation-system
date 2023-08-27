@@ -1,4 +1,4 @@
-package com.safvan.service.impl;
+package com.safvan.service.mvc.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 import com.safvan.beans.Train;
 import com.safvan.exception.mvc.train.TrainException;
 import com.safvan.exception.mvc.train.TrainNotFoundException;
-import com.safvan.repository.ITrainRepository;
-import com.safvan.service.ITrainService;
+import com.safvan.repository.mvc.ITrainRepository;
+import com.safvan.service.mvc.ITrainService;
 
 /**
  * TrainServiceImpl class is an implementation of the ITrainService interface.

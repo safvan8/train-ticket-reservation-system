@@ -1,4 +1,4 @@
-package com.safvan.exception.rest.train;
+package com.safvan.exception.restapi.train;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

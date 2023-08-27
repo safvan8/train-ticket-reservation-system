@@ -1,4 +1,4 @@
-package com.safvan.service;
+package com.safvan.service.mvc;
 
 import com.safvan.beans.User;
 import com.safvan.exception.mvc.login.UserNotFoundException;

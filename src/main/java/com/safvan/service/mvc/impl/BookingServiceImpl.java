@@ -1,4 +1,4 @@
-package com.safvan.service.impl;
+package com.safvan.service.mvc.impl;
 
 import java.util.List;
 import java.util.UUID;
@@ -14,9 +14,9 @@ import com.safvan.beans.User;
 import com.safvan.constants.TicketStatus;
 import com.safvan.exception.mvc.booking.BookingFailedException;
 import com.safvan.exception.mvc.booking.NoEnoughSeatsForBooking;
-import com.safvan.repository.ITicketRepository;
-import com.safvan.service.IBookingService;
-import com.safvan.service.ITrainService;
+import com.safvan.repository.mvc.ITicketRepository;
+import com.safvan.service.mvc.IBookingService;
+import com.safvan.service.mvc.ITrainService;
 
 /**
  * The BookingServiceImpl class is responsible for handling booking-related

@@ -1,4 +1,4 @@
-package com.safvan.advices.rest;
+package com.safvan.advices.restapi;
 
 import java.time.LocalDateTime;
 

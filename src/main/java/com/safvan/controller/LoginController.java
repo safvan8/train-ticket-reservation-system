@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.safvan.beans.User;
 import com.safvan.constants.UserRole;
-import com.safvan.service.ILoginManagementService;
+import com.safvan.service.mvc.ILoginManagementService;
 
 /**
  * Controller class responsible for handling all login related functionalities.

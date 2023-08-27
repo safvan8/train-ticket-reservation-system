@@ -24,9 +24,9 @@ import com.safvan.beans.User;
 import com.safvan.exception.mvc.booking.BookingFailedException;
 import com.safvan.exception.mvc.booking.NoEnoughSeatsForBooking;
 import com.safvan.exception.mvc.train.TrainNotFoundException;
-import com.safvan.service.IBookingService;
-import com.safvan.service.ILoginManagementService;
-import com.safvan.service.ITrainService;
+import com.safvan.service.mvc.IBookingService;
+import com.safvan.service.mvc.ILoginManagementService;
+import com.safvan.service.mvc.ITrainService;
 
 /**
  * UserController handles operations related to user or customer functionality.

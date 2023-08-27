@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.safvan.beans.User;
-import com.safvan.service.ILoginManagementService;
-import com.safvan.service.IUserManagementService;
+import com.safvan.service.mvc.ILoginManagementService;
+import com.safvan.service.mvc.IUserManagementService;
 import com.safvan.util.FileUploadUtils;
 import com.safvan.util.UserUtils;
 

@@ -1,4 +1,4 @@
-package com.safvan.service;
+package com.safvan.service.mvc;
 
 import java.util.List;
 

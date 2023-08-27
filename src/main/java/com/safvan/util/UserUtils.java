@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import com.safvan.beans.User;
 import com.safvan.beans.UserProfile;
 import com.safvan.constants.UserRole;
-import com.safvan.service.ILoginManagementService;
+import com.safvan.service.mvc.ILoginManagementService;
 
 /**
  * This class provides utility methods for creating User objects with associated

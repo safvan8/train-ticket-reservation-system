@@ -1,4 +1,4 @@
-package com.safvan.service.impl;
+package com.safvan.service.mvc.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 import com.safvan.beans.User;
 import com.safvan.constants.UserRole;
 import com.safvan.exception.mvc.login.UserNotFoundException;
-import com.safvan.repository.IUserRepository;
-import com.safvan.service.IUserManagementService;
+import com.safvan.repository.mvc.IUserRepository;
+import com.safvan.service.mvc.IUserManagementService;
 
 /**
  * The UserManagementServiceImpl class implements the IUserManagementService

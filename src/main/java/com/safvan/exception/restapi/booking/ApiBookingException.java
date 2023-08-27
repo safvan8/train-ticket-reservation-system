@@ -1,4 +1,4 @@
-package com.safvan.exception.rest.booking;
+package com.safvan.exception.restapi.booking;
 
 import lombok.Data;
 
