@@ -26,9 +26,9 @@ public class TrainBookingRestController {
 		// passing to service for booking
 		ApiTicket apiTicket = apiBookingService.bookApiTicket(trainBookingApiRequest);
 
-		TrainBookingApiResponse response = ObjectConverterUtils.convertApiTicketToApiResponse(apiTicket);
+		TrainBookingApiResponse ticketBookingResult = ObjectConverterUtils.convertApiTicketToApiResponse(apiTicket);
 
-		return ResponseEntity.ok().body(response);
+		return ResponseEntity.ok().body(ticketBookingResult);
 	}
 	
 }
