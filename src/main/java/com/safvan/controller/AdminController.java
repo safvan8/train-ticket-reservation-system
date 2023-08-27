@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.safvan.beans.Train;
-import com.safvan.exception.train.TrainException;
-import com.safvan.exception.train.TrainNotFoundException;
+import com.safvan.exception.mvc.train.TrainException;
+import com.safvan.exception.mvc.train.TrainNotFoundException;
 import com.safvan.service.ITrainService;
 
 /**
@@ -83,7 +83,7 @@ public class AdminController {
 	 * @param trainNo The train number to search for.
 	 * @param model   The model object to pass data to the view.
 	 * @return The view name for displaying the search train result.
-	 * @throws TrainNotFoundException If the train is not found.
+	 * @throws ApiTrainNotFoundException If the train is not found.
 	 */
 	@GetMapping("/searchTrainByNumber")
 	public String searchTrainByNumber(@RequestParam Long trainNo, Map<String, Object> model) {
@@ -116,7 +116,7 @@ public class AdminController {
 	 * @param train The train object to be saved or updated.
 	 * @param model The model object to pass data to the view.
 	 * @return The view name for displaying the save or update result message.
-	 * @throws TrainException If an error occurs while saving or updating the train.
+	 * @throws ApiTrainException If an error occurs while saving or updating the train.
 	 */
 	@PostMapping("/saveOrUpdateTrain")
 	public String saveOrUpdateTrain(@ModelAttribute Train train, Map<String, Object> model) {
@@ -150,7 +150,7 @@ public class AdminController {
 	 * @param trainNo The train number.
 	 * @param model   The empty model object to pass data to the view.
 	 * @return The view name for the edit train details form.
-	 * @throws TrainNotFoundException If the train is not found.
+	 * @throws ApiTrainNotFoundException If the train is not found.
 	 */
 	@PostMapping("/updateTrainByNumber")
 	public String showEditForm(@RequestParam Long trainNo, Map<String, Object> model) {
@@ -183,8 +183,8 @@ public class AdminController {
 	 * @param trainNo The train number for deleting.
 	 * @param model   The model object to pass deletion result to the view.
 	 * @return The view name for displaying the delete result message.
-	 * @throws TrainNotFoundException If the train is not found.
-	 * @throws TrainException         If an error occurs while deleting the train.
+	 * @throws ApiTrainNotFoundException If the train is not found.
+	 * @throws ApiTrainException         If an error occurs while deleting the train.
 	 */
 	@PostMapping("/deleteTrainByNumber")
 	public String deleteTrain(@RequestParam Long trainNo, Map<String, Object> model) {

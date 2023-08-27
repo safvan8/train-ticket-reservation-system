@@ -1,7 +1,7 @@
 package com.safvan.service;
 
 import com.safvan.beans.User;
-import com.safvan.exception.login.UserNotFoundException;
+import com.safvan.exception.mvc.login.UserNotFoundException;
 
 /**
  * The IUserManagementService interface defines methods for managing
@@ -18,7 +18,7 @@ public interface IUserManagementService {
 	 *
 	 * @param userId The ID of the user.
 	 * @return The User object representing the user.
-	 * @throws UserNotFoundException If the user is not found with the given ID.
+	 * @throws ApiUserNotFoundException If the user is not found with the given ID.
 	 */
 	public User getUserById(Integer userId) throws UserNotFoundException;
 

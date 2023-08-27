@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.safvan.beans.Train;
-import com.safvan.exception.train.TrainNotFoundException;
+import com.safvan.exception.mvc.train.TrainNotFoundException;
 import com.safvan.service.ITrainService;
 
 @RestController
@@ -36,7 +36,7 @@ public class TrainRestController {
 	 *
 	 * @param trainNo The train number.
 	 * @return ResponseEntity containing the requested train.
-	 * @throws TrainNotFoundException If the requested train is not found.
+	 * @throws ApiTrainNotFoundException If the requested train is not found.
 	 */
 	@GetMapping("/{trainNo}")
 	public ResponseEntity<?> getTrainByNumber(@PathVariable Long trainNo) throws TrainNotFoundException {

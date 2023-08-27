@@ -21,9 +21,9 @@ import com.safvan.beans.TicketDTO;
 import com.safvan.beans.Train;
 import com.safvan.beans.TrainDTO;
 import com.safvan.beans.User;
-import com.safvan.exception.booking.BookingFailedException;
-import com.safvan.exception.booking.NoEnoughSeatsForBooking;
-import com.safvan.exception.train.TrainNotFoundException;
+import com.safvan.exception.mvc.booking.BookingFailedException;
+import com.safvan.exception.mvc.booking.NoEnoughSeatsForBooking;
+import com.safvan.exception.mvc.train.TrainNotFoundException;
 import com.safvan.service.IBookingService;
 import com.safvan.service.ILoginManagementService;
 import com.safvan.service.ITrainService;
@@ -243,9 +243,9 @@ public class UserController {
 	 * @param model     The model object to pass ticketBookingResult object to the
 	 *                  view.
 	 * @return The view name for the ticket booking result. * @throws
-	 * @throws NoEnoughSeatsForBooking If there are not enough seats available on
+	 * @throws ApiNoEnoughSeatsForBooking If there are not enough seats available on
 	 *                                 the train for booking.
-	 * @throws BookingFailedException  If an error occurs while booking the ticket.
+	 * @throws ApiBookingFailedException  If an error occurs while booking the ticket.
 	 * 
 	 */
 	@PostMapping("/confirmTrainBooking")
@@ -348,7 +348,7 @@ public class UserController {
 	 * @param trainNo The train number to search for.
 	 * @param model   The model object to pass data to the view.
 	 * @return The view name for displaying the train details.
-	 * @throws TrainNotFoundException If the train is not found.
+	 * @throws ApiTrainNotFoundException If the train is not found.
 	 */
 	@GetMapping("/searchTrainByNumber")
 	public String searchTrainByNumber(@RequestParam Long trainNo, Map<String, Object> model) {

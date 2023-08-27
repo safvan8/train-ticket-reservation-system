@@ -1,4 +1,4 @@
-package com.safvan.exception.train;
+package com.safvan.exception.mvc.train;
 
 import lombok.Data;
 

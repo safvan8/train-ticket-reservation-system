@@ -3,8 +3,8 @@ package com.safvan.service;
 import java.util.List;
 
 import com.safvan.beans.Train;
-import com.safvan.exception.train.TrainException;
-import com.safvan.exception.train.TrainNotFoundException;
+import com.safvan.exception.mvc.train.TrainException;
+import com.safvan.exception.mvc.train.TrainNotFoundException;
 
 /**
  * The ITrainService interface defines the contract for performing operations
@@ -31,7 +31,7 @@ public interface ITrainService {
 	 * 
 	 * @param trainNo The train number of the train to retrive object.
 	 * @return The Train object corresponding to the provided train number.
-	 * @throws TrainNotFoundException If the train with the specified number is not
+	 * @throws ApiTrainNotFoundException If the train with the specified number is not
 	 *                                found.
 	 */
 	public Train getTrainByNumber(Long trainNo) throws TrainNotFoundException;
@@ -42,7 +42,7 @@ public interface ITrainService {
 	 * @param train The Train object containing the train details to be saved or
 	 *              updated.
 	 * @return A message indicating the status of the operation.
-	 * @throws TrainException If an error occurs while saving or updating the train.
+	 * @throws ApiTrainException If an error occurs while saving or updating the train.
 	 */
 	public String saveOrUpdateTrain(Train train) throws TrainException;
 
@@ -51,7 +51,7 @@ public interface ITrainService {
 	 * 
 	 * @param trainNo The train number of the train to be deleted.
 	 * @return A message indicating the status of the deletion.
-	 * @throws TrainNotFoundException If the train with the specified number is not
+	 * @throws ApiTrainNotFoundException If the train with the specified number is not
 	 *                                found.
 	 */
 	public String deleteTrain(Long trainNo) throws TrainNotFoundException;

@@ -8,8 +8,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.safvan.beans.Train;
-import com.safvan.exception.train.TrainException;
-import com.safvan.exception.train.TrainNotFoundException;
+import com.safvan.exception.mvc.train.TrainException;
+import com.safvan.exception.mvc.train.TrainNotFoundException;
 import com.safvan.repository.ITrainRepository;
 import com.safvan.service.ITrainService;
 
@@ -51,7 +51,7 @@ public class TrainServiceImpl implements ITrainService {
 	 *
 	 * @param trainNo The train number.
 	 * @return The train with the specified number.
-	 * @throws TrainNotFoundException If the train is not found.
+	 * @throws ApiTrainNotFoundException If the train is not found.
 	 */
 	@Override
 	public Train getTrainByNumber(Long trainNo) {
@@ -70,7 +70,7 @@ public class TrainServiceImpl implements ITrainService {
 	 *
 	 * @param train The train to be saved or updated.
 	 * @return A success message indicating the action performed.
-	 * @throws TrainException If an error occurs while adding or updating the train.
+	 * @throws ApiTrainException If an error occurs while adding or updating the train.
 	 */
 	@Override
 	public String saveOrUpdateTrain(Train train) {
@@ -92,8 +92,8 @@ public class TrainServiceImpl implements ITrainService {
 	 *
 	 * @param trainNo The train number to be deleted.
 	 * @return A success message indicating the deletion.
-	 * @throws TrainNotFoundException If the train is not found.
-	 * @throws TrainException         If an error occurs while deleting the train.
+	 * @throws ApiTrainNotFoundException If the train is not found.
+	 * @throws ApiTrainException         If an error occurs while deleting the train.
 	 */
 	@Override
 	public String deleteTrain(Long trainNo) throws TrainNotFoundException {

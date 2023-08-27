@@ -5,7 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.safvan.beans.User;
-import com.safvan.exception.login.UserNotFoundException;
+import com.safvan.exception.mvc.login.UserNotFoundException;
 import com.safvan.repository.IUserRepository;
 import com.safvan.service.ILoginManagementService;
 import com.safvan.service.IUserManagementService;
@@ -44,7 +44,7 @@ public class LoginManagementServiceImpl implements ILoginManagementService {
 
 		// validating the password hash stored with user entered hashPassword
 		boolean isPasswordMatched = isPasswordHashMatching(plainPassword, userFromDB.getPassword());
-
+		
 		if (isPasswordMatched)
 			return userFromDB;
 		
@@ -56,7 +56,7 @@ public class LoginManagementServiceImpl implements ILoginManagementService {
 	 *
 	 * @param userId    The ID of the user.
 	 * @param sessionId The session ID to be stored.
-	 * @throws UserNotFoundException If the user is not found for the given ID.
+	 * @throws ApiUserNotFoundException If the user is not found for the given ID.
 	 */
 	@Override
 	public void storeUserSession(Integer userId, String sessionId) {

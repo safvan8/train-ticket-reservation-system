@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.safvan.exception.train.TrainNotFoundException;
+import com.safvan.exception.mvc.train.TrainNotFoundException;
 import com.safvan.response.ErrorApiResponse;
 
 /**
@@ -23,9 +23,9 @@ import com.safvan.response.ErrorApiResponse;
 public class GlobalRestControllerExceptionHandler {
 
 	/**
-	 * Exception handler for TrainNotFoundException.
+	 * Exception handler for ApiTrainNotFoundException.
 	 *
-	 * @param e       the TrainNotFoundException that was thrown.
+	 * @param e       the ApiTrainNotFoundException that was thrown.
 	 * @param request the HttpServletRequest associated with the request that
 	 *                triggered the exception.
 	 *

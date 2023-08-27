@@ -1,4 +1,4 @@
-package com.safvan.exception.booking;
+package com.safvan.exception.mvc.booking;
 
 import lombok.Data;
 
