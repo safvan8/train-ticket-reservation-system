@@ -14,7 +14,7 @@ import com.safvan.repository.mvc.ITrainRepository;
 import com.safvan.service.mvc.ITrainService;
 
 /**
- * TrainServiceImpl class is an implementation of the ITrainService interface.
+ * ApiTrainServiceImpl class is an implementation of the IApiTrainService interface.
  * 
  * This class provides the implementation for various operations related to
  * trains, such as retrieving train details,
@@ -42,7 +42,7 @@ public class TrainServiceImpl implements ITrainService {
 	 */
 	@Override
 	public List<Train> getAllTrains() {
-		System.out.println("TrainServiceImpl.getAllTrains()");
+		System.out.println("ApiTrainServiceImpl.getAllTrains()");
 		return (List<Train>) trainRepository.findAll();
 	}
 
@@ -56,7 +56,7 @@ public class TrainServiceImpl implements ITrainService {
 	@Override
 	public Train getTrainByNumber(Long trainNo) {
 		Optional<Train> train = trainRepository.findById(trainNo);
-		System.out.println("TrainServiceImpl.getTrainByNumber()");
+		System.out.println("ApiTrainServiceImpl.getTrainByNumber()");
 		if (train.isPresent())
 			return train.get();
 		// throwing execption if train not found

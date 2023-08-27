@@ -167,15 +167,15 @@ public class StandAloneGlobalExceptionHandler {
 		return viewPage;
 	}
 
-	/**
-	 * Generic exception handler to handle any other unhandled exceptions.
-	 *
-	 * @param e The Exception object representing the unhandled exception.
-	 * @return The view name to display a generic error message for the user.
-	 */
-	@ExceptionHandler(Exception.class)
-	public String handleAllExceptions(Exception e) {
-		System.out.println("Exception occurred: " + e.getMessage());
-		return "user/display_message";
-	}
+//	/**
+//	 * Generic exception handler to handle any other unhandled exceptions.
+//	 *
+//	 * @param e The Exception object representing the unhandled exception.
+//	 * @return The view name to display a generic error message for the user.
+//	 */
+//	@ExceptionHandler(Exception.class)
+//	public String handleAllExceptions(Exception e) {
+//		System.out.println("Exception occurred: " + e.getMessage());
+//		return "user/display_message";
+//	}
 }

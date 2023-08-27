@@ -7,7 +7,7 @@ import com.safvan.exception.mvc.train.TrainException;
 import com.safvan.exception.mvc.train.TrainNotFoundException;
 
 /**
- * The ITrainService interface defines the contract for performing operations
+ * The IApiTrainService interface defines the contract for performing operations
  * related to trains.
  * 
  * It provides methods for retrieving train details, adding or updating train

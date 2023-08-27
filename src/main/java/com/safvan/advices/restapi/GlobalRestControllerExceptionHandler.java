@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.safvan.exception.mvc.train.TrainNotFoundException;
+import com.safvan.exception.restapi.booking.ApiBookingFailedException;
 import com.safvan.response.ErrorApiResponse;
 
 /**
@@ -32,7 +33,7 @@ public class GlobalRestControllerExceptionHandler {
 	 * @return a ResponseEntity with an ErrorResponse containing the error details
 	 *         as the response body.
 	 */
-	@ExceptionHandler(TrainNotFoundException.class)
+	@ExceptionHandler(value = { TrainNotFoundException.class, ApiBookingFailedException.class })
 	public ResponseEntity<ErrorApiResponse> handleTrainNotFoundException(TrainNotFoundException e,
 			HttpServletRequest request) {
 		System.out.println("GlobalRestControllerExceptionHandler.handleTrainNotFoundException()$$$$$$$$$$$$$$$$$$$");
