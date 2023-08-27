@@ -19,7 +19,16 @@ import com.safvan.beans.User;
  * @since 1.0
  */
 public interface IUserRepository extends CrudRepository<User, Integer> {
-
+	
+	
+	/**
+	 * To Find a user by using unique username,
+	 * 
+	 * @param username of the user.
+	 * @return the user with the specified username ;
+	 */
+	public User findByUsername(String username);
+	
 	/**
 	 * Find a user by username and password. this method id used for User
 	 * authenatication while logging in.

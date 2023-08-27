@@ -38,8 +38,17 @@ public class LoginManagementServiceImpl implements ILoginManagementService {
 	 * @return The User object representing the authenticated user.
 	 */
 	@Override
-	public User authenticateUser(String username, String password) {
-		return userRepository.findByUsernameAndPassword(username, password);
+	public User authenticateUser(String username, String plainPassword) {
+
+		User userFromDB = userRepository.findByUsername(username);
+
+		// validating the password hash stored with user entered hashPassword
+		boolean isPasswordMatched = isPasswordHashMatching(plainPassword, userFromDB.getPassword());
+
+		if (isPasswordMatched)
+			return userFromDB;
+		
+		return null;
 	}
 
 	/**

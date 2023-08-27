@@ -20,7 +20,7 @@ public interface ILoginManagementService {
 	 * @param password The password of the user.
 	 * @return The User object representing the authenticated user.
 	 */
-	public User authenticateUser(String username, String password);
+	public User authenticateUser(String username, String plainPassword);
 
 	/**
 	 * Stores the session ID for a user.
