@@ -2,8 +2,13 @@ package com.safvan.beans;
 
 import java.time.LocalDate;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.Nullable;
+
+import com.safvan.constants.TicketStatus;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,13 +34,20 @@ public class TicketDTO {
 	 * The unique identifier for the ticket.
 	 */
 	@Nullable
-	private Long ticketId;
+	private String ticketId;
 
 	/**
 	 * The transaction ID associated with the ticket.
 	 */
 	@Nullable
 	private String transactionId;
+	
+	/**
+	 * The status of the ticket.
+	 */
+	@Enumerated(EnumType.STRING)
+	@Nullable
+	private TicketStatus ticketStatus;
 
 	/**
 	 * The date of the journey.

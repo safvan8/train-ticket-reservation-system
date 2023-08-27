@@ -1,4 +1,4 @@
-package com.safvan.advices;
+package com.safvan.advices.mvc;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -60,6 +60,8 @@ public class StandAloneGlobalExceptionHandler {
 	@ExceptionHandler(TrainNotFoundException.class)
 	public String handleTrainNotFoundException(TrainNotFoundException e, HttpServletRequest request, Model model) {
 
+		System.out.println("StandAloneGlobalExceptionHandler.handleTrainNotFoundException(************************)");
+		
 		// Logging the exception for debugging and tracing purposes
 		ExceptionLoggerUtil.logException(e, request.getRequestURI());
 
@@ -118,7 +120,9 @@ public class StandAloneGlobalExceptionHandler {
 	 */
 	@ExceptionHandler(value = { BookingException.class, NoEnoughSeatsForBooking.class, BookingFailedException.class })
 	public String handleNoEnoughSeatsForBooking(BookingException e, HttpServletRequest request, Model model) {
-
+		
+		e.printStackTrace();
+		
 		LOGGER.error("Exception Occurred for the URL: {}", request.getRequestURI(), e);
 
 		String message = e.getUserFriendlyMessage();

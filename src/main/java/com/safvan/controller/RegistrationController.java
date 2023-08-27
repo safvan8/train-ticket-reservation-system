@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.safvan.beans.User;
+import com.safvan.service.ILoginManagementService;
 import com.safvan.service.IUserManagementService;
 import com.safvan.util.FileUploadUtils;
 import com.safvan.util.UserUtils;
@@ -30,6 +31,9 @@ public class RegistrationController {
 
 	@Autowired
 	private IUserManagementService userManagementService;
+
+	@Autowired
+	private ILoginManagementService loginManagementService;
 
 	/**
 	 * Displays the registration form for new users.
@@ -62,8 +66,11 @@ public class RegistrationController {
 			@RequestParam("password") String password, @RequestParam("address") String address,
 			@RequestParam("phoneNumber") String phoneNumber,
 			@RequestParam(name = "image", required = false) MultipartFile image, Map<String, Object> model) {
-
-		System.out.println("Heloooo");
+		
+		// hashing password using the implemented Hashing alogirith for security
+		password = loginManagementService.hashPassword(password);
+		
+		
 		// Convert the image to byte array
 		byte[] imageBytes = FileUploadUtils.convertToByteArray(image);
 

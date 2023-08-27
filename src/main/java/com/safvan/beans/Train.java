@@ -32,6 +32,9 @@ public class Train {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "train_no")
+	/**
+	 * Unique identifier for train.
+	 */
 	private Long trainNo;
 
 	/**

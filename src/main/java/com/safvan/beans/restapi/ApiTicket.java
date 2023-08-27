@@ -1,4 +1,4 @@
-package com.safvan.beans;
+package com.safvan.beans.restapi;
 
 import java.time.LocalDate;
 
@@ -17,32 +17,25 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.safvan.beans.Train;
 import com.safvan.constants.TicketStatus;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * Represents a ticket object for booking train tickets.
- * 
- * @author Safvan
- * @version 1.0
- * @since 1.0
- */
 @Entity
-@Table(name = "ticket")
+@Table(name = "api_ticket")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class Ticket {
-
+@AllArgsConstructor
+public class ApiTicket {
 	/**
 	 * The unique identifier for the ticket.
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "localUserTicketIdGenerator")
-	@GenericGenerator(name = "localUserTicketIdGenerator", strategy = "com.safvan.util.LocalUserTicketIdGenerator")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "apiUserTicketIdGenerator")
+	@GenericGenerator(name = "apiUserTicketIdGenerator", strategy = "com.safvan.util.ApiUserTicketIdGenerator")
 	@Column(name = "ticket_id")
 	private String ticketId;
 
@@ -93,19 +86,4 @@ public class Ticket {
 	@JoinColumn(name = "trainNo")
 	private Train train;
 
-	/**
-	 * The user associated with the ticket.
-	 * 
-	 * This is a many-to-one relationship where many tickets can be associated with
-	 * a single user.
-	 * 
-	 * By using CascadeType.DETACH, when you save a Ticket entity, it will
-	 * automatically link the associated User entity without making any changes to
-	 * the User entity or persisting it. This cascade type is appropriate when you
-	 * want to establish an association without modifying or persisting the
-	 * associated entity.
-	 */
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
-	@JoinColumn(name = "userId")
-	private User user;
 }

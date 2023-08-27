@@ -11,11 +11,11 @@ import org.springframework.stereotype.Service;
 import com.safvan.beans.Ticket;
 import com.safvan.beans.Train;
 import com.safvan.beans.User;
+import com.safvan.constants.TicketStatus;
 import com.safvan.exception.booking.BookingFailedException;
 import com.safvan.exception.booking.NoEnoughSeatsForBooking;
 import com.safvan.repository.ITicketRepository;
 import com.safvan.service.IBookingService;
-import com.safvan.service.ILoginManagementService;
 import com.safvan.service.ITrainService;
 
 /**
@@ -65,16 +65,13 @@ public class BookingServiceImpl implements IBookingService {
 		if (ticket.getSeatsRequired() > seatsAvailable) {
 			String userFriendlyMessage = "Only " + seatsAvailable + " seats are available on this train!";
 			throw new NoEnoughSeatsForBooking(Thread.currentThread().getStackTrace(), userFriendlyMessage);
-		} else if (ticket.getSeatsRequired() <= seatsAvailable) {
+		} else {
 			seatsAvailable = seatsAvailable - ticket.getSeatsRequired();
 
 			// updating available seats with the new number
 			train.setSeats(seatsAvailable);
 
 			try {
-				// updating train
-				trainService.saveOrUpdateTrain(train);
-
 				String transactionId = UUID.randomUUID().toString();
 				Double fare = train.getFare();
 				Integer seatsRequired = ticket.getSeatsRequired();
@@ -82,32 +79,29 @@ public class BookingServiceImpl implements IBookingService {
 
 				// ticket details updating
 				ticket.setTransactionId(transactionId);
+				ticket.setTicketStatus(TicketStatus.BOOKED);
 				ticket.setTicketAmount(totalAmount);
 
 				// creating ticket and confirmation
 				ticketBookingResult = ticketRepository.save(ticket);
+				// setting complete train detailas to display after booking ticket
+				trainService.saveOrUpdateTrain(train);
 
 				// adding train's complete information to ticketBookingResult object for
 				// displaying
 				ticketBookingResult.setTrain(train);
 
-				System.out.println("BookingServiceImpl.bookTicket()=============================");
-				System.out.println(ticket);
-
 			} catch (Exception e) {
+				e.printStackTrace();
 				String userFriendlyMessage = "Booking failed for the train number: " + train.getTrainNo();
 				throw new BookingFailedException(Thread.currentThread().getStackTrace(), userFriendlyMessage);
 			}
 
 		}
-
-		System.out.println("BookingServiceImpl.bookTicket()");
-		System.out.println(ticket);
-
-		// Save the ticket to the database
 		return ticketBookingResult;
 	}
-
+	
+	
 	/**
 	 * Retrieves a list of all tickets from the database.
 	 *

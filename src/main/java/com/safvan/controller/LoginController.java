@@ -52,6 +52,7 @@ public class LoginController {
 	public String login(@RequestParam String username, @RequestParam String password, HttpSession session,
 			Map<String, Object> model) {
 
+		// passing user ented username ,and password for authentication.
 		User user = loginManagementService.authenticateUser(username, password);
 
 		System.out.println("LoginController.login()");

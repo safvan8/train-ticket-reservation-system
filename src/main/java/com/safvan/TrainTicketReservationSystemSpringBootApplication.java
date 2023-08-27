@@ -2,6 +2,7 @@ package com.safvan;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 
 /**
  * The main class of the Train Ticket Reservation System Spring Boot
@@ -20,7 +21,7 @@ public class TrainTicketReservationSystemSpringBootApplication {
 	 * @param args The command line arguments.
 	 */
 	public static void main(String[] args) {
-		SpringApplication.run(TrainTicketReservationSystemSpringBootApplication.class, args);
+		ApplicationContext applicationContext = SpringApplication.run(TrainTicketReservationSystemSpringBootApplication.class, args);
 	}
 
 }
