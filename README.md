@@ -17,6 +17,7 @@ The Train Ticket Reservation System is a web application with a Rest API  design
 - **Payment Gateway**
 - **Ticket Booking History**
 
+
 ## Admin Access:
 The admin of the system has additional privileges, including:
 
@@ -27,6 +28,10 @@ The admin of the system has additional privileges, including:
 - **View Trains**: Admin can view the list of available trains.
 - **Search Trains by Number**: Admin can search for trains using their unique identification numbers.
 - **Logout**: Admin can safely log out from the admin panel.
+
+## REST APIs
+- Book Tickts
+- Access train details via API
 
 ## User Access:
 Users of the system have the following access and functionalities:
