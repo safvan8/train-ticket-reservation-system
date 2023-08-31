@@ -1,7 +1,7 @@
 # Train Ticket Reservation System
 **About:**
 
-The Train Ticket Reservation System is a web application designed to provide various functionalities related to train ticket booking and information. It allows users to view train schedules, search for trains, check seat availability, obtain train timings, and inquire about fare details. The system also facilitates booking seats online, ensuring a secure and convenient reservation process.
+The Train Ticket Reservation System is a web application with a Rest API  designed to provide various functionalities related to train ticket booking and information. It allows users to view train schedules, search for trains, check seat availability, obtain train timings, and inquire about fare details. The system also facilitates booking seats online, ensuring a secure and convenient reservation process.
 
 ## Key Features: 
 
@@ -17,6 +17,7 @@ The Train Ticket Reservation System is a web application designed to provide var
 - **Payment Gateway**
 - **Ticket Booking History**
 
+
 ## Admin Access:
 The admin of the system has additional privileges, including:
 
@@ -27,6 +28,10 @@ The admin of the system has additional privileges, including:
 - **View Trains**: Admin can view the list of available trains.
 - **Search Trains by Number**: Admin can search for trains using their unique identification numbers.
 - **Logout**: Admin can safely log out from the admin panel.
+
+## REST APIs
+- Book Tickts
+- Access train details via API
 
 ## User Access:
 Users of the system have the following access and functionalities:
