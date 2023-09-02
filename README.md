@@ -30,7 +30,7 @@ The admin of the system has additional privileges, including:
 - **Logout**: Admin can safely log out from the admin panel.
 
 ## REST APIs
-- Book Tickts
+- Book Tickets 
 - Access train details via API
 
 ## User Access:
