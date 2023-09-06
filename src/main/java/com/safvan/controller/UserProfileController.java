@@ -43,7 +43,6 @@ public class UserProfileController {
 	public String showUserProfile(HttpSession session, Map<String, Object> model) {
 
 		String sessionId = (String) session.getAttribute("sessionId");
-		System.out.println(sessionId);
 
 		User user = null;
 		if (sessionId != null) {

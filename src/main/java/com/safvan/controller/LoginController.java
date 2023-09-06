@@ -58,7 +58,7 @@ public class LoginController {
 		System.out.println("LoginController.login()");
 
 		if (user != null) {
-			System.out.println("LoginController.login(888888888888888888888888)");
+
 			String sessionId = UUID.randomUUID().toString(); // Generate a unique session ID
 			session.setAttribute("sessionId", sessionId);
 			session.setAttribute("user", user);
@@ -70,7 +70,6 @@ public class LoginController {
 
 			return "redirect:/home";
 		} else {
-			System.out.println("LoginController.login() Invalid username or Passwo");
 			model.put("loginFailedMessage", "Login Failed, Invalid username or Password");
 			return "/login"; // Return to the login page with an error message.
 		}
@@ -85,7 +84,6 @@ public class LoginController {
 	 */
 	@GetMapping("/home")
 	public String showHome(HttpSession session) {
-		System.out.println("HomeController.showHome()");
 		String sessionId = (String) session.getAttribute("sessionId");
 		System.out.println(sessionId);
 
@@ -98,7 +96,6 @@ public class LoginController {
 		// retrieve the user based on the session ID from the database.
 		if (sessionId != null && user != null) {
 			if (user.getRole() == UserRole.ADMIN) {
-				System.out.println("LoginController.showHome6666666666666666666()");
 				return "admin/admin_home";// display admin home page.
 			} else if (user.getRole() == UserRole.CUSTOMER) {
 				return "user/user_home"; // display user home page.
