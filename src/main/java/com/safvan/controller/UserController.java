@@ -21,9 +21,9 @@ import com.safvan.beans.TicketDTO;
 import com.safvan.beans.Train;
 import com.safvan.beans.TrainDTO;
 import com.safvan.beans.User;
-import com.safvan.exception.mvc.booking.BookingFailedException;
-import com.safvan.exception.mvc.booking.NoEnoughSeatsForBooking;
-import com.safvan.exception.mvc.train.TrainNotFoundException;
+import com.safvan.exception.restapi.booking.ApiBookingFailedException;
+import com.safvan.exception.restapi.booking.ApiNoEnoughSeatsForBooking;
+import com.safvan.exception.restapi.train.ApiTrainNotFoundException;
 import com.safvan.service.mvc.IBookingService;
 import com.safvan.service.mvc.ILoginManagementService;
 import com.safvan.service.mvc.ITrainService;
@@ -220,10 +220,6 @@ public class UserController {
 		trainDTO.setFromStation(fromStation);
 		trainDTO.setToStation(toStation);
 
-		System.out.println("UserController.proceedTrainBookingForUser()");
-		System.out.println(trainDTO);
-		System.out.println(ticketDTO);
-
 		model.put("ticketDTO", ticketDTO);
 		model.put("trainDTO", trainDTO);
 
@@ -244,8 +240,9 @@ public class UserController {
 	 *                  view.
 	 * @return The view name for the ticket booking result. * @throws
 	 * @throws ApiNoEnoughSeatsForBooking If there are not enough seats available on
-	 *                                 the train for booking.
-	 * @throws ApiBookingFailedException  If an error occurs while booking the ticket.
+	 *                                    the train for booking.
+	 * @throws ApiBookingFailedException  If an error occurs while booking the
+	 *                                    ticket.
 	 * 
 	 */
 	@PostMapping("/confirmTrainBooking")

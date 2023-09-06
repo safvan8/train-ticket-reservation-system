@@ -1,7 +1,7 @@
 package com.safvan.service.mvc.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.safvan.beans.User;
@@ -28,7 +28,7 @@ public class LoginManagementServiceImpl implements ILoginManagementService {
 	private IUserManagementService userManagementService;
 
 	@Autowired
-	private BCryptPasswordEncoder passwordEncoder;
+	private PasswordEncoder passwordEncoder;
 
 	/**
 	 * Authenticates a user based on the provided username and password.
@@ -44,10 +44,10 @@ public class LoginManagementServiceImpl implements ILoginManagementService {
 
 		// validating the password hash stored with user entered hashPassword
 		boolean isPasswordMatched = isPasswordHashMatching(plainPassword, userFromDB.getPassword());
-		
+
 		if (isPasswordMatched)
 			return userFromDB;
-		
+
 		return null;
 	}
 

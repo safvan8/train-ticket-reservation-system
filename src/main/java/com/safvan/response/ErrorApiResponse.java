@@ -6,6 +6,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * This object is used to sent the exception details to REST client, if
+ * something went wrong inside REST Api.
+ * 
+ * @author Safvan
+ * @version 1.0
+ * @since 1.0
+ */
 @AllArgsConstructor
 @Getter
 @Setter
