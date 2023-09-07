@@ -14,6 +14,8 @@ import com.safvan.beans.User;
 import com.safvan.constants.TicketStatus;
 import com.safvan.exception.mvc.booking.BookingFailedException;
 import com.safvan.exception.mvc.booking.NoEnoughSeatsForBooking;
+import com.safvan.exception.restapi.booking.ApiBookingFailedException;
+import com.safvan.exception.restapi.booking.ApiNoEnoughSeatsForBooking;
 import com.safvan.repository.mvc.ITicketRepository;
 import com.safvan.service.mvc.IBookingService;
 import com.safvan.service.mvc.ITrainService;
@@ -45,8 +47,9 @@ public class BookingServiceImpl implements IBookingService {
 	 *               booked.
 	 * @return The Ticket object representing the booked ticket.
 	 * @throws ApiNoEnoughSeatsForBooking If there are not enough seats available on
-	 *                                 the train for booking.
-	 * @throws ApiBookingFailedException  If an error occurs while booking the ticket.
+	 *                                    the train for booking.
+	 * @throws ApiBookingFailedException  If an error occurs while booking the
+	 *                                    ticket.
 	 */
 	@Override
 	@Transactional
@@ -100,8 +103,7 @@ public class BookingServiceImpl implements IBookingService {
 		}
 		return ticketBookingResult;
 	}
-	
-	
+
 	/**
 	 * Retrieves a list of all tickets from the database.
 	 *
