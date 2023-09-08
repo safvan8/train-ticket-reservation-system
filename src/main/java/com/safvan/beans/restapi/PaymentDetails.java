@@ -18,7 +18,7 @@ public class PaymentDetails {
 	private String paymentMethod;
 
 	/**
-	 * The card number associated with the payment 
+	 * The card number associated with the payment
 	 */
 	private String cardNumber;
 
