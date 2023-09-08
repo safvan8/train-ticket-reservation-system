@@ -16,7 +16,6 @@
 	<description>Realtime project</description>
 	<properties>
 		<java.version>1.8</java.version>
-		 <junit.jupiter.version>5.5.2</junit.jupiter.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -92,21 +91,18 @@
 		  <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>${junit.jupiter.version}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
-            <version>3.2.4</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>3.14.0</version>
             <scope>test</scope>
         </dependency>
 
