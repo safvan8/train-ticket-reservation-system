@@ -37,6 +37,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Ticket {
 
+	
 	/**
 	 * The unique identifier for the ticket.
 	 */
