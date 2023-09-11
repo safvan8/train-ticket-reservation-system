@@ -17,7 +17,6 @@ The Train Ticket Reservation System is a web application with a Rest API  design
 - **Payment Gateway**
 - **Ticket Booking History**
 
-
 ## Admin Access:
 The admin of the system has additional privileges, including:
 
