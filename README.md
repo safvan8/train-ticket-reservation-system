@@ -80,6 +80,3 @@ Users of the system have the following access and functionalities:
 - Embedded Apache Tomcat Server
   
 These technologies are carefully selected to provide a robust, efficient, and user-friendly solution for the Train Ticket Reservation System.
-
-
-
