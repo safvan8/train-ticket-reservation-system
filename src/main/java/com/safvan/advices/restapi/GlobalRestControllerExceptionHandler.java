@@ -17,7 +17,9 @@ import com.safvan.response.ErrorApiResponse;
  * Global Exception Handler for REST Controllers. This class handles exceptions
  * thrown by REST controllers in the application.
  * 
- * @author safvan
+ * @author Safvan
+ * @version 2.0
+ * @since 2.0
  *
  */
 @RestControllerAdvice
