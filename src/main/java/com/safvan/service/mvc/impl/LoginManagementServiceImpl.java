@@ -9,6 +9,7 @@ import com.safvan.exception.mvc.login.UserNotFoundException;
 import com.safvan.repository.mvc.IUserRepository;
 import com.safvan.service.mvc.ILoginManagementService;
 import com.safvan.service.mvc.IUserManagementService;
+import com.safvan.util.CommonUtils;
 
 /**
  * The LoginManagementServiceImpl class provides implementations for user
@@ -61,7 +62,9 @@ public class LoginManagementServiceImpl implements ILoginManagementService {
 	@Override
 	public void storeUserSession(Integer userId, String sessionId) {
 		User user = userManagementService.getUserById(userId);
-		if (user != null)
+		
+		// if user is not null,
+		if (CommonUtils.isNotNull.test(user))
 			userRepository.updateSessionIdByUserId(userId, sessionId);
 		else {
 			String userFriendlyMessage = "User Not found for the Id: " + userId;
