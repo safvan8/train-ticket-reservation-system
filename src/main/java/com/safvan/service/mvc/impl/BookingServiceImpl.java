@@ -2,6 +2,7 @@ package com.safvan.service.mvc.impl;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.function.Predicate;
 
 import javax.transaction.Transactional;
 
@@ -65,7 +66,12 @@ public class BookingServiceImpl implements IBookingService {
 
 		Ticket ticketBookingResult = null;
 
-		if (ticket.getSeatsRequired() > seatsAvailable) {
+		// predicate checks if the required seats are not available.
+		Predicate<Ticket> areSeatsUnavailable =  
+				requestedTicket  -> requestedTicket.getSeatsRequired() > train.getSeats();
+		
+				
+		if (areSeatsUnavailable.test(ticket)) {
 			String userFriendlyMessage = "Only " + seatsAvailable + " seats are available on this train!";
 			throw new NoEnoughSeatsForBooking(Thread.currentThread().getStackTrace(), userFriendlyMessage);
 		} else {
