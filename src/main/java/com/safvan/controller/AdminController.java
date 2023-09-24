@@ -29,7 +29,7 @@ import com.safvan.service.mvc.ITrainService;
  */
 
 @Controller
-@RequestMapping(AdminEndpoints.ADMIN)
+@RequestMapping(AdminEndpoints.BASE_ADMIN)
 public class AdminController {
 
 	@Autowired
@@ -40,7 +40,7 @@ public class AdminController {
 	 *
 	 * @return The view name for the admin home page.
 	 */
-	@GetMapping(value = { "/", "/home" })
+	@GetMapping(value = { "/", AdminEndpoints.SHOW_HOME })
 	public String showHomePage() {
 		return "admin/admin_home";
 	}
@@ -51,7 +51,7 @@ public class AdminController {
 	 * @param model The model object to pass data to the view.
 	 * @return The view name for displaying all trains.
 	 */
-	@GetMapping("/viewAllTrains")
+	@GetMapping(AdminEndpoints.VIEW_ALL_TRAINS)
 	public String viewAllTrainsForward(Map<String, Object> model) {
 
 		List<Train> allTrains = trainService.getAllTrains();
@@ -66,7 +66,7 @@ public class AdminController {
 	 *
 	 * @return The view name for the search train form.
 	 */
-	@GetMapping("/searchTrainByNumberFwd")
+	@GetMapping(AdminEndpoints.SHOW_SEARCH_TRAIN_BY_NUMBER_FORM)
 	public String searchTrainByNumberForward() {
 		return "admin/search_train_form";
 	}
