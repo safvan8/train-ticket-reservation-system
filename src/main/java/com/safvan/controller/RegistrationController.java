@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.safvan.beans.User;
+import com.safvan.constants.endpoints.RegistrationEndpoints;
 import com.safvan.service.mvc.ILoginManagementService;
 import com.safvan.service.mvc.IUserManagementService;
 import com.safvan.util.FileUploadUtils;
@@ -26,7 +27,7 @@ import com.safvan.util.UserUtils;
  * @since 1.0
  */
 @Controller
-@RequestMapping("/appUsers")
+@RequestMapping(RegistrationEndpoints.REGISTER)
 public class RegistrationController {
 
 	@Autowired

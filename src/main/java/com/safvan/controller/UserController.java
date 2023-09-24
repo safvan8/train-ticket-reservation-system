@@ -21,7 +21,7 @@ import com.safvan.beans.TicketDTO;
 import com.safvan.beans.Train;
 import com.safvan.beans.TrainDTO;
 import com.safvan.beans.User;
-import com.safvan.constants.Endpoints;
+import com.safvan.constants.endpoints.UserEndpoints;
 import com.safvan.exception.restapi.booking.ApiBookingFailedException;
 import com.safvan.exception.restapi.booking.ApiNoEnoughSeatsForBooking;
 import com.safvan.exception.restapi.train.ApiTrainNotFoundException;
@@ -40,7 +40,7 @@ import com.safvan.service.mvc.ITrainService;
  * @since 1.0
  */
 @Controller
-@RequestMapping(Endpoints.USER)
+@RequestMapping(UserEndpoints.USER)
 public class UserController {
 
 	@Autowired
