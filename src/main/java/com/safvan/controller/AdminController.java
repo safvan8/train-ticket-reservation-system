@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.safvan.beans.Train;
+import com.safvan.constants.Endpoints;
 import com.safvan.exception.restapi.train.ApiTrainException;
 import com.safvan.exception.restapi.train.ApiTrainNotFoundException;
 import com.safvan.service.mvc.ITrainService;
@@ -28,7 +29,7 @@ import com.safvan.service.mvc.ITrainService;
  */
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping(Endpoints.ADMIN)
 public class AdminController {
 
 	@Autowired
