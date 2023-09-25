@@ -1,5 +1,12 @@
 package com.safvan.constants.endpoints;
 
+/**
+ * 
+ * @author Safvan
+ * @version 2.0
+ * @since 2.0
+ *
+ */
 public class AdminEndpoints {
 	public static final String BASE_ADMIN = "/admin";
 	public static final String SHOW_HOME = "/home";
@@ -12,7 +19,5 @@ public class AdminEndpoints {
 	public static final String SHOW_TRAIN_EDIT_FORM_TO_UPDATE_BY_NUMBER = "/updateTrainByNumber";
 	public static final String SHOW_DELETE_TRAIN_FORM = "/deleteTrainFwd";
 	public static final String DELETE_TRAIN_BY_NUMBER = "/deleteTrainByNumber";
-
-
 
 }
