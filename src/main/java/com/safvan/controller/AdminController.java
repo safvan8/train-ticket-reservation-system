@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.safvan.beans.Train;
+import com.safvan.constants.endpoints.AdminEndpoints;
 import com.safvan.exception.restapi.train.ApiTrainException;
 import com.safvan.exception.restapi.train.ApiTrainNotFoundException;
 import com.safvan.service.mvc.ITrainService;
@@ -28,7 +29,7 @@ import com.safvan.service.mvc.ITrainService;
  */
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping(AdminEndpoints.BASE_ADMIN)
 public class AdminController {
 
 	@Autowired
@@ -39,7 +40,7 @@ public class AdminController {
 	 *
 	 * @return The view name for the admin home page.
 	 */
-	@GetMapping(value = { "/", "/home" })
+	@GetMapping(value = { "/", AdminEndpoints.SHOW_HOME })
 	public String showHomePage() {
 		return "admin/admin_home";
 	}
@@ -50,7 +51,7 @@ public class AdminController {
 	 * @param model The model object to pass data to the view.
 	 * @return The view name for displaying all trains.
 	 */
-	@GetMapping("/viewAllTrains")
+	@GetMapping(AdminEndpoints.VIEW_ALL_TRAINS)
 	public String viewAllTrainsForward(Map<String, Object> model) {
 
 		List<Train> allTrains = trainService.getAllTrains();
@@ -65,7 +66,7 @@ public class AdminController {
 	 *
 	 * @return The view name for the search train form.
 	 */
-	@GetMapping("/searchTrainByNumberFwd")
+	@GetMapping(AdminEndpoints.SHOW_SEARCH_TRAIN_BY_NUMBER_FORM)
 	public String searchTrainByNumberForward() {
 		return "admin/search_train_form";
 	}
@@ -79,8 +80,8 @@ public class AdminController {
 	 * @return The view name for displaying the search train result.
 	 * @throws ApiTrainNotFoundException If the train is not found.
 	 */
-	@GetMapping("/searchTrainByNumber")
-	public String searchTrainByNumber(@RequestParam Long trainNo, Map<String, Object> model) {
+	@GetMapping(AdminEndpoints.SHOW_SEARCH_TRAIN_BY_NUMBER_RESULT)
+	public String searchTrainByNumberResult(@RequestParam Long trainNo, Map<String, Object> model) {
 		Train train = trainService.getTrainByNumber(trainNo);
 
 		model.put("train", train);
@@ -93,7 +94,7 @@ public class AdminController {
 	 *
 	 * @return The view name for the add train form.
 	 */
-	@GetMapping("/addTrainFwd")
+	@GetMapping(AdminEndpoints.SHOW_ADD_TRAIN_FORM)
 	public String addTrainForward() {
 		return "admin/add_train_form";
 	}
@@ -112,7 +113,7 @@ public class AdminController {
 	 * @throws ApiTrainException If an error occurs while saving or updating the
 	 *                           train.
 	 */
-	@PostMapping("/saveOrUpdateTrain")
+	@PostMapping(AdminEndpoints.SAVE_OR_UPDATE_TRAIN)
 	public String saveOrUpdateTrain(@ModelAttribute Train train, Map<String, Object> model) {
 
 		String message = trainService.saveOrUpdateTrain(train);
@@ -127,13 +128,13 @@ public class AdminController {
 	 *
 	 * @return The view name for the update train form.
 	 */
-	@GetMapping("/updateTrainFwd")
+	@GetMapping(AdminEndpoints.SHOW_UPDATE_TRAIN_INITIAL_FORM)
 	public String updateTrainFwd() {
 		return "admin/update_train_page";
 	}
 
 	/**
-	 * Shows the edit form for a specific train.
+	 * Shows the edit form for a specific train based on trainNo.
 	 * 
 	 * This method receives the train number as a request parameter and retrieves
 	 * the corresponding train details from the train service for updating it. The
@@ -145,7 +146,7 @@ public class AdminController {
 	 * @return The view name for the edit train details form.
 	 * @throws ApiTrainNotFoundException If the train is not found.
 	 */
-	@PostMapping("/updateTrainByNumber")
+	@PostMapping(AdminEndpoints.SHOW_TRAIN_EDIT_FORM_TO_UPDATE_BY_NUMBER)
 	public String showEditForm(@RequestParam Long trainNo, Map<String, Object> model) {
 
 		Train train = trainService.getTrainByNumber(trainNo);
@@ -160,7 +161,7 @@ public class AdminController {
 	 *
 	 * @return The view name for the delete train form.
 	 */
-	@GetMapping("/deleteTrainFwd")
+	@GetMapping(AdminEndpoints.SHOW_DELETE_TRAIN_FORM)
 	public String deleteTrainForward() {
 		return "admin/delete_train_form";
 	}
@@ -179,7 +180,7 @@ public class AdminController {
 	 * @throws ApiTrainException         If an error occurs while deleting the
 	 *                                   train.
 	 */
-	@PostMapping("/deleteTrainByNumber")
+	@PostMapping(AdminEndpoints.DELETE_TRAIN_BY_NUMBER)
 	public String deleteTrain(@RequestParam Long trainNo, Map<String, Object> model) {
 
 		String message = trainService.deleteTrain(trainNo);

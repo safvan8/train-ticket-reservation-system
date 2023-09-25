@@ -6,6 +6,10 @@ import lombok.NoArgsConstructor;
 
 /**
  * Represents payment details for a booking request.
+ * 
+ * @author Safvan
+ * @version 2.0
+ * @since 2.0
  */
 @Data
 @AllArgsConstructor

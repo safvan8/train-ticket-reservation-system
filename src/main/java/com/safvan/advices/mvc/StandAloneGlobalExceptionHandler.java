@@ -31,7 +31,9 @@ import com.safvan.util.UserUtils;
  * like exception handling, model attribute pre-processing, etc., to multiple
  * controllers in a centralized manner.
  * 
- * Author: Safvan Version: 1.0 Since: 1.0
+ * @Author: Safvan
+ * @Version: 1.0
+ * @Since: 1.0
  */
 @ControllerAdvice
 public class StandAloneGlobalExceptionHandler {
@@ -45,10 +47,10 @@ public class StandAloneGlobalExceptionHandler {
 	 * Exception handler method for handling ApiTrainNotFoundException.
 	 * 
 	 * This method is responsible for handling the custom exception
-	 * ApiTrainNotFoundException, which may be thrown when a train is not found in the
-	 * system. It logs the exception, determines the user's role based on the
+	 * ApiTrainNotFoundException, which may be thrown when a train is not found in
+	 * the system. It logs the exception, determines the user's role based on the
 	 * session, and displays an appropriate error page to the user based on their
-	 * role (ADMIN or CUSTOMER).
+	 * role (BASE_ADMIN or CUSTOMER).
 	 * 
 	 * @param e       The ApiTrainNotFoundException that was thrown.
 	 * @param request The HttpServletRequest for the current request.
@@ -61,7 +63,7 @@ public class StandAloneGlobalExceptionHandler {
 	public String handleTrainNotFoundException(TrainNotFoundException e, HttpServletRequest request, Model model) {
 
 		System.out.println("StandAloneGlobalExceptionHandler.handleTrainNotFoundException(************************)");
-		
+
 		// Logging the exception for debugging and tracing purposes
 		ExceptionLoggerUtil.logException(e, request.getRequestURI());
 
@@ -120,9 +122,9 @@ public class StandAloneGlobalExceptionHandler {
 	 */
 	@ExceptionHandler(value = { BookingException.class, NoEnoughSeatsForBooking.class, BookingFailedException.class })
 	public String handleNoEnoughSeatsForBooking(BookingException e, HttpServletRequest request, Model model) {
-		
+
 		e.printStackTrace();
-		
+
 		LOGGER.error("Exception Occurred for the URL: {}", request.getRequestURI(), e);
 
 		String message = e.getUserFriendlyMessage();
@@ -133,8 +135,8 @@ public class StandAloneGlobalExceptionHandler {
 	/**
 	 * Exception handler for ApiLoginFailedException and ApiUserNotFoundException.
 	 * 
-	 * @param e       The ApiLoginFailedException or ApiUserNotFoundException object that
-	 *                is raised when there is an issue related to user login.
+	 * @param e       The ApiLoginFailedException or ApiUserNotFoundException object
+	 *                that is raised when there is an issue related to user login.
 	 * @param request The HttpServletRequest object containing the incoming request
 	 *                information.
 	 * @param model   The Model object to pass data to the view for rendering.
@@ -149,7 +151,7 @@ public class StandAloneGlobalExceptionHandler {
 		String sessionId = (String) request.getSession().getAttribute("sessionId");
 		// finding userRole
 		UserRole userRole = userUtils.getUserRoleBySessionId(sessionId);
-		
+
 		String message = "Something went wrong at :" + getClass().getName() + ".handleTrainNotFoundException(-,-,-)";
 		String viewPage = null;
 

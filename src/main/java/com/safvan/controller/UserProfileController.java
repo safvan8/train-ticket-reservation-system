@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.safvan.beans.User;
+import com.safvan.constants.endpoints.UserProfileEndpoints;
 import com.safvan.service.mvc.ILoginManagementService;
 
 /**
@@ -26,7 +27,7 @@ import com.safvan.service.mvc.ILoginManagementService;
  * @since 1.0
  */
 @Controller
-@RequestMapping("/userProfile")
+@RequestMapping(UserProfileEndpoints.USER_PROFILE)
 public class UserProfileController {
 
 	@Autowired
