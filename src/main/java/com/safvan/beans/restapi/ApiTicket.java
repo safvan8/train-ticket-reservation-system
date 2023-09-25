@@ -24,6 +24,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * 
+ * @author Safvan
+ * @version 2.0
+ * @since 2.0
+ *
+ */
 @Entity
 @Table(name = "api_ticket")
 @Data

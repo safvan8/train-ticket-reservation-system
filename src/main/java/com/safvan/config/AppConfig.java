@@ -7,6 +7,13 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+/**
+ * 
+ * @author Safvan
+ * @version 2.0
+ * @since 2.0
+ *
+ */
 @Configuration
 public class AppConfig {
 
@@ -23,8 +30,8 @@ public class AppConfig {
 		PasswordEncoder defaultEncoder = new BCryptPasswordEncoder();
 
 		// Create a DelegatingPasswordEncoder instance
-		DelegatingPasswordEncoder delegatingPasswordEncoder = 
-				(DelegatingPasswordEncoder) PasswordEncoderFactories.createDelegatingPasswordEncoder();
+		DelegatingPasswordEncoder delegatingPasswordEncoder = (DelegatingPasswordEncoder) PasswordEncoderFactories
+				.createDelegatingPasswordEncoder();
 
 		// Set the default encoder for matches
 		delegatingPasswordEncoder.setDefaultPasswordEncoderForMatches(defaultEncoder);
