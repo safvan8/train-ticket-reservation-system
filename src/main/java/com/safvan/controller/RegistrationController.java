@@ -27,7 +27,7 @@ import com.safvan.util.UserUtils;
  * @since 1.0
  */
 @Controller
-@RequestMapping(RegistrationEndpoints.REGISTER)
+@RequestMapping(RegistrationEndpoints.REGISTRATION_BASE_URI)
 public class RegistrationController {
 
 	@Autowired
@@ -41,7 +41,7 @@ public class RegistrationController {
 	 *
 	 * @return The view name for the registration form.
 	 */
-	@GetMapping("/register")
+	@GetMapping(RegistrationEndpoints.SHOW_REGISTRATION_FORM)
 	public String showRegistarionForm() {
 
 		return "register_user";
@@ -61,7 +61,7 @@ public class RegistrationController {
 	 * @return The view name for the user registration success page.
 	 */
 
-	@PostMapping("/confirmRegistration/customer")
+	@PostMapping(RegistrationEndpoints.REGISTER_NEW_CUSTOMER)
 	public String registerNewCustomer(@RequestParam("firstName") String firstName,
 			@RequestParam("lastName") String lastName, @RequestParam("username") String username,
 			@RequestParam("password") String password, @RequestParam("address") String address,

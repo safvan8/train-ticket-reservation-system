@@ -8,7 +8,7 @@ package com.safvan.constants.endpoints;
  *
  */
 public class AdminEndpoints {
-	public static final String BASE_ADMIN = "/admin";
+	public static final String ADMIN_BASE_URI = "/admin";
 	public static final String SHOW_HOME = "/home";
 	public static final String VIEW_ALL_TRAINS = "/viewAllTrains";
 	public static final String SHOW_SEARCH_TRAIN_BY_NUMBER_FORM = "/searchTrainByNumberFwd";
