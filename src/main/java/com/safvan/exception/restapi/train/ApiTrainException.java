@@ -2,7 +2,13 @@ package com.safvan.exception.restapi.train;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+/**
+ * 
+ * @author Safvan
+ * @version 2.0
+ * @since 2.0
+ *
+ */
 @Data
 @NoArgsConstructor
 public class ApiTrainException extends RuntimeException {

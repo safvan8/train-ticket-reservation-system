@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.safvan.beans.User;
 import com.safvan.constants.UserRole;
+import com.safvan.constants.endpoints.LoginEndpoints;
 import com.safvan.service.mvc.ILoginManagementService;
 
 /**
@@ -34,7 +35,7 @@ public class LoginController {
 	 * 
 	 * @return the view name for the login page.
 	 */
-	@GetMapping(value = { "/login", "/" })
+	@GetMapping(value = { LoginEndpoints.LOGIN, "/" })
 	public String showLoginPage() {
 		return "login";
 	}
@@ -48,7 +49,7 @@ public class LoginController {
 	 * @param model    The model object to pass data to the view.
 	 * @return The view name based on the login result.
 	 */
-	@PostMapping("/login")
+	@PostMapping(LoginEndpoints.LOGIN)
 	public String login(@RequestParam String username, @RequestParam String password, HttpSession session,
 			Map<String, Object> model) {
 
@@ -82,7 +83,7 @@ public class LoginController {
 	 * @param session The HttpSession object.
 	 * @return The view name for the home page.
 	 */
-	@GetMapping("/home")
+	@GetMapping(LoginEndpoints.SHOW_HOME)
 	public String showHome(HttpSession session) {
 		String sessionId = (String) session.getAttribute("sessionId");
 		System.out.println(sessionId);
@@ -111,7 +112,7 @@ public class LoginController {
 	 * @param model   The model object to pass data to the view.
 	 * @return The view name for the login page.
 	 */
-	@RequestMapping("/logout")
+	@RequestMapping(LoginEndpoints.LOGOUT)
 	public String logout(HttpSession session, Map<String, Object> model) {
 		// setting logout message.
 		model.put("logoutMessage", "Logout Success, Login again below if needed");
