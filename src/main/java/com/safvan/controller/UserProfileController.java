@@ -27,7 +27,7 @@ import com.safvan.service.mvc.ILoginManagementService;
  * @since 1.0
  */
 @Controller
-@RequestMapping(UserProfileEndpoints.USER_PROFILE)
+@RequestMapping(UserProfileEndpoints.USER_PROFILE_BASE_URI)
 public class UserProfileController {
 
 	@Autowired
@@ -40,7 +40,7 @@ public class UserProfileController {
 	 * @param model   The model object to pass data to the view.
 	 * @return The view name for displaying the user profile.
 	 */
-	@GetMapping("/view")
+	@GetMapping(UserProfileEndpoints.VIEW_USER_PROFILE)
 	public String showUserProfile(HttpSession session, Map<String, Object> model) {
 
 		String sessionId = (String) session.getAttribute("sessionId");
@@ -51,7 +51,6 @@ public class UserProfileController {
 			user = loginManagementService.getUserbySessionId(sessionId);
 		}
 
-		System.out.println("============" + user);
 		if (sessionId != null && user != null) {
 			model.put("user", user);
 			byte[] imageByteArray = user.getUserProfile().getImage();
