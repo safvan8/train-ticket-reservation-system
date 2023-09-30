@@ -3,7 +3,7 @@ package com.safvan.constants;
 /**
  * UserRole enum represents different types of user roles in the application.
  *
- * BASE_ADMIN: Represents the role of an administrator. 
+ * ADMIN_BASE_URI: Represents the role of an administrator. 
  * CUSTOMER: Represents the role of a customer.
  *
  * @author Safvan

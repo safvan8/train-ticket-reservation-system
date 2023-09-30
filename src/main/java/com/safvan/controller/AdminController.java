@@ -29,7 +29,7 @@ import com.safvan.service.mvc.ITrainService;
  */
 
 @Controller
-@RequestMapping(AdminEndpoints.BASE_ADMIN)
+@RequestMapping(AdminEndpoints.ADMIN_BASE_URI)
 public class AdminController {
 
 	@Autowired

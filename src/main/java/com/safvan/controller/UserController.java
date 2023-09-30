@@ -40,7 +40,7 @@ import com.safvan.service.mvc.ITrainService;
  * @since 1.0
  */
 @Controller
-@RequestMapping(UserEndpoints.USER)
+@RequestMapping(UserEndpoints.USER_BASE_URI)
 public class UserController {
 
 	@Autowired
@@ -60,7 +60,7 @@ public class UserController {
 	 * 
 	 * @return The view name for the user home page.
 	 */
-	@GetMapping(value = { "/", "/home" })
+	@GetMapping(value = { "/", UserEndpoints.SHOW_HOME })
 	public String showHomePage() {
 		return "user/user_home";
 	}
@@ -71,7 +71,7 @@ public class UserController {
 	 * @param model The model object to pass data to the view.
 	 * @return The view name for displaying all trains.
 	 */
-	@GetMapping("/viewAllTrains")
+	@GetMapping(UserEndpoints.VIEW_ALL_TRAINS)
 	public String viewAllTrainsForward(Map<String, Object> model) {
 
 		System.out.println("UserController.viewAllTrainsForward()");
@@ -100,7 +100,8 @@ public class UserController {
 	 * @param request The HTTP request object.
 	 * @return The view name for the trains between stations form.
 	 */
-	@GetMapping(value = { "/findTrainsbetweenStaionsFwd", "/trainFairEnqueryFwd" })
+	@GetMapping(value = { UserEndpoints.SHOW_FIND_TRAINS_BETWEEN_TWO_STATIONS_FORM,
+			UserEndpoints.SHOW_TRAIN_FAIR_ENQUERY_FORM })
 	public String findTrainsbetweenStaionsForward(Map<String, Object> model, HttpServletRequest request) {
 		System.out.println(request.getRequestURI());
 
@@ -136,7 +137,7 @@ public class UserController {
 	 * @param model       The model object to pass list of trains to the view.
 	 * @return The view name for displaying the trains between stations.
 	 */
-	@GetMapping("/findTrainsbetweenStaions")
+	@GetMapping(UserEndpoints.FIND_TRAINS_BETWEEN_TWO_STATIONS_RESULT)
 	public String findTrainsbetweenStaions(@RequestParam String fromStation, @RequestParam String toStation,
 			Map<String, Object> model) {
 
@@ -168,7 +169,7 @@ public class UserController {
 	 * @param model       The model object to pass data to the view.
 	 * @return The view name for the pre-booking form.
 	 */
-	@GetMapping("/showPreBookingFormForTrain")
+	@GetMapping(UserEndpoints.SHOW_TRAIN_PRE_BOOKING_FORM)
 	public String showPreBookingFormForTrain(@RequestParam Long trainNo, @RequestParam String fromStation,
 			@RequestParam String toStation, HttpSession session, Map<String, Object> model) {
 
@@ -210,7 +211,7 @@ public class UserController {
 	 * @param model       The model object to pass data to the view.
 	 * @return The view name for the payment inputs form.
 	 */
-	@PostMapping("/proceedTrainBooking")
+	@PostMapping(UserEndpoints.PROCEED_TRAIN_BOOKING)
 	public String proceedTrainBookingForUser(@ModelAttribute TicketDTO ticketDTO, @RequestParam Long trainNo,
 			@RequestParam String fromStation, @RequestParam String toStation, Map<String, Object> model) {
 
@@ -246,7 +247,7 @@ public class UserController {
 	 *                                    ticket.
 	 * 
 	 */
-	@PostMapping("/confirmTrainBooking")
+	@PostMapping(UserEndpoints.CONFIRM_TRAIN_BOOKING)
 	public String confirmTrainBooking(@ModelAttribute("trainDTO") TrainDTO trainDTO,
 			@ModelAttribute("ticketDTO") TicketDTO ticketDTO, HttpSession session, Map<String, Object> model) {
 
@@ -285,7 +286,7 @@ public class UserController {
 	 * @param model   the model object to pass data to the view.
 	 * @return the view name for displaying the ticket booking history.
 	 */
-	@GetMapping("/showTicketBookingHistory")
+	@GetMapping(UserEndpoints.SHOW_TICKET_BOOKING_HISTORY)
 	public String getAllTicketsBooked(HttpSession session, Map<String, Object> model) {
 
 		// Retrieve user details of logged in user using sessionId.
@@ -316,7 +317,8 @@ public class UserController {
 	 * 
 	 * @return The view name for the train number input form.
 	 */
-	@GetMapping(value = { "/trainSeatsAvailablityCheckFwd", "/searchTrainByNumberFwd" })
+	@GetMapping(value = { UserEndpoints.SHOW_TRAIN_SEATS_AVAILABILITY_CHECK_FORM,
+			UserEndpoints.SHOW_SEARCH_TRAIN_BY_NUMBER_FORM })
 	public String showTrainNumberinputForm(HttpServletRequest request, Map<String, Object> model) {
 
 		String pageHeading;
@@ -348,7 +350,7 @@ public class UserController {
 	 * @return The view name for displaying the train details.
 	 * @throws ApiTrainNotFoundException If the train is not found.
 	 */
-	@GetMapping("/searchTrainByNumber")
+	@GetMapping(UserEndpoints.SEARCH_TRAIN_BY_NUMBER_RESULT)
 	public String searchTrainByNumber(@RequestParam Long trainNo, Map<String, Object> model) {
 
 		// retrive train details based on train number
