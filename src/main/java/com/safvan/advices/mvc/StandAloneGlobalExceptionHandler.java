@@ -50,7 +50,7 @@ public class StandAloneGlobalExceptionHandler {
 	 * ApiTrainNotFoundException, which may be thrown when a train is not found in
 	 * the system. It logs the exception, determines the user's role based on the
 	 * session, and displays an appropriate error page to the user based on their
-	 * role (BASE_ADMIN or CUSTOMER).
+	 * role (ADMIN_BASE_URI or CUSTOMER).
 	 * 
 	 * @param e       The ApiTrainNotFoundException that was thrown.
 	 * @param request The HttpServletRequest for the current request.
