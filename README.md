@@ -28,10 +28,12 @@ The admin of the system has additional privileges, including:
 - **Search Trains by Number**: Admin can search for trains using their unique identification numbers.
 - **Logout**: Admin can safely log out from the admin panel.
 
+
 ## REST APIs
 - Book Tickets 
 - Cancel Tickets 
 - Access train details via API
+
 
 ## User Access:
 Users of the system have the following access and functionalities:
