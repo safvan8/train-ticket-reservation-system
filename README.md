@@ -34,7 +34,6 @@ The admin of the system has additional privileges, including:
 - Cancel Tickets 
 - Access train details via API
 
-
 ## User Access:
 Users of the system have the following access and functionalities:
 
