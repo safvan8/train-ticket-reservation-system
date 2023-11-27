@@ -51,7 +51,7 @@ Users of the system have the following access and functionalities:
 - **Logout**: Users can safely log out from the system.
 
 ## Technologies Used:
-
+ 
 **Front-End Technologies:**
 
 - JSP & JSTL
